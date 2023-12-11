@@ -34,23 +34,196 @@ header {
   object-fit: contain;
 }
 
-.lang_changer {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  color: #ffd700;
-  background-color: #000;
-  border: 2px solid #ffd700;
-  border-radius: 5px;
+.menuWrapper {
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Марджин который опускает вниз
+  //margin-top: 46px;
+  //height: auto;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!запретить прокрутку по горизонтали на элементе, вы можете использовать touch-action: pan-y;, чтобы разрешить только вертикальные жесты.
+  touch-action: pan-y;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!отступ справа
+  width: 250px;
+  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! цвет текста
+  color: #feaa02;
 
-  &:hover {
-    background-color: #ffd700;
-    color: #000;
+  .menu, .supportWrapper {
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!смещение в право и вниз
+    padding: 15px;
+
+    & > ul {
+      //border-radius: 100px;
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! отсутп после конца меню
+      margin-bottom: 15px;
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! размер шрифта
+      font-size: 15px;
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! увеличение по горизонтали + растояние между текстом и стрелочкой
+      //padding: 100px 50px;
+      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  убираем точку
+      list-style-type: none;
+
+      & > li {
+
+        & > a {
+          //padding-bottom: 16px;
+          //cursor: pointer;
+        }
+
+        &.hasSubmenu {
+
+          //noinspection ALL
+          //.turboLand {
+          //  background-image: url('/assets/icons/turboland.svg');
+          //  background-repeat: no-repeat;
+          //  width: 100%;
+          //
+          //  &::after {
+          //    margin: 3px 0 3px auto;
+          //  }
+          //}
+
+          ul {
+            //!!!!!!!!!!!!!!!!!!!!!! делать подменю скрытым
+            display: none;
+
+            li {
+              //!!!!!!!!!!!!!!!!!! отступ самих подменюшек
+              margin: 15px 0px;
+              //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  убираем точку
+              list-style-type: none;
+
+              //&.hasSubCategory {
+              //  ul {
+              //    display: none;
+              //  }
+              //
+              //  .active {
+              //    font-weight: 600;
+              //
+              //    & + ul {
+              //      display: block;
+              //    }
+              //  }
+              //
+              //  &:last-child {
+              //    margin-bottom: 0;
+              //  }
+              //}
+            }
+          }
+
+          //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!стрелочка
+          & > a {
+            //cursor: pointer;
+
+            &:after {
+              border-style: solid;
+              border-width: 0 2px 2px 0;
+              content: "";
+              display: inline-block;
+              padding: 3px;
+              transform: rotate(45deg);
+              margin: 3px 0;
+              border-color: #feaa02;
+              transition: 400ms;
+              opacity: 0.6;
+            }
+
+            &.open {
+              //!!!!!!!!!!!!!!!!!!!!!!!что бы UK светилcя ярче когда открыт
+              font-weight: 600;
+              padding-bottom: 0;
+
+              & + ul {
+                display: block;
+              }
+
+              &:after {
+                transform: rotate(225deg);
+                //!!!!!!!!!!!!!!!!!!!!!!!что бы стрелочка светилась ярче когда открыта
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        &:last-child {
+          & > a {
+            //!!!!!!!!!!!!!!!!!!внутр отступ для UK
+            padding-bottom: 0px;
+          }
+        }
+      }
+
+      //!!!!!!!!!!!!!!!!!!настройка раскрывающегося меню в целом
+      a {
+        //color: $color-text;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+
+      //  &.all_product{
+      //    //color: gold;
+      //  }
+      }
+
+      //&.logout {
+      //  padding: 15px;
+      //
+      //  li {
+      //    a {
+      //      justify-content: center;
+      //      opacity: 0.6;
+      //    }
+      //  }
+      //}
+    }
   }
-  &::after {
-    content: " ▼";
-  }
+
+  //.supportWrapper {
+  //  padding: 0;
+  //  display: flex;
+  //  flex-wrap: nowrap;
+  //
+  //  .support {
+  //    position: relative;
+  //    padding: 12px 7px;
+  //    margin-right: 10px;
+  //
+  //    .active {
+  //      background: #41D928;
+  //      width: 6px;
+  //      height: 6px;
+  //      border-radius: 50%;
+  //      margin-right: 7px;
+  //
+  //      &.notActive {
+  //        background: #FFD12D;
+  //      }
+  //    }
+  //  }
+  //
+  //  .language {
+  //    width: 100%;
+  //    padding: 12px 7px;
+  //
+  //    li {
+  //      display: flex;
+  //      align-items: center;
+  //      justify-content: center;
+  //    }
+  //
+  //    span {
+  //      font-size: 14px;
+  //      opacity: 0.3;
+  //
+  //      &.active {
+  //        opacity: 1;
+  //      }
+  //    }
+  //
+  //    mat-slide-toggle {
+  //      margin: 0 10px;
+  //    }
+  //  }
+  //}
 }

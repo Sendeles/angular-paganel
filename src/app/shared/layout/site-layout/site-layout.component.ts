@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {fab, faYoutube} from "@fortawesome/free-brands-svg-icons";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {fas} from "@fortawesome/free-solid-svg-icons";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-site-layout',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, NgClass],
   templateUrl: './site-layout.component.html',
   styleUrl: './site-layout.component.scss'
 })
@@ -25,13 +26,11 @@ export class SiteLayoutComponent {
   youtube: string = './assets/images/social/youtube.webp'
 
 
+  constructor() {}
 
-  constructor(
-
-  ) {
-
+  openSubMenu(event: Event): void {
+    const el = event.target as HTMLHRElement;
+    el.classList.contains('open') ? el.classList.remove('open') : el.classList.add('open');
   }
-
-
 
 }

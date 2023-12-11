@@ -9,6 +9,7 @@ import {AppRoutingModule} from "./app.routes";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faYoutube} from "@fortawesome/free-brands-svg-icons";
+import {FormsModule} from "@angular/forms";
 
 library.add(faYoutube)
 
@@ -21,6 +22,8 @@ library.add(faYoutube)
     BrowserModule,
     SharedModule,
     FontAwesomeModule,
+    CommonModule,
+    FormsModule
   ],
   exports: [
 

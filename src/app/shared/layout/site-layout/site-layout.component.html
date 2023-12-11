@@ -15,10 +15,36 @@
     <img [src]="youtube" alt="youtube">
   </div>
   <div>
-    <div class="lang_changer">UK</div>
+    <div class="menuWrapper">
+      <div class="menu">
+        <ul>
+          <li class="hasSubmenu">
+            <a (click)="openSubMenu($event)">
+              FOR_BUYERS
+            </a>
+            <ul>
+              <li>
+                <a>
+                  FAQ_TITLE
+                </a>
+              </li>
+              <li>
+                <a>
+                  PRIVATE_POLICY
+                </a>
+              </li>
+              <li>
+                <a>
+                  PUBLIC_OFFERS
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-
-</header>
+ </header>
 <body>
 
 </body>
