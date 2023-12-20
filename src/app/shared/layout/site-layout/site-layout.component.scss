@@ -1,13 +1,15 @@
 * {
   padding: 0;
   margin: 0;
+  //border: 1px solid red;
 }
 
 header {
+  display: flex;
   background-color: black;
   padding: 2px;
-  display: flex;
-  flex-direction: row;
+  justify-content: space-around;
+  //padding: 0 100px
 }
 
 .logo {
@@ -20,7 +22,7 @@ header {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  flex-grow: 1;
+  width: 50%
 }
 
 .social {
@@ -36,49 +38,48 @@ header {
 
 .menuWrapper {
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Марджин который опускает вниз
-  //margin-top: 46px;
+  margin-top: 23px;
   //height: auto;
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!запретить прокрутку по горизонтали на элементе, вы можете использовать touch-action: pan-y;, чтобы разрешить только вертикальные жесты.
   touch-action: pan-y;
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!отступ справа
-  width: 250px;
+  width: 95px;
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! цвет текста
   color: #feaa02;
+  //!!!!!!!!!!!!!!!!!для z-index
+  position: relative;
 
   .menu, .supportWrapper {
+    box-sizing: content-box;
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!смещение в право и вниз
-    padding: 15px;
+    padding: 12px;
+    //!!!!!!!!!!!!!!!!!для z-index
+    position: absolute;
+    z-index: 1;
+    //!!!!!!!!!!!!!!!!!!!!расстояние между UK и стрелочкой
+    width: 72px;
+    border: 1px solid;
+    border-radius: 10px;
 
     & > ul {
       //border-radius: 100px;
       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! отсутп после конца меню
-      margin-bottom: 15px;
+      //margin-bottom: 15px;
       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! размер шрифта
       font-size: 15px;
       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! увеличение по горизонтали + растояние между текстом и стрелочкой
-      //padding: 100px 50px;
+      //padding: 0 4px 0 2px;
       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  убираем точку
       list-style-type: none;
+
 
       & > li {
 
         & > a {
-          //padding-bottom: 16px;
-          //cursor: pointer;
+          font-size: 16px;
         }
 
         &.hasSubmenu {
-
-          //noinspection ALL
-          //.turboLand {
-          //  background-image: url('/assets/icons/turboland.svg');
-          //  background-repeat: no-repeat;
-          //  width: 100%;
-          //
-          //  &::after {
-          //    margin: 3px 0 3px auto;
-          //  }
-          //}
 
           ul {
             //!!!!!!!!!!!!!!!!!!!!!! делать подменю скрытым
@@ -86,33 +87,21 @@ header {
 
             li {
               //!!!!!!!!!!!!!!!!!! отступ самих подменюшек
-              margin: 15px 0px;
+              margin: 15px 0;
+              border-bottom: 1px solid grey;
               //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  убираем точку
               list-style-type: none;
-
-              //&.hasSubCategory {
-              //  ul {
-              //    display: none;
-              //  }
-              //
-              //  .active {
-              //    font-weight: 600;
-              //
-              //    & + ul {
-              //      display: block;
-              //    }
-              //  }
-              //
-              //  &:last-child {
-              //    margin-bottom: 0;
-              //  }
-              //}
             }
           }
 
           //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!стрелочка
           & > a {
             //cursor: pointer;
+
+            &:hover {
+              color: white;
+              background-color: grey;
+            }
 
             &:after {
               border-style: solid;
@@ -129,7 +118,7 @@ header {
 
             &.open {
               //!!!!!!!!!!!!!!!!!!!!!!!что бы UK светилcя ярче когда открыт
-              font-weight: 600;
+              //font-weight: 600;
               padding-bottom: 0;
 
               & + ul {
@@ -139,91 +128,265 @@ header {
               &:after {
                 transform: rotate(225deg);
                 //!!!!!!!!!!!!!!!!!!!!!!!что бы стрелочка светилась ярче когда открыта
-                opacity: 1;
+                //opacity: 1;
               }
             }
           }
         }
 
         &:last-child {
+
           & > a {
             //!!!!!!!!!!!!!!!!!!внутр отступ для UK
-            padding-bottom: 0px;
+            padding-bottom: 0;
           }
         }
       }
 
       //!!!!!!!!!!!!!!!!!!настройка раскрывающегося меню в целом
       a {
-        //color: $color-text;
         display: flex;
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-
-      //  &.all_product{
-      //    //color: gold;
-      //  }
       }
-
-      //&.logout {
-      //  padding: 15px;
-      //
-      //  li {
-      //    a {
-      //      justify-content: center;
-      //      opacity: 0.6;
-      //    }
-      //  }
-      //}
     }
   }
-
-  //.supportWrapper {
-  //  padding: 0;
-  //  display: flex;
-  //  flex-wrap: nowrap;
-  //
-  //  .support {
-  //    position: relative;
-  //    padding: 12px 7px;
-  //    margin-right: 10px;
-  //
-  //    .active {
-  //      background: #41D928;
-  //      width: 6px;
-  //      height: 6px;
-  //      border-radius: 50%;
-  //      margin-right: 7px;
-  //
-  //      &.notActive {
-  //        background: #FFD12D;
-  //      }
-  //    }
-  //  }
-  //
-  //  .language {
-  //    width: 100%;
-  //    padding: 12px 7px;
-  //
-  //    li {
-  //      display: flex;
-  //      align-items: center;
-  //      justify-content: center;
-  //    }
-  //
-  //    span {
-  //      font-size: 14px;
-  //      opacity: 0.3;
-  //
-  //      &.active {
-  //        opacity: 1;
-  //      }
-  //    }
-  //
-  //    mat-slide-toggle {
-  //      margin: 0 10px;
-  //    }
-  //  }
-  //}
 }
+
+.en {
+
+  &:hover {
+    color: white;
+    background-color: grey;
+  }
+}
+
+.ru {
+
+  &:hover {
+    color: white;
+    background-color: grey;
+  }
+}
+
+
+
+
+
+
+
+
+//.menuWrapper {
+//  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Марджин который опускает вниз
+//  margin-top: 23px;
+//  //height: auto;
+//  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!запретить прокрутку по горизонтали на элементе, вы можете использовать touch-action: pan-y;, чтобы разрешить только вертикальные жесты.
+//  touch-action: pan-y;
+//  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!отступ справа
+//  width: 95px;
+//  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! цвет текста
+//  color: #feaa02;
+//  //!!!!!!!!!!!!!!!!!для z-index
+//  position: relative;
+//
+//  .menu, .supportWrapper {
+//    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!смещение в право и вниз
+//    padding: 12px;
+//    //!!!!!!!!!!!!!!!!!для z-index
+//    position: absolute;
+//    z-index: 1;
+//    //!!!!!!!!!!!!!!!!!!!!расстояние между UK и стрелочкой
+//    width: 72px;
+//    border: 1px solid;
+//    border-radius: 10px;
+//
+//
+//    & > ul {
+//      //border-radius: 100px;
+//      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! отсутп после конца меню
+//      //margin-bottom: 15px;
+//      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! размер шрифта
+//      font-size: 15px;
+//      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! увеличение по горизонтали + растояние между текстом и стрелочкой
+//      //padding: 0 4px 0 2px;
+//      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  убираем точку
+//      list-style-type: none;
+//
+//
+//      & > li {
+//
+//        & > a {
+//          //padding-bottom: 16px;
+//          //cursor: pointer;
+//          font-size: 16px;
+//        }
+//
+//        &.hasSubmenu {
+//
+//          //noinspection ALL
+//          //.turboLand {
+//          //  background-image: url('/assets/icons/turboland.svg');
+//          //  background-repeat: no-repeat;
+//          //  width: 100%;
+//          //
+//          //  &::after {
+//          //    margin: 3px 0 3px auto;
+//          //  }
+//          //}
+//
+//          ul {
+//            //!!!!!!!!!!!!!!!!!!!!!! делать подменю скрытым
+//            display: none;
+//            //position: absolute;
+//            //z-index: 1;
+//            //border: 1px solid;
+//            //border-radius: 10px;
+//
+//            li {
+//              //!!!!!!!!!!!!!!!!!! отступ самих подменюшек
+//              margin: 15px 0px;
+//              //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  убираем точку
+//              list-style-type: none;
+//
+//              //&.hasSubCategory {
+//              //  ul {
+//              //    display: none;
+//              //  }
+//              //
+//              //  .active {
+//              //    font-weight: 600;
+//              //
+//              //    & + ul {
+//              //      display: block;
+//              //    }
+//              //  }
+//              //
+//              //  &:last-child {
+//              //    margin-bottom: 0;
+//              //  }
+//              //}
+//            }
+//          }
+//
+//          //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!стрелочка
+//          & > a {
+//            //cursor: pointer;
+//
+//            &:after {
+//              border-style: solid;
+//              border-width: 0 2px 2px 0;
+//              content: "";
+//              display: inline-block;
+//              padding: 3px;
+//              transform: rotate(45deg);
+//              margin: 3px 0;
+//              border-color: #feaa02;
+//              transition: 400ms;
+//              opacity: 0.6;
+//            }
+//
+//            &.open {
+//              //!!!!!!!!!!!!!!!!!!!!!!!что бы UK светилcя ярче когда открыт
+//              //font-weight: 600;
+//              padding-bottom: 0;
+//
+//              & + ul {
+//                display: block;
+//              }
+//
+//              &:after {
+//                transform: rotate(225deg);
+//                //!!!!!!!!!!!!!!!!!!!!!!!что бы стрелочка светилась ярче когда открыта
+//                //opacity: 1;
+//              }
+//            }
+//          }
+//        }
+//
+//        &:last-child {
+//
+//          & > a {
+//            //!!!!!!!!!!!!!!!!!!внутр отступ для UK
+//            padding-bottom: 0px;
+//
+//
+//
+//          }
+//        }
+//      }
+//
+//      //!!!!!!!!!!!!!!!!!!настройка раскрывающегося меню в целом
+//      a {
+//        //color: $color-text;
+//        display: flex;
+//        justify-content: space-between;
+//        align-items: center;
+//        cursor: pointer;
+//
+//        //  &.all_product{
+//      //    //color: gold;
+//      //  }
+//      }
+//
+//      //&.logout {
+//      //  padding: 15px;
+//      //
+//      //  li {
+//      //    a {
+//      //      justify-content: center;
+//      //      opacity: 0.6;
+//      //    }
+//      //  }
+//      //}
+//    }
+//  }
+//
+//  //.supportWrapper {
+//  //  padding: 0;
+//  //  display: flex;
+//  //  flex-wrap: nowrap;
+//  //
+//  //  .support {
+//  //    position: relative;
+//  //    padding: 12px 7px;
+//  //    margin-right: 10px;
+//  //
+//  //    .active {
+//  //      background: #41D928;
+//  //      width: 6px;
+//  //      height: 6px;
+//  //      border-radius: 50%;
+//  //      margin-right: 7px;
+//  //
+//  //      &.notActive {
+//  //        background: #FFD12D;
+//  //      }
+//  //    }
+//  //  }
+//  //
+//  //  .language {
+//  //    width: 100%;
+//  //    padding: 12px 7px;
+//  //
+//  //    li {
+//  //      display: flex;
+//  //      align-items: center;
+//  //      justify-content: center;
+//  //    }
+//  //
+//  //    span {
+//  //      font-size: 14px;
+//  //      opacity: 0.3;
+//  //
+//  //      &.active {
+//  //        opacity: 1;
+//  //      }
+//  //    }
+//  //
+//  //    mat-slide-toggle {
+//  //      margin: 0 10px;
+//  //    }
+//  //  }
+//  //}
+//}

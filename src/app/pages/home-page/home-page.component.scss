@@ -1,0 +1,176 @@
+.paganel_studio_expedition_picture {
+  width: 100%;
+}
+
+.calendar {
+  display: block;
+  padding: 10px 0;
+  text-align: center;
+
+  span {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #faa700;
+    color: #faa700;
+    padding: 20px 168px;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    font-family: arial,'\FF4D\FF53 \FF50\30B4\30B7\30C3\30AF','ms pgothic','\B3CB\C6C0',dotum,helvetica,sans-serif;
+    transition: inherit;
+    letter-spacing: 0.1em;
+    word-spacing: -4px;
+
+
+    //!!!!!!!!!!!!!!!!!стрелочка
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 27.5%;
+      border: solid #faa700;
+      //!!!!!!!!!!!делит на половину что получается стрелочка
+      border-width: 0 2px 2px 0;
+      //!!!!!!!!!! без этого превращается в точку
+      padding: 3px;
+      //!!!!!!!поворачивает горизонтально
+      transform: rotate(-45deg) translateY(-50%);
+    }
+  }
+}
+
+.line {
+  transform-origin: center 0.5px;
+  width: 403px;
+  height: 5px;
+  position: relative;
+  margin: 20px 0 33px calc((100% - 980px) * 0.5);
+  left: 288px;
+  grid-area: 2 / 1 / 3 / 2;
+  justify-self: start;
+  align-self: start;
+  border-top: 1px solid #faa700;
+  box-sizing: border-box;
+}
+
+.info_for_russians {
+  display: block;
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  font-family: arial,ｍｓ ｐゴシック,ms pgothic,돋움,dotum,helvetica,sans-serif;
+}
+
+.piece_image {
+  display: block;
+  margin: 0 auto; /* Добавьте это для центрирования горизонтально */
+}
+
+.line_under {
+  transform-origin: center 0.5px;
+  width: 658px;
+  height: 5px;
+  border-top: 1px solid #faa700;
+  position: relative;
+  left: 176px;
+  margin: 7px 0 23px calc((100% - 980px) * 0.5);
+  grid-area: 1 / 1 / 2 / 2;
+  justify-self: start;
+  align-self: start;
+}
+
+.title_paganel {
+  text-align: center;
+  font-size: 35px;
+  font-family: 'Arial', sans-serif;;
+  font-weight: bold; // Example font weight
+  line-height: 1.4em;
+  margin-bottom: 20px;
+}
+
+.paganel_description {
+  display: flex;
+  justify-content: center;
+}
+
+.block_left {
+  width: 476px;
+  height: auto;
+  position: relative;
+  margin: 6px 0 30px calc((100% - 980px) * 0.5);
+  right: 34px;
+  grid-area: 3 / 1 / 4 / 2;
+  justify-self: start;
+  align-self: start;
+
+  & > p {
+    font-size: 15px;
+    line-height: 1.5em;
+    margin-bottom: 36px;
+  }
+}
+
+.block_right {
+  width: 410px;
+  height: auto;
+  position: relative;
+  margin: 0 0 47px calc((100% - 980px) * 0.5);
+  right: 131px;
+  grid-area: 3 / 1 / 6 / 2;
+  justify-self: start;
+  align-self: start;
+
+  & > p {
+    font-size: 15px;
+    line-height: 1.5em;
+    margin-bottom: 36px;
+  }
+}
+
+.image_container {
+  position: relative;
+}
+
+
+@keyframes spinAndScale {
+  0% {
+    transform: rotate(0deg) scale(0.01);
+  }
+  100% {
+    transform: rotate(720deg) scale(1);
+  }
+}
+
+.jumps_picture {
+  animation: spinAndScale 1s linear 1;
+}
+
+.first {
+  margin-left: 7px;
+}
+
+.second {
+  margin-left: -38px;
+}
+
+.third {
+  margin-left: -5px;
+}
+
+.button_to_up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #feaa02;
+  width: 346px;
+  height: 50px;
+  position: relative;
+  left: 37%;
+  border-radius: 3px;
+
+  span {
+    letter-spacing: 0.1em;
+    font-size: 18px;
+  }
+}
