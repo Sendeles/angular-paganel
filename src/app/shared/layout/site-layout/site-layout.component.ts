@@ -28,6 +28,7 @@ export class SiteLayoutComponent {
 
   constructor() {}
 
+  //подменю для открытия языков
   openSubMenu(event: Event): void {
     const el = event.target as HTMLHRElement;
     el.classList.contains('open') ? el.classList.remove('open') : el.classList.add('open');

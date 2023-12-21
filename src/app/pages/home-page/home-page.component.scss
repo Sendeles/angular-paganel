@@ -130,20 +130,14 @@
 
 .image_container {
   position: relative;
-}
-
-
-@keyframes spinAndScale {
-  0% {
-    transform: rotate(0deg) scale(0.01);
-  }
-  100% {
-    transform: rotate(720deg) scale(1);
-  }
+  visibility: hidden;
+  opacity: 0;
 }
 
 .jumps_picture {
   animation: spinAndScale 1s linear 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 .first {
@@ -156,6 +150,15 @@
 
 .third {
   margin-left: -5px;
+}
+
+@keyframes spinAndScale {
+  0% {
+    transform: rotate(0deg) scale(0.01);
+  }
+  100% {
+    transform: rotate(720deg) scale(1);
+  }
 }
 
 .button_to_up {

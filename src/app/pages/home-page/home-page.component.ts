@@ -17,38 +17,27 @@ export class HomePageComponent implements AfterViewInit {
   jumps2: string = './assets/images/jumps2.webp';
   jumps3: string = './assets/images/jumps3.webp';
 
-  // isVisible: boolean = false;
-  // isVisibleFirst: boolean = false;
-  // isVisibleSecond: boolean = false;
-  // isVisibleThird: boolean = false;
+  isVisible: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
   }
 
-  // @ViewChild('imageContainer') imageContainer!: ElementRef;
-  //
+  @ViewChild('imageContainer') imageContainer!: ElementRef;
+
   ngAfterViewInit() {
-  //   if (isPlatformBrowser(this.platformId)) {
-  //     let observer = new IntersectionObserver((entries, observer) => {
-  //       entries.forEach((entry: any) => {
-  //         if (entry.isIntersecting) {
-  //           const imgClass = entry.target.getAttribute('class');
-  //           if (imgClass) {
-  //             if (imgClass.includes('first')) {
-  //               this.isVisibleFirst = true;
-  //             } else if (imgClass.includes('second')) {
-  //               this.isVisibleSecond = true;
-  //             } else if (imgClass.includes('third')) {
-  //               this.isVisibleThird = true;
-  //             }
-  //           }
-  //         }
-  //       });
-  //     }, {threshold: 0.5})
-  //
-  //     observer.observe(this.imageContainer.nativeElement);
-  //   }
+    if (isPlatformBrowser(this.platformId)) {
+      let observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry: any) => {
+          if (entry.isIntersecting) {
+            this.isVisible = true
+            console.log('Element is visible')
+          }
+        });
+      }, {threshold: 0.5})
+
+      observer.observe(this.imageContainer.nativeElement);
+    }
   }
 }
