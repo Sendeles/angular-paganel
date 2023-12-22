@@ -10,8 +10,8 @@
     </div>
     <img class="piece_image" [src]="piece" [alt]="piece">
     <div class="line_under"></div>
-    <div class="title_paganel">
-      <span>Paganel Studio</span>
+    <div class="text_paganel_center">
+      <span class="title_paganel">Paganel Studio</span>
     </div>
     <div class="paganel_description">
       <div class="block_left">
@@ -21,10 +21,10 @@
           кваліфікованих капітанів, контактного центру, партнерів по всьому світу та цілої армії постійних клієнтів, які
           стали добрими друзями за 10 років існування компанії.
         </p>
-        <div #imageContainer class="image_container" [class.jumps_picture]="isVisible">
-          <img class="jumps_picture first" [src]="jumps1" [alt]="jumps1">
-          <img class="jumps_picture second" [src]="jumps2" [alt]="jumps2">
-          <img class="jumps_picture third" [src]="jumps3" [alt]="jumps3">
+        <div #imageContainer class="image_container" [class.spin_picture]="isVisible">
+          <img class="spin_picture first" [src]="jumps1" [alt]="jumps1">
+          <img class="spin_picture second" [src]="jumps2" [alt]="jumps2">
+          <img class="spin_picture third" [src]="jumps3" [alt]="jumps3">
         </div>
       </div>
       <div class="block_right">
@@ -45,5 +45,12 @@
     </div>
     <div class="button_to_up">
       <span>Рушаймо з нами</span>
+    </div>
+    <img class="image_love" [src]="love" alt="i_love_paganel">
+    <div class="text_paganel_center">
+      <span class="upper_video">Цінуй життя! Люби! Подорожуй!</span>
+    </div>
+    <div>
+      <iframe src="https://player.vimeo.com/video/467035701?h=c74e608d35" width="1100" height="626" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>

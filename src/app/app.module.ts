@@ -10,6 +10,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faYoutube} from "@fortawesome/free-brands-svg-icons";
 import {FormsModule} from "@angular/forms";
+import {AnimateOnViewServices} from "./shared/services/animate.services";
 
 library.add(faYoutube)
 
@@ -28,6 +29,7 @@ library.add(faYoutube)
   exports: [
 
   ],
+  providers: [AnimateOnViewServices],
   bootstrap: [AppComponent]
 })
 export class AppModule {
