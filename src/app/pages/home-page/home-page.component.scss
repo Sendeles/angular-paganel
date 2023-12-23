@@ -98,6 +98,15 @@
     letter-spacing: -0.4px;
     font-weight: normal;
   }
+
+  .title_calendar {
+    display: inline-block;
+    font-size: 34px;
+    font-family: arial,ｍｓ ｐゴシック,ms pgothic,돋움,dotum,helvetica,sans-serif;
+    letter-spacing: -1.25px;
+    line-height: 1.4em;
+    margin-bottom: 28px;
+  }
 }
 
 .paganel_description {
@@ -140,7 +149,7 @@
 }
 
 .image_container {
-  position: relative;
+  //position: relative;
   visibility: hidden;
   opacity: 0;
 }
@@ -199,4 +208,33 @@
   margin: 0 auto;
   width: 122px;
   height: auto;
+}
+
+.video_paganel {
+  display: flex;
+  justify-content: center;
+}
+
+.picture_sun {
+  display: block;
+  margin: 0 auto;
+}
+
+.marks {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  div {
+    margin: 20px;
+    transition: transform 0.5s ease-in-out;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.button_calendar {
+
 }

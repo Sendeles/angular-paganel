@@ -17,6 +17,12 @@ export class HomePageComponent implements AfterViewInit {
   jumps2: string = './assets/images/jumps2.webp';
   jumps3: string = './assets/images/jumps3.webp';
   love: string = './assets/images/love.webp';
+  sun: string = './assets/images/sun.webp';
+  mark_1: string = './assets/images/marks/mark_1.webp'
+  mark_2: string = './assets/images/marks/mark_2.webp'
+  mark_3: string = './assets/images/marks/mark_3.webp'
+  mark_4: string = './assets/images/marks/mark_4.webp'
+
 
   isVisible: boolean = false;
 
