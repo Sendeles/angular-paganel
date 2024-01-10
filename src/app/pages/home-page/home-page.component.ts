@@ -16,12 +16,24 @@ export class HomePageComponent implements AfterViewInit {
   jumps1: string = './assets/images/jumps1.webp';
   jumps2: string = './assets/images/jumps2.webp';
   jumps3: string = './assets/images/jumps3.webp';
-  love: string = './assets/images/love.webp';
   sun: string = './assets/images/sun.webp';
-  mark_1: string = './assets/images/marks/mark_1.webp'
-  mark_2: string = './assets/images/marks/mark_2.webp'
-  mark_3: string = './assets/images/marks/mark_3.webp'
-  mark_4: string = './assets/images/marks/mark_4.webp'
+  love: string = './assets/images/icons/love.webp';
+  team: string = './assets/images/icons/team.webp';
+  mark_1: string = './assets/images/marks/mark_1.webp';
+  mark_2: string = './assets/images/marks/mark_2.webp';
+  mark_3: string = './assets/images/marks/mark_3.webp';
+  mark_4: string = './assets/images/marks/mark_4.webp';
+  andrew_and: string = './assets/images/photos/andrew_and.webp';
+  anna_lyt: string = './assets/images/photos/anna_lyt.webp';
+  daria_sto: string = './assets/images/photos/daria_sto.webp';
+  evgeny_raf: string = './assets/images/photos/evgeny_raf.webp';
+  kostya_sto: string = './assets/images/photos/kostya_sto.webp';
+  olga_and: string = './assets/images/photos/olga_and.webp';
+  yulia_shn: string = './assets/images/photos/yulia_shn.webp';
+  yulia_svy: string = './assets/images/photos/yulia_svy.webp';
+
+
+
 
 
   isVisible: boolean = false;
