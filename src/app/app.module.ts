@@ -11,8 +11,15 @@ import {library} from "@fortawesome/fontawesome-svg-core";
 import {faYoutube} from "@fortawesome/free-brands-svg-icons";
 import {FormsModule} from "@angular/forms";
 import {AnimateOnViewServices} from "./shared/services/animate.services";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 library.add(faYoutube)
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -24,7 +31,16 @@ library.add(faYoutube)
     SharedModule,
     FontAwesomeModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'ua'
+    })
   ],
   exports: [
 
