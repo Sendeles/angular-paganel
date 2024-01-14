@@ -18,18 +18,18 @@
     <div class="menuWrapper">
       <div class="menu">
         <ul>
-          <li class="hasSubmenu uk">
-            <a (click)="openSubMenu($event)">
-              UK
+          <li class="hasSubmenu ua">
+            <a (click)="languageService.setLanguage('ua'); openSubMenu($event)">
+              UA
             </a>
             <ul>
               <li class="en">
-                <a>
+                <a (click)="languageService.setLanguage('en')">
                   EN
                 </a>
               </li>
               <li class="ru">
-                <a>
+                <a (click)="languageService.setLanguage('ru')">
                   RU
                 </a>
               </li>

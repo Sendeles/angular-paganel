@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild} from '@angular/core';
 import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {HomePageRoutingModule} from "./home-page-routing.module";
+import {LanguageServices} from "../../shared/services/language.services";
 
 @Component({
   selector: 'app-home-page',
@@ -39,7 +40,8 @@ export class HomePageComponent implements AfterViewInit {
   isVisible: boolean = false;
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public languageService: LanguageServices
   ) {
   }
 

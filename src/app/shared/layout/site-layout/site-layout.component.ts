@@ -4,6 +4,7 @@ import {fab, faYoutube} from "@fortawesome/free-brands-svg-icons";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {fas} from "@fortawesome/free-solid-svg-icons";
 import {NgClass} from "@angular/common";
+import {LanguageServices} from "../../services/language.services";
 
 @Component({
   selector: 'app-site-layout',
@@ -26,7 +27,9 @@ export class SiteLayoutComponent {
   youtube: string = './assets/images/social/youtube.webp'
 
 
-  constructor() {}
+  constructor(
+    public languageService: LanguageServices
+  ) {}
 
   //подменю для открытия языков
   openSubMenu(event: Event): void {
