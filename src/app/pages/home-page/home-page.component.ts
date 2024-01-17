@@ -34,15 +34,15 @@ export class HomePageComponent implements AfterViewInit {
   yulia_svy: string = './assets/images/photos/yulia_svy.webp';
 
 
-
-
-
+  currentLang: string
   isVisible: boolean = false;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     public languageService: LanguageServices
   ) {
+    //создал переменную currentLang для определения языка которую хочу использовать в html
+    this.currentLang = this.languageService.getLanguage();
   }
 
   @ViewChild('imageContainer') imageContainer!: ElementRef;
