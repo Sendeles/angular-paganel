@@ -5,7 +5,7 @@
   </div>
   <div class="line"></div>
   <div>
-    <span [ngClass]="['info_for_russians', currentLang + '-font-size']" [innerHtml]="languageService.getTranslate('Exclusion Notice')"></span>
+    <span [ngClass]="['info_for_russians', languageService.getLanguage() + '-font-size']" [innerHtml]="languageService.getTranslate('Exclusion Notice')"></span>
   </div>
   <img class="piece_image" [src]="piece" alt="piece">
   <div class="line_under"></div>
