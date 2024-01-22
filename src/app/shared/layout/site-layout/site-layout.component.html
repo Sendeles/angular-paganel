@@ -5,21 +5,51 @@
     <img [src]="instagram" alt="instagram">
   </div>
   <div class="chapter">
-    <img class="#" [src]="aboutUs" alt="about us">
-    <img class="#" [src]="travels" alt="travels">
-    <img class="#" [src]="blog" alt="blog">
-    <img class="#" [src]="contact" alt="contact">
+    <div class="dropdown">
+      <img class="first_chapter_image" [src]="aboutUs" alt="about us">
+      <span>{{languageService.getTranslate('ABOUT US')}}</span>
+      <div class="dropdown_content first_submenu">
+        <a>{{languageService.getTranslate('REVIEW')}}</a>
+        <a>{{languageService.getTranslate('TEAM')}}</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <img class="second_chapter_image" [src]="travels" alt="travels">
+      <span>{{languageService.getTranslate('TRAVELS')}} 2024</span>
+      <div class="dropdown_content second_submenu">
+        <a>{{languageService.getTranslate('YACHTS')}}</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <img class="#" [src]="blog" alt="blog">
+      <span>{{languageService.getTranslate('BLOG')}}</span>
+      <div class="dropdown_content third_submenu">
+        <a>Фотозвіт</a>
+        <a>Новини</a>
+        <a>Фільми</a>
+        <a>Нагороди</a>
+        <a>Фотографії</a>
+        <a>Графіка</a>
+        <a>Футболки</a>
+        <a>Живопис</a>
+        <a>Значки</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <img class="fourth_chapter_image" [src]="contact" alt="contact">
+      <span>{{languageService.getTranslate('CONTACTS')}}</span>
+    </div>
   </div>
   <div class="social">
     <img [src]="vimeo" alt="vimeo">
     <img [src]="youtube" alt="youtube">
   </div>
   <div>
-    <div class="menuWrapper">
-      <div class="menu">
+    <div class="language_menu_wrapper">
+      <div class="language_menu">
         <ul>
-          <li class="hasSubmenu ua">
-            <a (click)="languageService.setLanguage('ua'); openSubMenu($event)">
+          <li class="hasSubMenuLanguage ua">
+            <a (click)="languageService.setLanguage('ua'); openSubMenuLanguage($event)">
               UA
             </a>
             <ul>

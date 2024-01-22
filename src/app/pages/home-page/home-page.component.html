@@ -5,7 +5,7 @@
   </div>
   <div class="line"></div>
   <div>
-    <span [ngClass]="['info_for_russians', languageService.getLanguage() + '-font-size']" [innerHtml]="languageService.getTranslate('Exclusion Notice')"></span>
+    <span [ngClass]="['info_for_russians', languageService.getLanguage() + '-font-size']" [innerHtml]="languageService.getTranslate('EXCLUSION NOTICE')"></span>
   </div>
   <img class="piece_image" [src]="piece" alt="piece">
   <div class="line_under"></div>
@@ -14,12 +14,7 @@
   </div>
   <div class="paganel_description">
     <div class="block_left">
-      <p>
-        <strong>Paganel Studio</strong> &mdash; це співтовариство досвідчених мандрівників, команда самовідданих
-        експедиційних лідерів,
-        кваліфікованих капітанів, контактного центру, партнерів по всьому світу та цілої армії постійних клієнтів, які
-        стали добрими друзями за 10 років існування компанії.
-      </p>
+      <p [innerHTML]="languageService.getTranslate('PAGANEL STUDIOS')"></p>
       <div #imageContainer class="image_container" [class.spin_picture]="isVisible">
         <img class="spin_picture first" [src]="jumps1" alt="jumps1">
         <img class="spin_picture second" [src]="jumps2" alt="jumps2">
@@ -27,23 +22,15 @@
       </div>
     </div>
     <div class="block_right">
-      <p>
-        Засновники та першопрохідники авторських маршрутів – Андрій та Ольга Андрєєви. Мрійники та самостійні
-        мандрівники, які розпочали свій шлях у тандемі, вирушивши на свій медовий місяць у Гімалаї. Разом з художником
-        Олександром Воцмушем вони любили їздити в далекі країни, малювати, фотографувати, знімати кіно і просто
-        насолоджуватися життям.
-      </p>
+      <p [innerHTML]="languageService.getTranslate('PAGANEL STUDIOS 2')"></p>
       <p>
       </p>
-      <p>
-        Тепер їхні документальні фільми отримують сотні нагород на фестивалях, а на красунях яхтах <u>Mon Coeur і Wind
-        Dancer</u> відправляються полярні експедиції до Антарктиди та Гренландії. Ми будемо раді поділитися досвідом,
-        показати вам найдальші куточки планети та прийняти вас у велику родину Паганелей.
-      </p>
+      <p [innerHTML]="languageService.getTranslate('PAGANEL STUDIOS 3')"></p>
+
     </div>
   </div>
   <div class="button_to_up">
-    <span>Рушаймо з нами</span>
+    <span>{{languageService.getTranslate('GO WITH US')}}</span>
   </div>
   <img class="icons icons_love" [src]="love" alt="i_love_paganel">
   <div class="text_paganel_center">

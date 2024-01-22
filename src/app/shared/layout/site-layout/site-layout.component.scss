@@ -22,7 +22,69 @@ header {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 50%
+  width: 50%;
+  color: white;
+
+  img {
+    margin-bottom: 8px;
+    width: 60px; /* не менять, идеальное совпадение*/
+    object-fit: contain;
+
+    &.first_chapter_image {
+    }
+
+    &.second_chapter_image {
+      width: 64px;
+    }
+
+    &.fourth_chapter_image {
+      width: 74px;
+      margin-bottom: 0px;
+      margin-top: -15px;
+    }
+  }
+
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    font-size: 15px;
+  }
+
+  a:hover, span:hover {
+    color: #faa700;
+    cursor: pointer;
+    transition: 0.50s;
+  }
+}
+
+.dropdown_content {
+  display: none;
+  position: absolute;
+  padding-top: 15px;
+  text-align: center;
+
+  a {
+    padding: 5px 45px 0;
+  }
+
+  &.second_submenu {
+  }
+
+  &.third_submenu {
+  }
+}
+
+.dropdown:hover .dropdown_content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 84px;
+  background-color: black;
 }
 
 .social {
@@ -32,11 +94,9 @@ header {
   align-items: center;
 }
 
-.chapter img {
-  object-fit: contain;
-}
-
-.menuWrapper {
+.language_menu_wrapper {
+  //!!!!!!!!!!!!!!!!!для z-index
+  position: relative;
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Марджин который опускает вниз
   margin-top: 23px;
   //height: auto;
@@ -46,15 +106,16 @@ header {
   width: 95px;
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! цвет текста
   color: #feaa02;
-  //!!!!!!!!!!!!!!!!!для z-index
-  position: relative;
 
-  .menu, .supportWrapper {
+
+  .language_menu {
+    //!!!!!!!!!!!!!!!!!для z-index
+    position: absolute;
+    display: flex;
+    flex-direction: column;
     box-sizing: content-box;
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!смещение в право и вниз
     padding: 12px;
-    //!!!!!!!!!!!!!!!!!для z-index
-    position: absolute;
     z-index: 1;
     //!!!!!!!!!!!!!!!!!!!!расстояние между UK и стрелочкой
     width: 72px;
@@ -79,7 +140,7 @@ header {
           font-size: 16px;
         }
 
-        &.hasSubmenu {
+        &.hasSubMenuLanguage {
 
           ul {
             //!!!!!!!!!!!!!!!!!!!!!! делать подменю скрытым
@@ -177,7 +238,6 @@ footer {
   align-items: center;
   padding: 0 180px;
 }
-
 
 
 .footer_chapter {
