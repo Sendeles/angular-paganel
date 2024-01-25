@@ -5,11 +5,12 @@ import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
 import {fas} from "@fortawesome/free-solid-svg-icons";
 import {NgClass} from "@angular/common";
 import {LanguageServices} from "../../services/language.services";
+import {ButtonScrollTopComponent} from "../../components/button-scroll-top/button-scroll-top.component";
 
 @Component({
   selector: 'app-site-layout',
   standalone: true,
-  imports: [RouterModule, NgClass],
+  imports: [RouterModule, NgClass, ButtonScrollTopComponent],
   templateUrl: './site-layout.component.html',
   styleUrl: './site-layout.component.scss'
 })

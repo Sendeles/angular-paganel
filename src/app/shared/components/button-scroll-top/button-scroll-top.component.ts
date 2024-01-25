@@ -1,5 +1,4 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {window} from "rxjs/operators";
 
 @Component({
   selector: 'app-button-scroll-top',
@@ -10,14 +9,16 @@ import {window} from "rxjs/operators";
 })
 export class ButtonScrollTopComponent implements OnInit {
 
+
+  showScrollButton: boolean = false;
+
   ngOnInit() {
   }
 
-  public showScrollButton: boolean = false;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.showScrollButton = window.scrollY > 20;
+    this.showScrollButton = window.scrollY > 500;
   }
 
   scrollToTop() {
