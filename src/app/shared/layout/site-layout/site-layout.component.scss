@@ -9,7 +9,6 @@ header {
   background-color: black;
   padding: 2px;
   justify-content: space-around;
-  //padding: 0 100px
 }
 
 .logo {
@@ -24,6 +23,11 @@ header {
   align-items: center;
   width: 50%;
   color: white;
+
+  a {
+    color: inherit; /* Унаследовать цвет от родительского элемента */
+    text-decoration: none; /* Убрать подчеркивание */
+  }
 
   img {
     margin-bottom: 8px;

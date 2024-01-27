@@ -10,6 +10,10 @@ export const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./pages/home-page/home-page.module').then(m => m.HomePageModule)
+      },
+      {
+        path: 'aboutus',
+        loadChildren: () => import('./pages/about-us-page/about-us-page.module').then(m => m.AboutUsPageModule)
       }
     ]
   }

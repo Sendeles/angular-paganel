@@ -1,0 +1,54 @@
+:host {
+  display: block; /*Гарантирует, что компонент отображается как блочный элемент.*/
+  width: 100%; /*Устанавливает размеры компонента на 100% ширины и высоты родительского контейнера.*/
+  height: 100%; /*Устанавливает размеры компонента на 100% ширины и высоты родительского контейнера.*/
+  background-size: cover; /*Масштабирует фоновое изображение так, чтобы оно полностью покрывало заданный размер.*/
+  background-repeat: no-repeat; /*Запрещает повторение фонового изображения.*/
+  background-attachment: fixed; /* Сделать фон неподвижным при прокрутке.*/
+  background-image: url('/assets/images/backgrounds/aboutus_background.webp');
+}
+
+.space {
+  padding-top: 800px;
+}
+
+.new_background {
+  background: white;
+}
+
+.paganel_block_create {
+  //display: flex;
+  //flex-direction: column;
+  border: 1px solid #faa700;
+  margin: auto;
+  padding: 32px 13px 32px 85px;
+  width: 880px;
+  //width: 100%;
+  height: auto;
+  font-size: 19px;
+  line-height: 1.4em;
+  font-family: arial,ｍｓ ｐゴシック,ms pgothic,돋움,dotum,helvetica,sans-serif;
+  color: #555555;
+  font-style: normal;
+  font-weight: normal;
+  transform: translateY(-55%);
+  background-color: white;
+
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+.jjj {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+
+
+  span {
+    font-weight: bold;
+    font-size: 40px;
+  }
+}

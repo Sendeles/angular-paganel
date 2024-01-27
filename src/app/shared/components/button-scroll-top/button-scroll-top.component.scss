@@ -1,13 +1,13 @@
 .go_to_top_button {
   position: fixed;
-  right: -1px;
-  bottom: calc(100px + env(safe-area-inset-bottom));
+  right: 49px;
+  bottom: calc(21px + env(safe-area-inset-bottom));
   border-radius: 50%;
-  background: rgba(0, 172, 176, 0.1);
-  border: 1px solid red;
-  color: green;
-  height: 40px;
-  width: 40px;
+  background: white;
+  border: 1px solid #faa700;
+  color: #faa700;
+  height: 47px;
+  width: 47px;
   font-size: 20px;
   display: none;
   z-index: 2;
@@ -16,15 +16,14 @@
     display: block;
   }
 
-  .arrow {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 12px solid green;
+  &:after {
+    border-style: solid; /*Форма вертикального прямоугольника */
+    content: ""; /*отображение данной формы, без контента форма не отображается*/
+    display: inline-block; /* из прямоугольника делаем маленький квадратик в нижней части*/
+    margin: -4px 0; /* отступаем сверху и снизу двигая квадратик в центр */
+    transform: rotate(45deg); /*крутим квадратик*/
+    border-color: #feaa02; /*цвет квадратика*/
+    border-width: 2px 0 0 2px; /*обрезаем границы у квадратика так что оставляем только нужные нам и получается стрелка */
+    padding: 6px; /* расширяем стрелочку с середины*/
   }
 }

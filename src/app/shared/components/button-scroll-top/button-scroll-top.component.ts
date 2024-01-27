@@ -18,7 +18,7 @@ export class ButtonScrollTopComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.showScrollButton = window.scrollY > 500;
+    this.showScrollButton = window.scrollY > 300;
   }
 
   scrollToTop() {

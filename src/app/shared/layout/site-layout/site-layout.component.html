@@ -1,5 +1,5 @@
 <header>
-  <img class="logo" [src]="logo" alt="logo">
+  <a [routerLink]="['/']"><img class="logo" [src]="logo" alt="logo"></a>
   <div class="social">
     <img [src]="facebook" alt="facebook">
     <img [src]="instagram" alt="instagram">
@@ -7,7 +7,7 @@
   <div class="chapter">
     <div class="dropdown">
       <img class="first_chapter_image" [src]="aboutUs" alt="about us">
-      <span>{{languageService.getTranslate('ABOUT US')}}</span>
+      <a [routerLink]="['/aboutus']">{{languageService.getTranslate('ABOUT US')}}</a>
       <div class="dropdown_content first_submenu">
         <a>{{languageService.getTranslate('REVIEW')}}</a>
         <a>{{languageService.getTranslate('TEAM')}}</a>
