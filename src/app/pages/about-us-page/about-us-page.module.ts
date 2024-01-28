@@ -1,5 +1,6 @@
 import {NgModule} from "@angular/core";
 import {AboutUsPageRoutingModule} from "./about-us-page-routing.module";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [],
@@ -10,5 +11,4 @@ import {AboutUsPageRoutingModule} from "./about-us-page-routing.module";
 })
 
 export class AboutUsPageModule {
-
 }

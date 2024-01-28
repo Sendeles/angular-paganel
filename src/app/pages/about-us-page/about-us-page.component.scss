@@ -17,13 +17,10 @@
 }
 
 .paganel_block_create {
-  //display: flex;
-  //flex-direction: column;
   border: 1px solid #faa700;
   margin: auto;
   padding: 32px 13px 32px 85px;
-  width: 880px;
-  //width: 100%;
+  max-width: 880px;
   height: auto;
   font-size: 19px;
   line-height: 1.4em;
@@ -33,19 +30,13 @@
   font-weight: normal;
   transform: translateY(-55%);
   background-color: white;
-
-  &:after {
-    content: "";
-    display: inline-block;
-    width: 100%;
-  }
+  text-align: justify;
 }
 
 .jjj {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-
 
   span {
     font-weight: bold;

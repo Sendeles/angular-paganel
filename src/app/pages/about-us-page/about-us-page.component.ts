@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-about-us-page',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './about-us-page.component.html',
   styleUrl: './about-us-page.component.scss'
 })
 export class AboutUsPageComponent {
 
-  aboutus_background: string = './assets/images/backgrounds/aboutus_background.webp';
+  enableClass = false
+
+  disableClass() {
+    return {'mat-typography': this.enableClass}
+  }
 
 }
