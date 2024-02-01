@@ -1,0 +1,34 @@
+<!--<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquam animi commodi dolores doloribus eligendi-->
+<!--  et fugit, in maxime molestiae officia officiis omnis quas voluptas voluptatum. Blanditiis excepturi facilis omnis.-->
+<!--</div>-->
+<!--<div>Atque blanditiis, consequuntur debitis enim fuga id nobis numquam, praesentium quam reprehenderit sint temporibus,-->
+<!--  vitae. Asperiores aspernatur, autem dolores eos exercitationem, facere in iusto laboriosam obcaecati, possimus quae-->
+<!--  quam unde?-->
+<!--</div>-->
+<!--<div>Adipisci aperiam blanditiis dolorum, ducimus eligendi error expedita labore laudantium natus nemo, pariatur-->
+<!--  possimus quae quibusdam sit tenetur unde velit veritatis, vero! Fugit natus porro recusandae repudiandae sit tempore-->
+<!--  veniam?-->
+<!--</div>-->
+<!--<div>Assumenda beatae blanditiis cum ipsum nostrum quibusdam ratione ullam, ut? Adipisci aliquid amet atque deserunt-->
+<!--  dicta ea error exercitationem hic, ipsam nemo officia pariatur porro repellat sequi voluptatum! Nisi, ratione.-->
+<!--</div>-->
+<!--<div>Aperiam autem dolores eaque earum exercitationem inventore ipsa ipsum labore laudantium minus modi nam nostrum-->
+<!--  officia porro quae quaerat, qui quisquam quo quos sed sequi ullam ut voluptas. Molestias, ut!-->
+<!--</div>-->
+<div class="slider-container">
+  <div class="slider-item" *ngFor="let image of images; let i = index" [ngClass]="{
+  'selected': i === selectedIndex,
+  'prev': i === selectedIndex - 1,
+  'next': i === selectedIndex + 1,
+  'hideLeft': i === selectedIndex - 1,
+  'hideRight': i === selectedIndex + 1
+  }">
+    <img class="slider-image" [src]="image.imgSrc" [alt]="image.imgAlt" (swipeleft)="showNext(i)" (swiperight)="showPrev(i)">
+  </div>
+</div>
+
+<!--<div (panright)="showPrev(3)" (panleft)="showNext(3)">-->
+
+<!--  asdasdasd-->
+
+<!--</div>-->
