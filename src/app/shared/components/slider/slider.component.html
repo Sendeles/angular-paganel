@@ -16,14 +16,16 @@
 <!--  officia porro quae quaerat, qui quisquam quo quos sed sequi ullam ut voluptas. Molestias, ut!-->
 <!--</div>-->
 <div class="slider-container">
-  <div class="slider-item" *ngFor="let image of images; let i = index" [ngClass]="{
-  'selected': i === selectedIndex,
-  'prev': i === selectedIndex - 1,
-  'next': i === selectedIndex + 1,
-  'hideLeft': i === selectedIndex - 1,
-  'hideRight': i === selectedIndex + 1
-  }">
-    <img class="slider-image" [src]="image.imgSrc" [alt]="image.imgAlt" (swipeleft)="showNext(i)" (swiperight)="showPrev(i)">
+  <div class="slider-item" *ngFor="let image of images; let i = index"
+    [ngClass]="{
+       'selected': i === selectedIndex,
+       'prev': i === (selectedIndex - 1 + images.length) % images.length,
+       'preprev': i === (selectedIndex - 2 + images.length) % images.length,
+       'next': i === (selectedIndex + 1) % images.length,
+       'prenext': i === (selectedIndex + 2) % images.length,
+       'last' : i === (selectedIndex + 3) % images.length
+     }" (click)="selectSlide(i)">
+    <img class="slider-image" [src]="image.imgSrc" [alt]="image.imgAlt" (panleft)="showNext(i)" (panright)="showPrev(i)">
   </div>
 </div>
 

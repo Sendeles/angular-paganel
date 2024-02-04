@@ -1,12 +1,34 @@
-import {NgModule} from "@angular/core";
+import {Injectable, NgModule} from "@angular/core";
 import {SiteLayoutComponent} from "./shared/layout/site-layout/site-layout.component";
 import {AppComponent} from "./app.component";
 import {SharedModule} from "./shared/shared.module";
-import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig, HammerModule} from "@angular/platform-browser";
-import {CommonModule} from "@angular/common";
+import {
+  BrowserModule,
+  EVENT_MANAGER_PLUGINS,
+  HAMMER_GESTURE_CONFIG, HAMMER_LOADER,
+  HammerGestureConfig,
+  HammerModule
+} from "@angular/platform-browser";
+import {CommonModule, DOCUMENT} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {AnimateOnViewServices} from "./shared/services/animate.services";
 import {LanguageServices} from "./shared/services/language.services";
+
+@Injectable()
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = {
+    pan: {
+      direction: Hammer.DIRECTION_ALL,
+    },
+    swipe: {
+      direction: Hammer.DIRECTION_HORIZONTAL,
+    },
+  };
+}
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +46,8 @@ import {LanguageServices} from "./shared/services/language.services";
   ],
   providers: [
     AnimateOnViewServices,
-    LanguageServices
+    LanguageServices,
+    { provide: HAMMER_GESTURE_CONFIG, useClass: HammerGestureConfig, deps: [] }
   ],
   bootstrap: [AppComponent]
 })

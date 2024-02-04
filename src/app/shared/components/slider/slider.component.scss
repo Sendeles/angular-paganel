@@ -7,65 +7,78 @@
   .slider-item {
     position: absolute;
     z-index: 0;
-    left: 0;
+    left: 70%;
     right: 0;
     width: 100%;
     height: 100%;
-    transition: z-index 250ms;
 
     .slider-image {
-      position: relative;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       opacity: 0;
-    }
-
-    &.hideLeft {
-
-      .slider-image {
-        transform: translateX(-50%) scale(0);
-      }
-    }
-
-    &.hideRight {
-
-      .slider-image {
-        transform: translateX(50%) scale(0);
-      }
-
-    }
-
-    &.prev {
-      z-index: 1;
-
-      .slider-image {
-        opacity: 0.8;
-        transform: translateX(-25%) scale(0.8);
-      }
-
-    }
-
-    &.next {
-
-      .slider-image {
-        opacity: 0.8;
-        transform: translateX(25%) scale(0.8);
-        cursor: grab;
-      }
-
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; // Плавный переход для opacity и transform
     }
 
     &.selected {
-      z-index: 2;
+      z-index: 3;
 
       .slider-image {
         opacity: 1;
         transform: translateX(0%) scale(1);
         cursor: grab;
       }
+    }
 
+    &.last {
+
+      .slider-image {
+        opacity: 0.1;
+        transform: translateX(0%) translateY(-58%) scale(0.2);
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
+    &.preprev {
+      z-index: 1;
+
+      .slider-image {
+        opacity: 0.3;
+        transform: translateX(-40%) translateY(-43%) scale(0.5);
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
+    &.prenext {
+
+      .slider-image {
+        opacity: 0.3;
+        transform: translateX(40%) translateY(-43%) scale(0.5);
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
+    &.prev {
+      z-index: 2;
+
+      .slider-image {
+        opacity: 0.8;
+        transform: translateX(-85%) TranslateY(-17%) scale(0.8);
+      }
+    }
+
+    &.next {
+      z-index: 2;
+
+      .slider-image {
+        opacity: 0.8;
+        transform: translateX(85%) translateY(-17%) scale(0.8);
+        cursor: grab;
+      }
     }
   }
 }
