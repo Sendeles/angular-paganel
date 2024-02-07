@@ -1,4 +1,14 @@
-import {AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {ISlide} from "../../models/slider/slider.model";
 
@@ -10,23 +20,18 @@ import {ISlide} from "../../models/slider/slider.model";
   styleUrl: './slider.component.scss'
 })
 
-export class SliderComponent implements OnInit, OnDestroy{
+export class SliderComponent implements AfterViewInit {
   @Input() images: ISlide[] = []
   selectedIndex = 0;
   intervalId: any
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+
 
 
   // @HostListener('panstart', ['$event']) onSliderPanEnd(event: any) {
   //   console.log(event)
   // }
-
-  ngOnInit() {
-    // this.startAutoScroll();
-  }
-
-  ngOnDestroy() {
-    this.stopAutoScroll();
-  }
 
   startAutoScroll(): void {
     this.intervalId = setTimeout(() => {
@@ -40,6 +45,24 @@ export class SliderComponent implements OnInit, OnDestroy{
     if (this.intervalId) {
       clearTimeout(this.intervalId);
     }
+  }
+
+  ngAfterViewInit() {
+    let observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry: IntersectionObserverEntry) => {
+        if (entry.isIntersecting) {
+          // Когда элемент становится видимым, начинаем автоматическую прокрутку слайдов
+          this.startAutoScroll();
+        }
+      });
+    }, {threshold: 0.5});
+
+    observer.observe(this.el.nativeElement);
+  }
+
+
+  @HostListener('click') onMouseClick() {
+    this.stopAutoScroll();
   }
 
   //переход на предыдущий слайдер
@@ -70,6 +93,6 @@ export class SliderComponent implements OnInit, OnDestroy{
   selectSlide(index: number): void {
     this.selectedIndex = index; // Обновление индекса выбранного слайда
     this.stopAutoScroll(); // Останавливаем автопрокрутку при ручном выборе слайда
-    this.startAutoScroll(); // Перезапускаем автопрокрутку
+    // this.startAutoScroll(); // Перезапускаем автопрокрутку
   }
 }

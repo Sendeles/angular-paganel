@@ -45,16 +45,29 @@ export class HomePageComponent implements AfterViewInit {
   @ViewChild('imageContainer') imageContainer!: ElementRef;
 
   ngAfterViewInit() {
+    //if (isPlatformBrowser(this.platformId)) проверяет, выполняется ли код в браузере. Это важно для избежания
+    // ошибок во время серверного рендеринга (например, с использованием Angular Universal), где объекты,
+    // специфичные для браузера, такие как IntersectionObserver, не доступны.
     if (isPlatformBrowser(this.platformId)) {
+      // Создание IntersectionObserver: Создается новый экземпляр IntersectionObserver, который будет отслеживать
+      // видимость элемента. IntersectionObserver принимает два аргумента: коллбэк функцию и объект опций.
       let observer = new IntersectionObserver((entries, observer) => {
+        //Коллбэк функция проходит через все entries (элементы, пересекающие порог видимости) и проверяет,
+        // является ли элемент видимым (entry.isIntersecting). Если элемент видим, переменная this.isVisible
+        // устанавливается в true, и в консоль выводится сообщение "Element is visible".
         entries.forEach((entry: any) => {
           if (entry.isIntersecting) {
             this.isVisible = true
             console.log('Element is visible')
           }
         });
+        //Коллбэк функция вызывается каждый раз, когда наблюдаемый элемент пересекает заданный порог видимости
+        // (threshold: 0.5). В этом случае порог установлен в 0.5, что означает, что коллбэк будет вызываться,
+        // когда 50% элемента станут видимыми в области просмотра.
       }, {threshold: 0.5})
 
+      //this.imageContainer.nativeElement. Это означает, что IntersectionObserver будет отслеживать,
+      // когда данный элемент становится видимым или невидимым в области просмотра.
       observer.observe(this.imageContainer.nativeElement);
     }
   }
