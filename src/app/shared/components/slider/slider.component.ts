@@ -2,14 +2,11 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  HostListener,
-  Input,
-  OnDestroy,
-  OnInit,
+  HostListener, Inject,
+  Input, PLATFORM_ID,
   Renderer2,
-  ViewChild
 } from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {ISlide} from "../../models/slider/slider.model";
 
 @Component({
@@ -25,8 +22,11 @@ export class SliderComponent implements AfterViewInit {
   selectedIndex = 0;
   intervalId: any
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
-
+  constructor(
+    private el: ElementRef, private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object // PLATFORM_ID инжектируется для определения типа платформы
+  ) {
+  }
 
 
   // @HostListener('panstart', ['$event']) onSliderPanEnd(event: any) {
@@ -47,7 +47,7 @@ export class SliderComponent implements AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
+  private initializeIntersectionObserver(): void {
     let observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry: IntersectionObserverEntry) => {
         if (entry.isIntersecting) {
@@ -60,6 +60,12 @@ export class SliderComponent implements AfterViewInit {
     observer.observe(this.el.nativeElement);
   }
 
+  ngAfterViewInit() {
+    //     //IntersectionObserver доступен только в браузерах. Проверьте, не пытаетесь ли вы использовать IntersectionObserver на сервере. Вам нужно будет добавить условие для проверки, выполняется ли код на сервере или клиенте, используя isPlatformBrowser
+    if (isPlatformBrowser(this.platformId)) {
+      this.initializeIntersectionObserver();
+    }
+  }
 
   @HostListener('click') onMouseClick() {
     this.stopAutoScroll();
@@ -93,6 +99,5 @@ export class SliderComponent implements AfterViewInit {
   selectSlide(index: number): void {
     this.selectedIndex = index; // Обновление индекса выбранного слайда
     this.stopAutoScroll(); // Останавливаем автопрокрутку при ручном выборе слайда
-    // this.startAutoScroll(); // Перезапускаем автопрокрутку
   }
 }
