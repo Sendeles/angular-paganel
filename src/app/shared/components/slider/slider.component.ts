@@ -21,6 +21,8 @@ export class SliderComponent implements AfterViewInit {
   @Input() images: ISlide[] = []
   selectedIndex = 0;
   intervalId: any
+  private hasStartedAutoScroll = false; // Флаг для отслеживания, запущена ли автопрокрутка
+
 
   constructor(
     private el: ElementRef, private renderer: Renderer2,
@@ -50,9 +52,12 @@ export class SliderComponent implements AfterViewInit {
   private initializeIntersectionObserver(): void {
     let observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry: IntersectionObserverEntry) => {
-        if (entry.isIntersecting) {
-          // Когда элемент становится видимым, начинаем автоматическую прокрутку слайдов
-          this.startAutoScroll();
+          if (entry.isIntersecting && !this.hasStartedAutoScroll) {
+            // Когда элемент становится видимым, начинаем автоматическую прокрутку слайдов
+            this.startAutoScroll();
+            this.hasStartedAutoScroll = true; // Устанавливаем флаг в true после запуска
+            // Если вы хотите полностью остановить наблюдение после первого запуска, раскомментируйте следующую строку
+            // observer.unobserve(this.el.nativeElement);
         }
       });
     }, {threshold: 0.5});
