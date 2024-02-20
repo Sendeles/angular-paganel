@@ -20,14 +20,16 @@ export class LanguageServices {
 
   //Публичный метод для получения текущего языка.
   getLanguage() {
+    console.log('this.language', this.language)
     return this.language;
   }
 
   //Публичный метод для установки нового языка.
-  setLanguage(lang: string) {
-    this.language = lang;
+  setLanguage(language: string) {
+    this.language = language;
     //Сохраняет выбранный язык в localStorage для дальнейшего использования.
-    localStorage.setItem('language', lang);
+    localStorage.setItem('language', language);
+    console.log('this.language', this.language)
   }
 
   //Публичный метод для получения перевода по ключу `key`.

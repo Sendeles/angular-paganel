@@ -1,27 +1,32 @@
-import { Directive, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import {Directive, ElementRef, Renderer2, AfterViewInit, Injectable, Inject, PLATFORM_ID} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Platform } from '@angular/cdk/platform';
 
-@Directive({
-  selector: 'app-animate-on-view-services'
+
+@Injectable({
+  //Декоратор @Injectable с опцией providedIn: 'root' указывает, что сервис LanguageServices будет доступен глобально в приложении (т.е. будет создан один экземпляр (singleton) на весь Angular-модуль).
+  providedIn: 'root'
 })
-export class AnimateOnViewServices implements AfterViewInit {
+
+export class AnimateOnViewServices {
 
   constructor(
-    //ElementRef используется для получения ссылки на элемент, к которому применяется директива, а Renderer2 - для изменения этого элемента.
-    private el: ElementRef, private renderer: Renderer2
+    @Inject(PLATFORM_ID) private platformId: Object, // PLATFORM_ID инжектируется для определения типа платформы
+    private platform: Platform
   ) {}
 
-  ngAfterViewInit() {
-    //IntersectionObserver, который используется для отслеживания видимости элемента. принимает коллбэк функцию, которая вызывается каждый раз, когда наблюдаемый элемент пересекает порог видимости
-    let observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry: IntersectionObserverEntry) => {
-        //Внутри коллбэк функции для каждого пересечения (entry) проверяется, является ли элемент (entry) пересекающимся (isIntersecting). Если да, то к элементу добавляется CSS-класс jumps_picture с использованием Renderer2.
-        if (entry.isIntersecting) {
-          this.renderer.addClass(this.el.nativeElement, 'jumps_picture');
-        }
-      });
-      //threshold: 0.5 означает, что коллбэк будет вызываться, когда 50% элемента станут видимыми
-    }, {threshold: 0.5});
+  observeElement(element: ElementRef, callback: (elementIsVisible: boolean) => void): void {
+    if (isPlatformBrowser(this.platform) && element) {
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          const elementIsVisible = entry.isIntersecting;
+          callback(elementIsVisible);
+          // Если нужно прекратить наблюдение после первого обнаружения
+          // if (elementIsVisible) observer.unobserve(entry.target);
+        });
+      }, {threshold: 0.5});
 
-    observer.observe(this.el.nativeElement);
+      observer.observe(element.nativeElement);
+    }
   }
 }

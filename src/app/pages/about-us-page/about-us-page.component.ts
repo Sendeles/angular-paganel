@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {SliderComponent} from "../../shared/components/slider/slider.component";
+import {LanguageServices} from "../../shared/services/language.services";
 
 @Component({
   selector: 'app-about-us-page',
@@ -10,6 +11,11 @@ import {SliderComponent} from "../../shared/components/slider/slider.component";
   styleUrl: './about-us-page.component.scss'
 })
 export class AboutUsPageComponent {
+
+  constructor(
+    public languageService: LanguageServices
+  ) {
+  }
 
   images = [
     {

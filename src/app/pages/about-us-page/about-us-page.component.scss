@@ -19,7 +19,7 @@
 .paganel_block_create {
   border: 1px solid #faa700;
   margin: auto;
-  padding: 32px 13px 32px 85px;
+  padding: 32px 40px 32px 85px;
   max-width: 880px;
   height: auto;
   font-size: 19px;
@@ -48,11 +48,11 @@
   }
 }
 
-.block_3 {
+.block_3, .block_5 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 200px;
+  margin-bottom: 130px;
 
   .video_block {
     margin: 0 0 30px calc((100% - 1363px) * 0.5);
@@ -65,13 +65,30 @@
     margin: 0 calc((100% - 1341px) * 0.5) -36px 49px;
     font-size: 12px;
     font-family: arial,ｍｓ ｐゴシック,ms pgothic,돋움,dotum,helvetica,sans-serif;
-    padding: 28px;
+    padding: 35px 28px;
   }
 }
 
 
 .slider_container {
-  margin-bottom: 100px;
   width: 600px;
   height: 300px;
+  margin: 50px calc((100% - 1250px) * 0.5);
+
+}
+
+.block_6 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #faa700;
+  padding: 40px 0;
+  max-width: 965px;
+  margin: 0 auto 100px; /* margin: 0 auto; что бы расположить по центру, 100px это не обязательно */
+
+  span {
+    font-size: 24px;
+    font-family: arial,ｍｓ ｐゴシック,ms pgothic,돋움,dotum,helvetica,sans-serif;
+    line-height: 47px;
+  }
 }

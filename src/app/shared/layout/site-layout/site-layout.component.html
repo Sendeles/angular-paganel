@@ -49,17 +49,17 @@
       <div class="language_menu">
         <ul>
           <li class="hasSubMenuLanguage ua">
-            <a (click)="languageService.setLanguage('ua'); openSubMenuLanguage($event)">
-              UA
+            <a (click)="languageService.setLanguage('ua'); openSubMenuLanguage($event, 'ua')">
+              {{currentLanguage.toUpperCase()}}
             </a>
             <ul>
               <li class="en">
-                <a (click)="languageService.setLanguage('en')">
+                <a (click)="languageService.setLanguage('en'); openSubMenuLanguage($event, 'en')">
                   EN
                 </a>
               </li>
               <li class="ru">
-                <a (click)="languageService.setLanguage('ru')">
+                <a (click)="languageService.setLanguage('ru'); openSubMenuLanguage($event, 'ru')">
                   RU
                 </a>
               </li>

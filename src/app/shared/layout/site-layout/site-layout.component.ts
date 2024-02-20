@@ -27,15 +27,42 @@ export class SiteLayoutComponent {
   vimeo: string = './assets/images/social/vimeo.webp'
   youtube: string = './assets/images/social/youtube.webp'
 
+// Переменная для хранения текущего выбранного языка
+  currentLanguage = 'ua';
+  // languages = ['ua', 'en', 'ru'];
 
   constructor(
     public languageService: LanguageServices
   ) {}
 
   //подменю для открытия языков
-  openSubMenuLanguage(event: Event): void {
-    const el = event.target as HTMLHRElement;
-    el.classList.contains('open') ? el.classList.remove('open') : el.classList.add('open');
-  }
+  openSubMenuLanguage(event: Event, language: string): void { //language здесь просто переменная не важно как ты ее назовешь
+    this.currentLanguage = language; // Обновляем текущий выбранный язык
+    this.languageService.setLanguage(language); // Обновляем язык в сервисе
+    // Доступ к кликнутому элементу
+    const el = event.target as HTMLElement;
 
+    // // Удаляем выбранный язык из массива, если он уже есть
+    // this.languages = this.languages.filter(l => l !== language);
+    //
+    // // Добавляем выбранный язык в начало массива
+    // this.languages.unshift(language);
+
+    // Определение, находится ли кликнутый элемент в пределах элемента списка .hasSubMenuLanguage
+    const hasSubMenuLanguage = el.closest('.hasSubMenuLanguage');
+    console.log('hasSubMenuLanguage', hasSubMenuLanguage)
+    if (hasSubMenuLanguage) {
+      // Переключение класса 'open' на родительском элементе 'a'
+      const parentA = hasSubMenuLanguage.querySelector('a');
+      if (parentA) {
+        parentA.classList.toggle('open');
+      }
+
+      // Переключение отображения 'ul' подменю
+      const submenu = hasSubMenuLanguage.querySelector('ul');
+      if (submenu) {
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+      }
+    }
+  }
 }
