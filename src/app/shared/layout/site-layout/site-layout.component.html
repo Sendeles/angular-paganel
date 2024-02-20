@@ -48,19 +48,14 @@
     <div class="language_menu_wrapper">
       <div class="language_menu">
         <ul>
-          <li class="hasSubMenuLanguage ua">
-            <a (click)="languageService.setLanguage('ua'); openSubMenuLanguage($event, 'ua')">
-              {{currentLanguage.toUpperCase()}}
+          <li class="hasSubMenuLanguage" [ngClass]="currentLanguage">
+            <a (click)="openSubMenuLanguage($event, currentLanguage)">
+              {{ currentLanguage.toUpperCase() }}
             </a>
             <ul>
-              <li class="en">
-                <a (click)="languageService.setLanguage('en'); openSubMenuLanguage($event, 'en')">
-                  EN
-                </a>
-              </li>
-              <li class="ru">
-                <a (click)="languageService.setLanguage('ru'); openSubMenuLanguage($event, 'ru')">
-                  RU
+              <li *ngFor="let otherLang of getFilteredLanguages()" [ngClass]="{ 'en': otherLang === 'en', 'ru': otherLang === 'ru' }">
+                <a (click)="openSubMenuLanguage($event, otherLang)">
+                  {{ otherLang.toUpperCase() }}
                 </a>
               </li>
             </ul>
