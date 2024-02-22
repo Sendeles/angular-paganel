@@ -48,13 +48,32 @@
     <div class="language_menu_wrapper">
       <div class="language_menu">
         <ul>
-          <li class="hasSubMenuLanguage" [ngClass]="currentLanguage">
-            <a (click)="openSubMenuLanguage($event, currentLanguage)">
-              {{ currentLanguage.toUpperCase() }}
+          <!-- В данном случае выражение languageService.currentLanguage возвращает строку, которая является текущим выбранным языком, например 'en', 'ua', или 'ru'.
+          Это значение используется как имя класса, которое будет добавлено к элементу <li>.-->
+
+          <!-- Предположим, что languageService.currentLanguage возвращает 'en' -->
+<!--          <li class="hasSubMenuLanguage" [ngClass]="languageService.currentLanguage">-->
+            <!-- ... -->
+<!--          </li>-->
+
+          <!-- Результат выражения 'en' используется как класс для элемента li -->
+<!--          <li class="hasSubMenuLanguage en">-->
+            <!-- ... -->
+<!--          </li>-->
+
+          <!-- Теперь languageService.currentLanguage возвращает 'ru' -->
+<!--          <li class="hasSubMenuLanguage ru">-->
+            <!-- ... -->
+<!--          </li>-->
+
+          <li class="hasSubMenuLanguage"  [ngClass]="languageService.getLanguage()">
+<!--            ссылка, которая при нажатии вызывает функцию openSubMenuLanguage с текущим выбранным языком. Это приведет к выполнению каких-то действий, таких как отображение подменю с другими доступными языками.-->
+            <a #languageMenu (click)="openSubMenuLanguage($event, languageService.getLanguage(), languageMenu)">
+              {{ languageService.getLanguage().toUpperCase() }}
             </a>
             <ul>
-              <li *ngFor="let otherLang of getFilteredLanguages()" [ngClass]="{ 'en': otherLang === 'en', 'ru': otherLang === 'ru' }">
-                <a (click)="openSubMenuLanguage($event, otherLang)">
+              <li class="select_lang" *ngFor="let otherLang of languageService.getFilteredLanguages()">
+                <a (click)="openSubMenuLanguage($event, otherLang, languageMenu)">
                   {{ otherLang.toUpperCase() }}
                 </a>
               </li>

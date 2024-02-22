@@ -99,18 +99,12 @@ header {
 }
 
 .language_menu_wrapper {
-  //!!!!!!!!!!!!!!!!!для z-index
-  position: relative;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Марджин который опускает вниз
-  margin-top: 23px;
+  position: relative; //для z-index
+  margin-top: 23px; //Марджин который опускает вниз
   //height: auto;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!запретить прокрутку по горизонтали на элементе, вы можете использовать touch-action: pan-y;, чтобы разрешить только вертикальные жесты.
-  touch-action: pan-y;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!отступ справа
-  width: 95px;
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! цвет текста
-  color: #feaa02;
-
+  touch-action: pan-y; //запретить прокрутку по горизонтали на элементе, вы можете использовать touch-action: pan-y;, чтобы разрешить только вертикальные жесты.
+  width: 95px; //отступ справа
+  color: #feaa02; //цвет текста
 
   .language_menu {
     //!!!!!!!!!!!!!!!!!для z-index
@@ -219,17 +213,9 @@ header {
   }
 }
 
-.en {
+.select_lang {
 
-  &:hover {
-    color: white;
-    background-color: grey;
-  }
-}
-
-.ru {
-
-  &:hover {
+  & a:hover {
     color: white;
     background-color: grey;
   }

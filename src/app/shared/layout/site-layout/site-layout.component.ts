@@ -27,46 +27,44 @@ export class SiteLayoutComponent {
   vimeo: string = './assets/images/social/vimeo.webp'
   youtube: string = './assets/images/social/youtube.webp'
 
-// Переменная для хранения текущего выбранного языка
-  currentLanguage = 'ua';
-  languages = ['ua', 'en', 'ru'];
-
   constructor(
     public languageService: LanguageServices
   ) {}
 
   //подменю для открытия языков
-  openSubMenuLanguage(event: Event, language: string): void { //language здесь просто переменная не важно как ты ее назовешь
-    this.currentLanguage = language; // Обновляем текущий выбранный язык
+  openSubMenuLanguage(event: Event, language: string, languageMenu: HTMLElement): void { //language здесь просто переменная не важно как ты ее назовешь
+    // this.languageService.currentLanguage = language; // Обновляем текущий выбранный язык
     this.languageService.setLanguage(language); // Обновляем язык в сервисе
     // Доступ к кликнутому элементу
-    const el = event.target as HTMLElement;
+    // const el = event.target as HTMLElement;
 
     // Удаляем выбранный язык из массива, если он уже есть
-    this.languages = this.languages.filter(l => l !== language);
+    // Предположим, пользователь решает сменить язык на русский ('ru'). В этот момент вызывается метод setLanguage('ru').
+    // Удаляем 'ru', если он есть
+    // После этой операции, если бы 'ru' был в списке, массив стал бы ['ua', 'en']
+    // Но поскольку мы предполагаем смену с 'ua' на 'ru', на этом шаге массив остаётся прежним ['ua', 'en', 'ru']
+    this.languageService.languages = this.languageService.languages.filter(lang => lang !== language);
 
     // Добавляем выбранный язык в начало массива
-    this.languages.unshift(language);
+    // Теперь массив языков выглядит как ['ru', 'ua', 'en']
+    this.languageService.languages.unshift(language);
 
-    // Определение, находится ли кликнутый элемент в пределах элемента списка .hasSubMenuLanguage
-    const hasSubMenuLanguage = el.closest('.hasSubMenuLanguage');
-    console.log('hasSubMenuLanguage', hasSubMenuLanguage)
-    if (hasSubMenuLanguage) {
-      // Переключение класса 'open' на родительском элементе 'a'
-      const parentA = hasSubMenuLanguage.querySelector('a');
-      if (parentA) {
-        parentA.classList.toggle('open');
-      }
+    // Определение, находится ли кликнутый элемент в пределах элемента списка .hasSubMenuLanguage и получаем элемент, на который непосредственно был совершён клик.
+    // Как работает closest:Предположим, пользователь кликает на слово "English". В момент клика обработчик события пытается найти ближайший элемент вверх по дереву DOM, который соответствует селектору .hasSubMenuLanguage.
+    // const hasSubMenuLanguage = el.closest('.hasSubMenuLanguage');
+    // console.log('hasSubMenuLanguage', hasSubMenuLanguage)
+    // if (hasSubMenuLanguage) {
+    //   // Переключение класса 'open' на родительском элементе 'a'
+    //   const parentA = hasSubMenuLanguage.querySelector('a');
+    //   if (parentA) {
+    languageMenu.classList.toggle('open');
+      // }
 
       // Переключение отображения 'ul' подменю
-      const submenu = hasSubMenuLanguage.querySelector('ul');
-      if (submenu) {
-        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-      }
-    }
-  }
-
-  getFilteredLanguages() {
-    return this.languages.filter(lang => lang !== this.currentLanguage);
+    //   const submenu = hasSubMenuLanguage.querySelector('ul');
+    //   if (submenu) {
+    //     submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    //   }
+    // }
   }
 }
