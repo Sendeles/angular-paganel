@@ -1,0 +1,165 @@
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 6px;
+  margin-top: 44px;
+
+  span {
+    font-weight: bold;
+    font-size: 56px;
+    letter-spacing: normal;
+    margin-bottom: 37px;
+    font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
+    color: #3d3d3d;
+  }
+}
+
+.block_1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .star_block {
+    position: relative;
+    margin: 0 0 23px calc((100% - 1364px) * 0.5);
+    max-width: 460px; //задается для работы text-align: justify
+    padding-bottom: 75px;
+
+
+    &:before { //псевдоелементы ::before и ::after используются для вставки содержимого до или после содержимого элемента.
+      content: ''; // Свойство content обязательно для этих псевдоэлемента before, чтобы они отображались. В данном случае content: ''; означает, что вы вставляете пустое содержимое — это просто способ создать "фантомный" элемент, который можно будет стилизовать.
+      position: absolute;
+      top: 68px;
+      left: 51px;
+      right: 0;
+      bottom: 0;
+      background-image: url('/assets/images/sun.webp'); // Путь к вашему изображению
+      background-size: 58%;
+      background-repeat: no-repeat; // Чтобы изображение не повторялось
+      //background-position: center;
+      opacity: 0.1; // Уменьшите прозрачность, чтобы сделать изображение едва заметным
+      z-index: -1; // Убедитесь, что значение z-index меньше, чем у текста
+    }
+
+      .star_title {
+        display: block;
+        text-align: center;
+        font-size: 26px;
+        font-weight: bold;
+        font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
+      }
+
+      .star_text {
+        display: inline-block;
+        text-align: justify;
+        line-height: 1.4em;
+        font-size: 16px;
+        margin-left: 13px;
+        margin-bottom: 21px;
+      }
+    }
+
+  .form_block {
+    display: flex;
+    flex-direction: column;
+    margin: 0 calc((100% - 1411px) * 0.5) -36px 49px;
+
+    .form_header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    input, textarea {
+      border: 1px solid transparent; //не убераем а делаем невидемым
+      border-bottom: 1px solid #faa700;
+      margin-bottom: 10px;
+      padding: 14px 0 14px 7px;
+      font: normal normal normal 14px/1.4em helvetica-w01-roman, helvetica-w02-roman, helvetica-lt-w10-roman, sans-serif;
+      box-shadow: 1px 7px 0 0 rgba(232, 232, 232, 1); // box-shadow: h-offset определяет, насколько далеко вправо или влево будет падать тень. v-offset определяет вертикальное расстояние тени от блока. blur определяет радиус размытия. Чем больше это значение, тем более размытой будет тень. spread определяет, насколько тень увеличивается или уменьшается. Если значение положительное, тень расширяется и будет больше элемента, а если отрицательное — сокращается. color определяет цвет тени.; В этом фрагменте SCSS тень смещена на 10 пикселей вправо (10px) и 10 пикселей вниз (10px), без радиуса размытия (0), и без растяжения (0). Цвет установлен на полупрозрачный черный (rgba(0, 0, 0, 0.5)).
+
+      &::placeholder {
+        color: black;
+      }
+
+      &:hover {
+        border-color: #faa700;
+      }
+
+    }
+  }
+}
+
+.button_element {
+  display: flex;
+  justify-content: center;
+  margin-top: -37px;
+
+  button {
+    border: 1px solid #feaa02;
+    background-color: white;
+    width: 219px; //Если я буду использовать конкретно тег button то нужно так, поскольку я не смогу расширить кнопку через паддинг
+    height: 45px;
+    position: relative;
+    border-radius: 3px;
+    margin-bottom: 60px;
+    color: #feaa02;
+    font-size: 16px;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+      background-color: #feaa02;
+      transition: ease-in 0.3s;
+    }
+  }
+}
+
+.travels {
+  display: grid;
+  justify-content: center;
+  align-items: center; // Это свойство центрирует содержимое внутри каждой ячейки по вертикали
+  position: relative;
+  margin-bottom: 70px;
+  grid-template-columns: repeat(4, 189px); // Создаёт ровно четыре колонки шириной в 186px
+  grid-template-rows: auto; // Высота строки будет определяться содержимым
+  gap: 71px;
+
+  h3 {
+    margin-bottom: 0; //изначально внутри елемента h3 уже прописанны марджины потому мы их переписываемна 0 если они нам не нужны
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: arial,ｍｓ ｐゴシック,ms pgothic,돋움,dotum,helvetica,sans-serif;
+  }
+
+  img {
+    width: 186px;
+    height: 179px;
+    border: 1px solid #feaa02;
+    margin-bottom: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit; //убираем синий цвет ссылки
+  }
+}
+
+.button_link {
+  border: 1px solid #feaa02;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+    color:#feaa02;
+
+  &:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #feaa02;
+    transition: ease-in 0.3s;
+  }
+}
+

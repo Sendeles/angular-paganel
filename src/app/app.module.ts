@@ -6,6 +6,8 @@ import {BrowserModule, HammerModule} from "@angular/platform-browser";
 import {CommonModule} from "@angular/common";
 import {AnimateOnViewServices} from "./shared/services/animate.services";
 import {LanguageServices} from "./shared/services/language.services";
+import {RouterModule} from "@angular/router";
+import {ReviewsComponent} from "./shared/components/reviews/reviews.component";
 
 @NgModule({
   declarations: [],
@@ -15,7 +17,8 @@ import {LanguageServices} from "./shared/services/language.services";
     CommonModule,
     HammerModule,
     AppComponent,
-    SiteLayoutComponent
+    SiteLayoutComponent,
+    ReviewsComponent
   ],
   exports: [],
   providers: [

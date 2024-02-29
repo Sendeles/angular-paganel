@@ -9,7 +9,7 @@
       <img class="first_chapter_image" [src]="aboutUs" alt="about us">
       <a [routerLink]="['/aboutus']">{{languageService.getTranslate('ABOUT US')}}</a>
       <div class="dropdown_content first_submenu">
-        <a>{{languageService.getTranslate('REVIEW')}}</a>
+        <a [routerLink]="['/reviews']">{{languageService.getTranslate('REVIEW')}}</a>
         <a>{{languageService.getTranslate('TEAM')}}</a>
       </div>
     </div>
@@ -67,7 +67,7 @@
 <!--          </li>-->
 
           <li class="hasSubMenuLanguage"  [ngClass]="languageService.getLanguage()">
-<!--            ссылка, которая при нажатии вызывает функцию openSubMenuLanguage с текущим выбранным языком. Это приведет к выполнению каких-то действий, таких как отображение подменю с другими доступными языками.-->
+<!--            #languageMenu — это локальная переменная шаблона в Angular, которая предоставляет доступ к элементу DOM этой ссылки в компоненте Angular. Это означает, что вы можете ссылаться на этот элемент в коде TypeScript вашего компонента, используя имя languageMenu-->
             <a #languageMenu (click)="openSubMenuLanguage($event, languageService.getLanguage(), languageMenu)">
               {{ languageService.getLanguage().toUpperCase() }}
             </a>

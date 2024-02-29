@@ -22,11 +22,10 @@ export class LanguageServices {
 
   //Публичный метод для получения текущего языка.
   getLanguage() {
-    console.log('this.currentLanguage', this.currentLanguage)
     return this.currentLanguage;
   }
 
-  //Публичный метод для установки нового языка.
+  //Публичный метод для смены со старого языка на новый язык.
   setLanguage(language: string) {
     //language - оператор присваивания, Внутри метода переменная this.currentLanguage устанавливается равной переданному параметру language, тем самым обновляя текущий выбранный язык в сервисе.
     this.currentLanguage = language;

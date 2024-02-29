@@ -14,6 +14,14 @@ export const routes: Routes = [
       {
         path: 'aboutus',
         loadChildren: () => import('./pages/about-us-page/about-us-page.module').then(m => m.AboutUsPageModule)
+      },
+      {
+        path: 'reviews',
+        loadChildren: () => import('./pages/reviews-page/reviews-page.module').then(m => m.ReviewsPageModule)
+      },
+      {
+        path: 'reviews/:id',
+        loadChildren: () => import('./pages/reviews-page/reviews-page.module').then(m => m.ReviewsPageModule)
       }
     ]
   }

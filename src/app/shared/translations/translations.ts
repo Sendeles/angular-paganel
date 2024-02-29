@@ -119,7 +119,7 @@ export let translations: any = {
   'HOW IT STARTS': {
     'en': 'Once upon a time, a couple of dreamers — Andrii and Olga Andreeva, went on their honeymoon in the Himalayas, to Mount Everest. It was there that they realized that traveling makes them happy and that this is what they want to do all their live.' + '<p></p>' + 'After that, they were joined by another desperate dreamer — artist Oleksandr Votsmush. The three of them began to travel to distant countries, paint, photograph, film and simply enjoy life.' + '<p></p>' + 'This is how the company Paganel Studio was born.',
     'ru': 'Когда-то пара влюбленных мечтателей – Андрей и Ольга Андреевы – отправилась на свой медовый месяц в Гималаи, к горе Эверест. Именно там пришло осознание, что путешествия делают их счастливыми и это то, чем хочется заниматься всю жизнь.' + '<p></p>' + 'После к ним присоединился еще один отчаянный мечтатель – художник Александр Воцмуш. Втроем они стали ездить в далекие страны, рисовать, фотографировать, снимать кино и просто наслаждаться жизнью.' + '<p></p>' + 'Так и родилась компания Paganel Studio.',
-    'ua': 'Колись пара закоханих мрійників — Андрій та Ольга Андрєєви — вирушила на свій медовий місяць у Гімалаї, до гори Еверест. Саме там прийшло усвідомлення, що мандрівки роблять їх щасливими й це те, чим хочеться займатися все життя.' + '<p></p>' + 'Після цього до них приєднався ще один відчайдушний мрійник — художник Олександр Воцмуш. Утрьох вони почали їздити в далекі країни, малювати, фотографувати, знімати кіно й просто насолоджуватися життям.' + '<p></p>'+ 'Так народилася компанія Paganel Studio.'
+    'ua': 'Колись пара закоханих мрійників — Андрій та Ольга Андрєєви — вирушила на свій медовий місяць у Гімалаї, до гори Еверест. Саме там прийшло усвідомлення, що мандрівки роблять їх щасливими й це те, чим хочеться займатися все життя.' + '<p></p>' + 'Після цього до них приєднався ще один відчайдушний мрійник — художник Олександр Воцмуш. Утрьох вони почали їздити в далекі країни, малювати, фотографувати, знімати кіно й просто насолоджуватися життям.' + '<p></p>' + 'Так народилася компанія Paganel Studio.'
   },
   'HOW IT STARTS 2': {
     'en': 'In 2008, after a joint trip to Papua and an exhibition called "Princess of Papua", where photos of Andrii and Olga, watercolors by Votsmush, graphics by Olga, and a film from the trip were presented, there was a desire to combine all these things into one whole and add a business component, in order not to be distracted by extraneous matters, but to focus on your favorite work. At this time, Andrii had the idea of ​​the first film project. The idea, script, and title of which were invented and written by him. The first version of this project was an art-documentary series called "12 Legends", later the script was rewritten and transformed by Andrii into a documentary format called "Legends of Disappeared Civilizations". This idea became the engine of what, after many metamorphoses, turned into what is now Paganel Studio a few years later. Since it was not possible to find funding from the outside for two and a half years, Andrii and Olga Andreeva decided to invest in themselves and open a new direction for themselves - to take with them those willing to go with them to distant countries around the world. Yes, what was dreamed of once began to become a reality and, unexpectedly, became a very popular occupation at the time. The first such trip with the group was the 2011-2012 New Year\'s expedition to Papua and other islands. Over time, our team began to grow, and many wonderful people were added, who became an integral part of it. Creativity and work with people began to develop in parallel, complementing each other.',
@@ -135,7 +135,41 @@ export let translations: any = {
     'en': 'Enjoy your acquaintance with our site and creativity.<br>Welcome to the world through our eyes!',
     'ru': 'Приятного вам знакомства с нашим сайтом и творчеством.<br>Добро пожаловать в Мир нашими глазами!',
     'ua': 'Приємного вам знайомства з нашим сайтом та творчістю.<br>Ласкаво просимо до Світу нашими очима!'
+  },
+  'NAME': {
+    'en': 'Name',
+    'ru': 'Имя',
+    'ua': 'Ім`я'
+  },
+  'SURNAME': {
+    'en': 'Surname',
+    'ru': 'Фамилия',
+    'ua': 'Прізвище'
+  },
+  'EXPEDITION': {
+    'en': 'Expedition name (country, year)',
+    'ru': 'Название експедиции (страна, год)',
+    'ua': 'Назва експедиції (країна, рік)'
+  },
+  'LINK': {
+    'en': 'Link to social net',
+    'ru': 'Ссылка на соц. сети',
+    'ua': 'Посилання на соц. мережу'
+  },
+  'COMMENT': {
+    'en': 'Your comment',
+    'ru': 'Ваш отзыв',
+    'ua': 'Ваш відгук'
+  },
+  'COLLECT': {
+    'en': 'We collect your impressions',
+    'ru': 'Мы коллекционируем ваши впечатления',
+    'ua': 'Ми колекціонуємо ваші враження'
+  },
+  'LEFT_REVIEW': {
+    'en': 'Dear friends! You can leave your review on this page and see allthe reviews of the lucky ones who went on expeditions with us.' + '<p></p>' + 'Enjoy reading and getting to know Paganel!',
+    'ru': 'Уважаемые друзья! Вы можете оставить свой отзыв на данной странице и посмотреть все отзывы счастливчиков, посетивших с нами экспедиции.' + '<p></p>' + 'Приятного прочтения и знакомства с Paganel!',
+    'ua': 'Шановні друзі! Ви можете залишити свій відгук на цій сторінці та подивитися всі відгуки щасливчиків, які відвідали з нами експедиції.' + '<p></p>' + 'Приємного прочитання та знайомства з Paganel!'
   }
-
 }
 

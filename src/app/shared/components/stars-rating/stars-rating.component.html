@@ -1,0 +1,7 @@
+<div class="rating">
+  <span (click)="rate(1)" (mouseover)="hover(1)" (mouseout)="hover(0)" [class.filled]="rating >= 1 || hoverRating >= 1">★</span>
+  <span (click)="rate(2)" (mouseover)="hover(2)" (mouseout)="hover(0)" [class.filled]="rating >= 2 || hoverRating >= 2">★</span>
+  <span (click)="rate(3)" (mouseover)="hover(3)" (mouseout)="hover(0)" [class.filled]="rating >= 3 || hoverRating >= 3">★</span>
+  <span (click)="rate(4)" (mouseover)="hover(4)" (mouseout)="hover(0)" [class.filled]="rating >= 4 || hoverRating >= 4">★</span>
+  <span (click)="rate(5)" (mouseover)="hover(5)" (mouseout)="hover(0)" [class.filled]="rating >= 5 || hoverRating >= 5">★</span>
+</div>

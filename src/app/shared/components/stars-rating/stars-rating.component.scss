@@ -1,0 +1,14 @@
+.rating {
+  cursor: pointer;
+  font-size: 35px;
+  color: #9d6200;
+  margin-left: 100px;
+
+  span {
+
+    &.filled {
+      color: black;
+    }
+  }
+}
+

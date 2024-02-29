@@ -33,8 +33,8 @@ export class SiteLayoutComponent {
 
   //подменю для открытия языков
   openSubMenuLanguage(event: Event, language: string, languageMenu: HTMLElement): void { //language здесь просто переменная не важно как ты ее назовешь
-    // this.languageService.currentLanguage = language; // Обновляем текущий выбранный язык
-    this.languageService.setLanguage(language); // Обновляем язык в сервисе
+// Обновляем язык в сервисе
+    this.languageService.setLanguage(language);
     // Доступ к кликнутому элементу
     // const el = event.target as HTMLElement;
 
@@ -49,22 +49,6 @@ export class SiteLayoutComponent {
     // Теперь массив языков выглядит как ['ru', 'ua', 'en']
     this.languageService.languages.unshift(language);
 
-    // Определение, находится ли кликнутый элемент в пределах элемента списка .hasSubMenuLanguage и получаем элемент, на который непосредственно был совершён клик.
-    // Как работает closest:Предположим, пользователь кликает на слово "English". В момент клика обработчик события пытается найти ближайший элемент вверх по дереву DOM, который соответствует селектору .hasSubMenuLanguage.
-    // const hasSubMenuLanguage = el.closest('.hasSubMenuLanguage');
-    // console.log('hasSubMenuLanguage', hasSubMenuLanguage)
-    // if (hasSubMenuLanguage) {
-    //   // Переключение класса 'open' на родительском элементе 'a'
-    //   const parentA = hasSubMenuLanguage.querySelector('a');
-    //   if (parentA) {
     languageMenu.classList.toggle('open');
-      // }
-
-      // Переключение отображения 'ul' подменю
-    //   const submenu = hasSubMenuLanguage.querySelector('ul');
-    //   if (submenu) {
-    //     submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    //   }
-    // }
   }
 }

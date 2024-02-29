@@ -38,6 +38,7 @@ export class SliderComponent implements AfterViewInit {
   startAutoScroll(): void {
     this.intervalId = setTimeout(() => {
       // Переход к следующему слайду или возвращение к первому, если текущий слайд последний
+      //% this.images.length: Оператор % является оператором остатка от деления (или модульным оператором). this.images.length возвращает длину массива this.images, то есть количество элементов в нем. Использование оператора остатка от деления здесь гарантирует, что если this.selectedIndex + 1 равно длине массива this.images, то результат выражения будет 0, а не this.images.length, тем самым обеспечивая возврат к первому элементу массива после достижения его конца.
       this.selectedIndex = (this.selectedIndex + 1) % this.images.length;
       this.startAutoScroll(); // Рекурсивно вызываем startAutoScroll для повторения
     }, 3000); // 3000 мс = 3 секунды
@@ -66,7 +67,7 @@ export class SliderComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    //     //IntersectionObserver доступен только в браузерах. Проверьте, не пытаетесь ли вы использовать IntersectionObserver на сервере. Вам нужно будет добавить условие для проверки, выполняется ли код на сервере или клиенте, используя isPlatformBrowser
+    //IntersectionObserver доступен только в браузерах. Проверьте, не пытаетесь ли вы использовать IntersectionObserver на сервере. Вам нужно будет добавить условие для проверки, выполняется ли код на сервере или клиенте, используя isPlatformBrowser
     if (isPlatformBrowser(this.platformId)) {
       this.initializeIntersectionObserver();
     }

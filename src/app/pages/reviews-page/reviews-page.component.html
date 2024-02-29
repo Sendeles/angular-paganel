@@ -1,0 +1,38 @@
+<div class="title">
+  <span>Відгуки</span>
+</div>
+<div class="block_1">
+  <div class="star_block">
+    <div>
+      <span class="star_title" [innerHTML]="languageService.getTranslate('COLLECT')"></span>
+      <p></p>
+      <span class="star_text" [innerHTML]="languageService.getTranslate('LEFT_REVIEW')"></span>
+    </div>
+    <app-stars-rating></app-stars-rating>
+  </div>
+  <form class="form_block">
+    <div class="form_header">
+      <input id="name" type="text" [placeholder]="languageService.getTranslate('NAME')">
+      <input id="surname" type="text" [placeholder]="languageService.getTranslate('SURNAME')">
+    </div>
+    <!--    <div>-->
+    <input id="expedition" type="text" [placeholder]="languageService.getTranslate('EXPEDITION')">
+    <input id="link" type="text" [placeholder]="languageService.getTranslate('LINK')">
+    <textarea id="comment" [placeholder]="languageService.getTranslate('COMMENT')" rows="1" cols="50"></textarea>
+    <!--    </div>-->
+  </form>
+</div>
+<div class="button_element">
+  <button type="submit" (click)="onSubmit()">Залишити відгук</button>
+</div>
+<div class="travels">
+  <div *ngFor="let travel of travels">
+    <h3>{{ travel.name }}</h3>
+    <img [src]="travel.image" alt="{{ travel.name }}">
+    <div class="button_link">
+<!--      <a [href]="travel.reviewsLink"><span>Читати відгуки</span></a>-->
+<!--      <a [routerLink]="['/reviews', travel.name.toLowerCase()]"><span>Читати відгуки</span></a>-->
+      <a [routerLink]="['/reviews', travel.id]"><span>Читати відгуки</span></a>
+    </div>
+  </div>
+</div>
