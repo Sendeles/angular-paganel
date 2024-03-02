@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ReviewsService} from "../../services/reviews.services";
 import {CommonModule} from "@angular/common";
+import {IReviews} from "../../models/reviews/reviews.model";
+import {Observable, switchMap} from "rxjs";
+
 
 @Component({
   selector: 'app-reviews',
@@ -12,20 +15,23 @@ import {CommonModule} from "@angular/common";
 })
 export class ReviewsComponent implements OnInit {
 
-  reviews: any[] = [];
+  public reviews$!: Observable<IReviews[]>;
 
   constructor(
     private route: ActivatedRoute,
     public reviewsService: ReviewsService
-  ) { }
+  ) {
+  }
+
 
   ngOnInit(): void {
-    //, используется this.route.params.subscribe для подписки на параметры маршрута. params является Observable объектом, который эмитирует новые значения параметров при каждом изменении URL.
-    this.route.params.subscribe(params => {
-      //При каждом изменении параметров маршрута, из объекта params извлекается id с помощью const id = params['id'];. Этот id используется для идентификации, какие отзывы нужно загрузить.
-      const id = params['id'];
-      // Прямое присваивание, так как getReviews возвращает массив, а не Observable
-      this.reviews = this.reviewsService.getReviews(id);
-    });
+    this.reviews$ = this.route.params.pipe(
+      switchMap(params => {
+        // извлекает значение параметра id из текущих параметров маршрута. Например, если URL страницы выглядит так: /reviews/antarctica, то id будет равно "antarctica".
+        const id = params['id'];
+        // Вызывается getReviews('antarctica'), что возвращает массив отзывов для Антарктиды.
+        return this.reviewsService.getReviews(id);
+      })
+    );
   }
 }

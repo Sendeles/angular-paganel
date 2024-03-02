@@ -1,4 +1,7 @@
-export const REVIEWS = {
+import {IReviews} from "../models/reviews/reviews.model";
+
+// определяет тип объекта, ключи которого являются строками ([key: string]), а значения — массивами объектов, соответствующих интерфейсу IReviews (IReviews[]). Это позволяет вам явно указать структуру данных вашего объекта REVIEWS
+export const REVIEWS: {[key: string]: IReviews[]}  = {
   antarctica: [
     {
       "name": "Олександра",

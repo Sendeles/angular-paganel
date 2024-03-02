@@ -1,4 +1,4 @@
-<div *ngFor="let review of reviews">
+<div *ngFor="let review of reviews$ | async">
   <h3>{{ review.name }} {{ review.surname }}</h3>
   <p>{{ review.review }}</p>
 </div>
