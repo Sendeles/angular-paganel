@@ -22,6 +22,14 @@ export const routes: Routes = [
       {
         path: 'reviews/:id',
         loadChildren: () => import('./pages/reviews-page/reviews-page.module').then(m => m.ReviewsPageModule)
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('./pages/login-page/login-page.module').then(m => m.LoginPageModule)
+      },
+      {
+        path: 'admin',
+        loadChildren: () => import('./admin/pages/admin-page/admin-page.module').then(m => m.AdminPageModule)
       }
     ]
   }

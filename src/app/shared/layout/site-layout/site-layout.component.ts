@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {RouterModule} from "@angular/router";
 import {fab, faYoutube} from "@fortawesome/free-brands-svg-icons";
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
@@ -6,6 +6,8 @@ import {fas} from "@fortawesome/free-solid-svg-icons";
 import {CommonModule, NgClass} from "@angular/common";
 import {LanguageServices} from "../../services/language.services";
 import {ButtonScrollTopComponent} from "../../components/button-scroll-top/button-scroll-top.component";
+import {AuthorizationServices} from "../../services/authorization.services";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-site-layout',
@@ -14,7 +16,7 @@ import {ButtonScrollTopComponent} from "../../components/button-scroll-top/butto
   templateUrl: './site-layout.component.html',
   styleUrl: './site-layout.component.scss'
 })
-export class SiteLayoutComponent {
+export class SiteLayoutComponent implements OnInit {
 
   logo: string = './assets/images/logo.webp'
   aboutUs: string = './assets/images/aboutUs.webp'
@@ -27,9 +29,16 @@ export class SiteLayoutComponent {
   vimeo: string = './assets/images/social/vimeo.webp'
   youtube: string = './assets/images/social/youtube.webp'
 
+  showAdminLayout: boolean = false
+
   constructor(
-    public languageService: LanguageServices
+    public languageService: LanguageServices,
+    // public authService: AuthorizationServices,
   ) {}
+
+  ngOnInit() {
+    // this.showAdminLayout = this.authService.isAdmin();
+  }
 
   //подменю для открытия языков
   openSubMenuLanguage(event: Event, language: string, languageMenu: HTMLElement): void { //language здесь просто переменная не важно как ты ее назовешь
