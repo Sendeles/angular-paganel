@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {CommonModule} from "@angular/common";
 import {MyValidators} from "./my.validators";
 import {AuthorizationServices} from "../../shared/services/authorization.services";
 import {IUser} from "../../shared/models/authorization/authorization.model";
+import {CommonModule} from "@angular/common";
 
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })
@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    // public auth: AuthorizationServices,
+    public auth: AuthorizationServices,
     private route: ActivatedRoute
   ) {
     this.form = this.getBlankForm()
@@ -49,7 +49,7 @@ export class LoginPageComponent implements OnInit {
   getBlankForm(): FormGroup {
     return new FormGroup<any>({
       email: new FormControl<string>('', [Validators.pattern(this.emailPattern), Validators.required, MyValidators.restrictedEmail]),
-      password: new FormControl<string>('', [Validators.minLength(4), Validators.maxLength(12)])
+      password: new FormControl<string>('', [Validators.minLength(6), Validators.maxLength(12)])
     })
   }
 
@@ -75,8 +75,8 @@ export class LoginPageComponent implements OnInit {
         //если неуспешный логин что бы была возможность снова залогиниться без обновления страницы
         this.form.reset();
         this.submitted = false
-        if (user.email === 'test@gmail.com') {
-          this.router.navigate(['/admin', 'dashboard'])
+        if (user.email === 'k_okami@yahoo.com') {
+          this.router.navigate(['/admin'])
         } else {
           this.router.navigate(['/'])
         }

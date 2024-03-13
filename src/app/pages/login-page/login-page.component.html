@@ -1,3 +1,37 @@
 <div>
-  fdfdfgfdgfd
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div *ngIf="auth.error$ | async as error">{{error}}</div>
+    <div class="alert" *ngIf="message">{{ message }}</div>
+    <div class="main_panel">
+      <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        <small *ngIf="form.get('email')?.errors?.['required']">
+          Email отсутствует
+        </small>
+        <small *ngIf="form.get('email')?.errors?.['invalidEmail'] && !form.get('email')?.errors?.['required']">
+          Email введен некорректно
+        </small>
+        <small *ngIf="form.get('email')?.errors?.['restrictedEmail'] && !form.get('email')?.errors?.['required'] && !form.get('email')?.errors?.['invalidEmail']">
+          вы ввели емейл: {{form.get('email')?.value}}, к сожалению домен {{ extractDomain(form.get('email')?.value) }} не поддерживается, введите другой
+        </small>
+      </div>
+      <label>Email:</label>
+      <br/>
+      <input type="email" formControlName="email" placeholder="Email">
+    </div>
+    <div>
+      <div>
+        <small *ngIf="form.controls['password'].invalid">
+          пароль должен содержать не меньше 6 и не больше 12 символов, сейчас введено {{passwordLength}} символа
+        </small>
+        <small *ngIf="form.controls['password'].touched && form.controls['password'].value === ''">
+          Password отсутствует
+        </small>
+      </div>
+      <label>Password:</label>
+      <br/>
+      <input type="password" formControlName="password" placeholder="Password" (change)="passwordLength" >
+    </div>
+    <button class="btn" type="submit" [disabled]="form.invalid || form.controls['password'].value === ''">Enter</button>
+  </form>
 </div>
+

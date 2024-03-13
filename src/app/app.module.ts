@@ -6,7 +6,6 @@ import {BrowserModule, HammerModule} from "@angular/platform-browser";
 import {CommonModule} from "@angular/common";
 import {AnimateOnViewServices} from "./shared/services/animate.services";
 import {LanguageServices} from "./shared/services/language.services";
-import {RouterModule} from "@angular/router";
 import {ReviewsComponent} from "./shared/components/reviews/reviews.component";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthorizationServices} from "./shared/services/authorization.services";
