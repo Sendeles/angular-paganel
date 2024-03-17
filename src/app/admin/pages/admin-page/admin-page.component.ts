@@ -12,15 +12,36 @@ import {Router} from "@angular/router";
 })
 export class AdminPageComponent implements OnInit {
 
-  showAdminLayout: boolean = false
 
   constructor(
     private router: Router,
-    // private auth: AuthorizationServices
-  ) {}
+    private authService: AuthorizationServices
+  ) {
+  }
 
   ngOnInit() {
-    // this.showAdminLayout = this.auth.isAdmin();
+    // setTimeout(() => {
+    //   if (this.authService.isAuthenticated()) {
+    //     console.log('User is authenticated');
+    //     if (this.authService.isAdmin()) {
+    //       console.log('User is an admin, granting access to /admin');
+    //     } else {
+    //       console.log('User is not an admin, redirecting to /404');
+    //       this.router.navigate(['/404'], {
+    //         queryParams: {
+    //           notAdmin: true
+    //         }
+    //       });
+    //     }
+    //   } else {
+    //     console.log('User is not authenticated, redirecting to /404');
+    //     this.router.navigate(['/404'], {
+    //       queryParams: {
+    //         needToLogin: true
+    //       }
+    //     });
+    //   }
+    // }, 1000)
   }
 
   // get isAdmin(): boolean {

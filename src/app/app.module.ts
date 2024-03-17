@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import {APP_INITIALIZER, importProvidersFrom, NgModule} from "@angular/core";
 import {SiteLayoutComponent} from "./shared/layout/site-layout/site-layout.component";
 import {AppComponent} from "./app.component";
 import {SharedModule} from "./shared/shared.module";
@@ -10,24 +10,26 @@ import {ReviewsComponent} from "./shared/components/reviews/reviews.component";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthorizationServices} from "./shared/services/authorization.services";
 
+
 @NgModule({
   declarations: [
-    AppComponent,
-    SiteLayoutComponent,
-    ReviewsComponent
+
   ],
   imports: [
     BrowserModule,
     SharedModule,
     CommonModule,
     HammerModule,
-    HttpClientModule
+    HttpClientModule,
+    AppComponent,
+    SiteLayoutComponent,
+    ReviewsComponent
   ],
   exports: [],
   providers: [
     AnimateOnViewServices,
     LanguageServices,
-    AuthorizationServices
+    AuthorizationServices,
   ],
   bootstrap: [AppComponent]
 })
