@@ -24,18 +24,24 @@ export class AuthGuard {
         if (this.authService.isAdmin()) {
           return true; // Разрешаем доступ к /admin для администратора
         } else {
-          this.router.navigate(['/404'], {
-            queryParams: {
-              notAdmin: true
-            }
-          });
+          // Устанавливаем задержку перед перенаправлением
+          setTimeout(() => {
+            this.router.navigate(['/404'], {
+              queryParams: {
+                notAdmin: true
+              }
+            });
+          }, 1000); // Задержка в 1000 миллисекунд (1 секунда)
         }
       } else {
-        this.router.navigate(['/404'], {
-          queryParams: {
-            needToLogin: true
-          }
-        });
+        // Устанавливаем задержку перед перенаправлением
+        setTimeout(() => {
+          this.router.navigate(['/404'], {
+            queryParams: {
+              needToLogin: true
+            }
+          });
+        }, 1000); // Задержка в 1000 миллисекунд (1 секунда)
       }
       return false;
   }
