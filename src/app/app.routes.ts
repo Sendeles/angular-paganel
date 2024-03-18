@@ -1,7 +1,7 @@
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {SiteLayoutComponent} from "./shared/layout/site-layout/site-layout.component";
 import {NgModule} from "@angular/core";
-import {AuthGuard} from "./shared/services/authorization.guard";
+import {AuthGuard, AuthGuardFunc} from "./shared/services/authorization.guard";
 
 export const routes: Routes = [
   {
@@ -31,7 +31,7 @@ export const routes: Routes = [
       {
         path: 'admin',
         loadChildren: () => import('./admin/pages/admin-page/admin-page.module').then(m => m.AdminPageModule),
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuardFunc]
       },
       {
         path: '404',

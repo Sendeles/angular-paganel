@@ -35,14 +35,12 @@ export class LoginPageComponent implements OnInit {
   //Внутри подписчика проверяется, содержит ли объект params свойство needToLogin. Если это свойство присутствует и истинно, для свойства message компонента устанавливается сообщение на русском языке: "данное поле будет доступно после входа
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
-      console.log('this.route', this.route)
       if (params['needToLogin']) {
         this.message = 'данное поле будет доступно после входа'
       } else if (params['authFailed']) {
         this.message = 'Cессия истекла, залогиньтесь снова'
       }
     })
-    console.log('this.route', this.route)
   }
 
 

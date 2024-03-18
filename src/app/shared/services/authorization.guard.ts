@@ -1,7 +1,8 @@
-import {inject, Injectable} from "@angular/core";
+import {Inject, inject, Injectable, PLATFORM_ID} from "@angular/core";
 import {AuthorizationServices} from "./authorization.services";
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
 import {Observable} from "rxjs";
+import {isPlatformBrowser} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -10,40 +11,31 @@ import {Observable} from "rxjs";
 export class AuthGuard {
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private authService: AuthorizationServices,
     private router: Router
   ) {
   }
 
   //Если пользователь аутентифицирован, метод возвращает true, что позволяет продолжить навигацию к запрашиваемому маршруту, если нет очищает данные аутентификации и сессии пользователя.
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      const isAdmin = localStorage.getItem('isAdmin') === 'true';
       if (this.authService.isAuthenticated()) {
-        if (this.authService.isAdmin()) {
+        if (isAdmin) {
           return true; // Разрешаем доступ к /admin для администратора
         } else {
           // Устанавливаем задержку перед перенаправлением
-          setTimeout(() => {
-            this.router.navigate(['/404'], {
-              queryParams: {
-                notAdmin: true
-              }
-            });
-          }, 1000); // Задержка в 1000 миллисекунд (1 секунда)
+          this.router.navigate(['/404'], {queryParams: {notAdmin: true}});
+          return false;
         }
       } else {
         // Устанавливаем задержку перед перенаправлением
-        setTimeout(() => {
-          this.router.navigate(['/404'], {
-            queryParams: {
-              needToLogin: true
-            }
-          });
-        }, 1000); // Задержка в 1000 миллисекунд (1 секунда)
+        this.router.navigate(['/404'], {queryParams: {needToLogin: true}});
+        return false;
       }
-      return false;
+    }
+    return false; // Возвращаем false, если не в браузерной среде
   }
 }
 
