@@ -20,7 +20,7 @@ export class AuthGuard {
   //Если пользователь аутентифицирован, метод возвращает true, что позволяет продолжить навигацию к запрашиваемому маршруту, если нет очищает данные аутентификации и сессии пользователя.
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (isPlatformBrowser(this.platformId)) {
-      const isAdmin = localStorage.getItem('isAdmin') === 'true';
+      const isAdmin: boolean = localStorage.getItem('isAdmin') === 'true';
       if (this.authService.isAuthenticated()) {
         if (isAdmin) {
           return true; // Разрешаем доступ к /admin для администратора
@@ -40,6 +40,6 @@ export class AuthGuard {
 }
 
 export function AuthGuardFunc(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-  const guard = inject(AuthGuard);
+  const guard: AuthGuard = inject(AuthGuard);
   return guard.canActivate(route, state);
 }
