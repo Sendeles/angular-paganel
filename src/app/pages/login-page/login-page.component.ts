@@ -18,8 +18,8 @@ export class LoginPageComponent implements OnInit {
 
 
   public form: FormGroup;
-  private emailPattern = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
-  submitted = false
+  private emailPattern: RegExp = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
+  submitted: boolean = false
   errorMessage: string = '';
   message: string = ''
 
@@ -33,7 +33,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   //Внутри подписчика проверяется, содержит ли объект params свойство needToLogin. Если это свойство присутствует и истинно, для свойства message компонента устанавливается сообщение на русском языке: "данное поле будет доступно после входа
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['needToLogin']) {
         this.message = 'данное поле будет доступно после входа'
@@ -51,7 +51,7 @@ export class LoginPageComponent implements OnInit {
     })
   }
 
-  submit() {
+  submit(): void {
     console.log(this.form)
     const formData = (this.form.value)
     console.log(formData)
@@ -69,7 +69,7 @@ export class LoginPageComponent implements OnInit {
     }
     console.log('user', user)
     this.auth.login(user).subscribe({
-      next: () => {
+      next: (): void => {
         //если неуспешный логин что бы была возможность снова залогиниться без обновления страницы
         this.form.reset();
         this.submitted = false
@@ -77,7 +77,7 @@ export class LoginPageComponent implements OnInit {
           this.router.navigate(['/admin'])
         }
       },
-      error: (error) => {
+      error: (error): void => {
         this.errorMessage = error;
       }
     });
@@ -86,7 +86,7 @@ export class LoginPageComponent implements OnInit {
 
   extractDomain(email: string | null): string {
     if (email) {
-      const atIndex = email.indexOf('@');
+      const atIndex: number = email.indexOf('@');
       if (atIndex >= 0) {
         return email.substring(atIndex + 1);
       }
