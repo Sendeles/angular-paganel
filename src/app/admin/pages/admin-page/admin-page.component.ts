@@ -20,7 +20,6 @@ export class AdminPageComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   logout(event: Event) {
@@ -36,6 +35,8 @@ export class AdminPageComponent implements OnInit {
 // import {CommonModule} from "@angular/common";
 // import {AuthorizationServices} from "../../../shared/services/authorization.services";
 // import {Router} from "@angular/router";
+// import { getAuth, signOut } from "firebase/auth";
+//
 //
 // @Component({
 //   selector: 'app-admin-page',
@@ -54,6 +55,7 @@ export class AdminPageComponent implements OnInit {
 //   }
 //
 //   ngOnInit() {
+//     //setTimeout использую для того что бы уже когда залогиненый повторно попадать на /admin
 //     setTimeout(() => {
 //       if (this.authService.isAuthenticated()) {
 //         console.log('User is authenticated');
@@ -78,13 +80,13 @@ export class AdminPageComponent implements OnInit {
 //     }, 1000)
 //   }
 //
-//   get isAdmin(): boolean {
-//     return this.auth.isAdmin()
-//   }
-//
-//   logout(event: Event) {
-//     event.preventDefault();
-//     this.auth.logout();
-//     this.router.navigate(['/']);
+//   logout() {
+//     const auth = getAuth();
+//     signOut(auth).then(() => {
+//       // Sign-out successful.
+//       this.router.navigate(['/login']);
+//     }).catch((error) => {
+//       // An error happened.
+//     });
 //   }
 // }

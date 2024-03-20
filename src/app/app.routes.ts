@@ -1,7 +1,7 @@
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {SiteLayoutComponent} from "./shared/layout/site-layout/site-layout.component";
 import {NgModule} from "@angular/core";
-import {AuthGuard, AuthGuardFunc} from "./shared/services/authorization.guard";
+import {AuthGuardFunc} from "./shared/services/authorization.guard";
 
 export const routes: Routes = [
   {
