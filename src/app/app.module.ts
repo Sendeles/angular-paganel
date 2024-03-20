@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, importProvidersFrom, NgModule} from "@angular/core";
+import {NgModule} from "@angular/core";
 import {SiteLayoutComponent} from "./shared/layout/site-layout/site-layout.component";
 import {AppComponent} from "./app.component";
 import {SharedModule} from "./shared/shared.module";
