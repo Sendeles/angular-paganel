@@ -5,6 +5,9 @@ import {MyValidators} from "./my.validators";
 import {AuthorizationServices} from "../../shared/services/authorization.services";
 import {IUser} from "../../shared/models/authorization/authorization.model";
 import {CommonModule} from "@angular/common";
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import firebase from "firebase/compat";
+import User = firebase.User;
 
 
 @Component({
@@ -32,34 +35,32 @@ export class LoginPageComponent implements OnInit {
     this.form = this.getBlankForm()
   }
 
-  //Внутри подписчика проверяется, содержит ли объект params свойство needToLogin. Если это свойство присутствует и истинно, для свойства message компонента устанавливается сообщение на русском языке: "данное поле будет доступно после входа
-  ngOnInit(): void {
-    this.route.queryParams.subscribe((params: Params) => {
-      if (params['needToLogin']) {
-        this.message = 'данное поле будет доступно после входа'
-      } else if (params['authFailed']) {
-        this.message = 'Cессия истекла, залогиньтесь снова'
-      }
-    })
+  ngOnInit() {
   }
 
-
+//создаёт и возвращает объект формы, который определяет структуру и требования к полям, необходимые для успешной верификации данных, введённых пользователем.
   getBlankForm(): FormGroup {
     return new FormGroup<any>({
-      email: new FormControl<string>('', [Validators.pattern(this.emailPattern), Validators.required, MyValidators.restrictedEmail]),
-      password: new FormControl<string>('', [Validators.minLength(6), Validators.maxLength(12)])
+      email: new FormControl<string>('', [
+        //this.emailPattern гарантирует правильный формат адреса электронной почты.
+        Validators.pattern(this.emailPattern),
+        //Поле обязательно для заполнения
+        Validators.required,
+        //запрет прописанных доменов
+        MyValidators.restrictedEmail
+        ]),
+      password: new FormControl<string>('', [
+        Validators.minLength(6),
+        Validators.maxLength(12)
+      ])
     })
   }
 
   submit(): void {
-    console.log(this.form)
-    const formData = (this.form.value)
-    console.log(formData)
-
-    if (this.form.invalid) {
-      return
+    if (this.form.invalid) { //Если форма не валидна
+      return //то выходим из метода, return; просто означает, что если форма невалидна, то метод submit() завершается в этой точке, и код, который идет после этого условия, не выполняется.
     }
-    this.submitted = true
+    this.submitted = true //форма была отправлена
 
 //отправка объекта, и получение результата куда перекидывать в случае успешного захода
     const user: IUser = {
@@ -67,12 +68,19 @@ export class LoginPageComponent implements OnInit {
       password: this.form.value.password,
       returnSecureToken: true
     }
-    console.log('user', user)
+    //данная авторизация требуется для того что бы войти в систему firebase, иначе не пускает
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, this.form.value.email, this.form.value.password)
+      .then((userCredential) => { // Обработка успешной аутентификации
+        if (this.auth.isAdmin()) {
+          this.router.navigate(['/admin'])
+        }
+      })
+    //данный код для авторизации на сайте localhost, просто требуется
+    setTimeout(() => {
     this.auth.login(user).subscribe({
       next: (): void => {
-        //если неуспешный логин что бы была возможность снова залогиниться без обновления страницы
-        this.form.reset();
-        this.submitted = false
+        // this.submitted = false
         if (this.auth.isAdmin()) {
           this.router.navigate(['/admin'])
         }
@@ -81,9 +89,11 @@ export class LoginPageComponent implements OnInit {
         this.errorMessage = error;
       }
     });
+    }, 400)
     console.log('user', user)
   }
 
+  //функция для отслеживания домена который идет за @
   extractDomain(email: string | null): string {
     if (email) {
       const atIndex: number = email.indexOf('@');

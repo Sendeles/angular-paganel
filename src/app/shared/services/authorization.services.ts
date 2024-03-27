@@ -48,7 +48,7 @@ export class AuthorizationServices {
   //отправка данных на бекенд для логинизации
   login(user: IUser): Observable<IAuthResponse> {
     user.returnSecureToken = true; //Этот флаг требуется для того, чтобы сервер вернул безопасный токен доступа после успешной аутентификации пользователя.
-    return this.http.post<IAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
+    return this.http.post<IAuthResponse>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`, user)
       .pipe( //pipe объединяет обработку успешного ответа и обработку ошибок в одном месте, делая код более читаемым и поддерживаемым. Если бы был один оператор (tap или catchError) то pipe не нужен бы был
         tap(this.setToken), // Вызов метода setToken для установки токена в локальное хранилище.
         tap((response: IAuthResponse) => this.setIsAdmin(this.isAdmin())), // Сохраняем информацию о том, является ли пользователь администратором
@@ -69,6 +69,7 @@ export class AuthorizationServices {
     return !!this.token
   }
 
+  //получение пользователя из базы firebase
   getCurrentUserEmail(): string | null {
     console.log('Проверка инициализации Firebase: ', firebase.apps.length ? 'Инициализирован' : 'Не инициализирован');
     console.log('Проверка объекта firebase.auth:', firebase.auth);

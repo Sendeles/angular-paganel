@@ -5,19 +5,20 @@ import firebase from 'firebase/compat/app';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import {environment} from "./environments/interface";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDNvz8KFUSu-GtE3ZDGRbluQV5fM0ndZIo",
-  authDomain: "angular-paganel.firebaseapp.com",
-  databaseURL: "https://angular-paganel-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "angular-paganel",
-  storageBucket: "angular-paganel.appspot.com",
-  messagingSenderId: "685194034186",
-  appId: "1:685194034186:web:ba4e2d4f5f77bbc51133f3",
-  measurementId: "G-SKLQWE2NW1"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDNvz8KFUSu-GtE3ZDGRbluQV5fM0ndZIo",
+//   authDomain: "angular-paganel.firebaseapp.com",
+//   databaseURL: "https://angular-paganel-default-rtdb.europe-west1.firebasedatabase.app",
+//   projectId: "angular-paganel",
+//   storageBucket: "angular-paganel.appspot.com",
+//   messagingSenderId: "685194034186",
+//   appId: "1:685194034186:web:ba4e2d4f5f77bbc51133f3",
+//   measurementId: "G-SKLQWE2NW1"
+// };
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(environment.firebaseConfig);
 
 console.log('Проверка объекта firebase.auth:', firebase.auth);
 
