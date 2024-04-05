@@ -34,6 +34,11 @@ export const routes: Routes = [
         canActivate: [AuthGuardFunc]
       },
       {
+        path: 'admin/dashboard',
+        loadChildren: () => import('./admin/pages/dashboard-page/dashboard-page.module').then(m => m.DashboardPageModule),
+        canActivate: [AuthGuardFunc]
+      },
+      {
         path: '404',
         loadChildren: () => import('./pages/error-page/error-page.module').then(m => m.ErrorPageModule)
       },

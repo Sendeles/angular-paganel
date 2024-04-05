@@ -1,0 +1,54 @@
+/* Стили для контейнера с постами */
+.posts-container {
+  padding: 20px;
+
+  .search_post {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    td {
+      button, a {
+        margin-right: 5px;
+        padding: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+      }
+
+      button {
+        background-color: #4caf50;
+      }
+
+      a {
+        background-color: #f44336;
+      }
+    }
+  }
+}
+
+/* Стили для текста загрузки */
+.loading-text {
+  font-size: 18px;
+  color: #333;
+}

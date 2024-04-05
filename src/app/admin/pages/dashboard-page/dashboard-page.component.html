@@ -1,0 +1,38 @@
+<!--пока грузяться посты что бы показывался текст с загрузкой-->
+<div class="posts-container" *ngIf="posts?.length; else loading">
+  <div>
+    <input class="search_post" type="text" placeholder="Search" [(ngModel)]="searchPost">
+  </div>
+  <table>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Автор</th>
+      <th>Экспедиция</th>
+      <th>Соц Сеть</th>
+      <th>Комментарий</th>
+      <th>Дата</th>
+      <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let post of posts | searchPosts: searchPost; let idx = index">
+      <td>{{idx + 1}}</td>
+      <td>{{post.name}} {{post.surname}}</td>
+      <td>{{post.expedition}}</td>
+      <td>{{post.social}}</td>
+      <td [innerHTML]="(post.review)"></td>
+      <td>{{post.date | date: 'dd.MM.yyyy, HH:mm:ss':'ua'}}</td>
+      <td>
+<!--        <button [routerLink]="['/admin', 'post', post.id, 'edit']">Open</button>-->
+        <a *ngIf="post.id" (click)="remove(post.id)">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--сам текст-->
+<ng-template #loading>
+  <p>Идет загрузка</p>
+</ng-template>

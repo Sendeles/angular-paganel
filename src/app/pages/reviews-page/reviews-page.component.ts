@@ -3,11 +3,14 @@ import {CommonModule} from "@angular/common";
 import {StarsRatingComponent} from "../../shared/components/stars-rating/stars-rating.component";
 import {LanguageServices} from "../../shared/services/language.services";
 import {RouterModule} from "@angular/router";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {PostServices} from "../../shared/services/post.services";
+import {IPost} from "../../../environments/environments";
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [CommonModule, StarsRatingComponent, RouterModule],
+  imports: [CommonModule, StarsRatingComponent, RouterModule, ReactiveFormsModule],
   templateUrl: './reviews-page.component.html',
   styleUrl: './reviews-page.component.scss'
 })
@@ -24,12 +27,41 @@ export class ReviewsPageComponent {
     { name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#' }
 ]
 
+
+  form: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    expedition: new FormControl('', Validators.required),
+    social: new FormControl('', Validators.required),
+    review: new FormControl('', Validators.required),
+    date: new FormControl(new Date())
+  });
+
+
   constructor(
-    public languageService: LanguageServices
+    public languageService: LanguageServices,
+    private postService: PostServices
   ) {
   }
 
   onSubmit() {
+    if (this.form.invalid) {
+    }
+    console.log('Значения формы:', this.form.value);
+    //задаем объект для отправки на бекенд в данной формулировке
+    const post: IPost = {
+      name: this.form.value.name,
+      surname: this.form.value.surname,
+      expedition: this.form.value.expedition,
+      social: this.form.value.social,
+      review: this.form.value.review,
+      date: new Date()
+    }
+
+    this.postService.createPost(post).subscribe(() => {
+      this.form.reset()
+      // this.alertServ.success('Пост был создан')
+    })
     console.log('click')
   }
 

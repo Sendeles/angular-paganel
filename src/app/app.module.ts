@@ -9,11 +9,15 @@ import {LanguageServices} from "./shared/services/language.services";
 import {ReviewsComponent} from "./shared/components/reviews/reviews.component";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthorizationServices} from "./shared/services/authorization.services";
+import {FormsModule} from "@angular/forms";
+
 
 
 @NgModule({
   declarations: [
-
+    AppComponent,
+    SiteLayoutComponent,
+    ReviewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,9 +25,7 @@ import {AuthorizationServices} from "./shared/services/authorization.services";
     CommonModule,
     HammerModule,
     HttpClientModule,
-    AppComponent,
-    SiteLayoutComponent,
-    ReviewsComponent
+    FormsModule
   ],
   exports: [],
   providers: [

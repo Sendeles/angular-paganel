@@ -1,5 +1,3 @@
-import {FormControl, Validators} from "@angular/forms";
-
 export interface IEnvironments {
   firebaseConfig: {
     apiKey: string,
@@ -14,9 +12,15 @@ export interface IEnvironments {
 }
 
 export interface IPost {
+  id?: string,
   name: string,
   surname: string,
   expedition: string,
   social: string,
-  review: string
+  review: string,
+  date: Date
+}
+
+export interface IFireBaseCreateResponse {
+  name: string;
 }
