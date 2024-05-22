@@ -79,7 +79,7 @@ export let translations: any = {
     'ru': 'КОНТАКТЫ',
     'ua': 'КОНТАКТИ'
   },
-  'EXCLUSION NOTICE': {
+  'EXCLUSION_NOTICE': {
     'en': 'In light of the ongoing war on the territory of Ukraine since February 24, 2022, Paganel Studio is no longer accepting applications from <br> citizens of the Russian Federation for participation in our expeditions',
     'ru': 'В связи с войной на территории Украины, с 24 февраля 2022 года, Paganel Studio больше не принимает заявки от граждан РФ на <br> участие в наших экспедициях.',
     'ua': 'У зв\'язку з війною на території України, з 24 лютого 2022 року, Paganel Studio більше не приймає заявки від громадян РФ на <br> участь у наших експедиціях.'
@@ -110,12 +110,6 @@ export let translations: any = {
     'ru': 'Поехали с нами',
     'ua': 'Рушаймо з нами'
   },
-  '': {
-    'en': '',
-    'ru': '',
-    'ua': ''
-  },
-
   'HOW IT STARTS': {
     'en': 'Once upon a time, a couple of dreamers — Andrii and Olga Andreeva, went on their honeymoon in the Himalayas, to Mount Everest. It was there that they realized that traveling makes them happy and that this is what they want to do all their live.' + '<p></p>' + 'After that, they were joined by another desperate dreamer — artist Oleksandr Votsmush. The three of them began to travel to distant countries, paint, photograph, film and simply enjoy life.' + '<p></p>' + 'This is how the company Paganel Studio was born.',
     'ru': 'Когда-то пара влюбленных мечтателей – Андрей и Ольга Андреевы – отправилась на свой медовый месяц в Гималаи, к горе Эверест. Именно там пришло осознание, что путешествия делают их счастливыми и это то, чем хочется заниматься всю жизнь.' + '<p></p>' + 'После к ним присоединился еще один отчаянный мечтатель – художник Александр Воцмуш. Втроем они стали ездить в далекие страны, рисовать, фотографировать, снимать кино и просто наслаждаться жизнью.' + '<p></p>' + 'Так и родилась компания Paganel Studio.',
@@ -170,6 +164,21 @@ export let translations: any = {
     'en': 'Dear friends! You can leave your review on this page and see allthe reviews of the lucky ones who went on expeditions with us.' + '<p></p>' + 'Enjoy reading and getting to know Paganel!',
     'ru': 'Уважаемые друзья! Вы можете оставить свой отзыв на данной странице и посмотреть все отзывы счастливчиков, посетивших с нами экспедиции.' + '<p></p>' + 'Приятного прочтения и знакомства с Paganel!',
     'ua': 'Шановні друзі! Ви можете залишити свій відгук на цій сторінці та подивитися всі відгуки щасливчиків, які відвідали з нами експедиції.' + '<p></p>' + 'Приємного прочитання та знайомства з Paganel!'
-  }
+  },
+  'THANKS_FOR_REVIEW': {
+    'en': 'Thank you for sharing your impressions!',
+    'ru': 'Спасибо, что поделились впечатлениями!',
+    'ua': 'Дякуємо, що поділилися враженнями!'
+  },
+  'THANKS_FOR_REVIEW_2': {
+    'en': 'In the near future, your review will be posted on the site',
+    'ru': 'В ближайшее время ваш отзыв будет размещен на сайте',
+    'ua': 'Найближчим часом ваш відгук буде розміщено на сайті'
+  },
+  '': {
+    'en': '',
+    'ru': '',
+    'ua': ''
+  },
 }
 

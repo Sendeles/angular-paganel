@@ -1,0 +1,14 @@
+<!-- показывать в том случае если текст у нас присутсвует-->
+<div class="alert-wrap" *ngIf="text">
+  <!-- ngClass - Динамический класс в зависимости от типа туда передаем объект-->
+  <!-- Различные типа, будет использоваться тот класс если будет использоваться тип success-->
+  <div [class.alert-success]="type === 'success'"
+       [class.alert-warning]="type === 'warning'"
+       [class.alert-delete]="type === 'delete'">
+<!-- Здесь мы добавили элемент span с классом close-icon и символом крестика (&#10006;), который будет отображаться только для алертов типа "success". При клике на этот крестик, мы устанавливаем text в пустую строку, что приведет к скрытию алерта.-->
+    <span *ngIf="isSuccess" (click)="text = ''" class="close-icon">&#10006;</span>
+<!--    c помощью ниже кода прячем <span style="font-size: 19px;"> который находится в reviews-page.component.ts-->
+    <div [innerHtml]="sanitizedHtml"></div>
+  </div>
+</div>
+

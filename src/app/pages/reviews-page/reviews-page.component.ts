@@ -6,26 +6,39 @@ import {RouterModule} from "@angular/router";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {PostServices} from "../../shared/services/post.services";
 import {IPost} from "../../../environments/environments";
+import {AlertsServices} from "../../shared/services/alerts.services";
+import {MatDialog} from "@angular/material/dialog";
+import {AlertsReviewComponent} from "../../shared/components/alerts-review/alerts-review.component";
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [CommonModule, StarsRatingComponent, RouterModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    StarsRatingComponent,
+    RouterModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './reviews-page.component.html',
   styleUrl: './reviews-page.component.scss'
 })
 export class ReviewsPageComponent {
 
   travels = [
-    { name: 'Antarctica', id: 'antarctica', image: './assets/images/travels/antarctica.webp', reviewsLink: '#' },
-    { name: 'Zimbabwe', id: 'zimbabwe', image: './assets/images/travels/zimbabwe.webp', reviewsLink: '#' },
-    { name: 'Socotra', id: 'socotra', image: './assets/images/travels/socotra.webp', reviewsLink: '#' },
-    { name: 'Mexico', id: 'mexico', image: './assets/images/travels/mexico.webp', reviewsLink: '#' },
-    { name: 'Tierra Del Fuega', id: 'tierra-del-fuega', image: './assets/images/travels/tierraDelFuega.webp', reviewsLink: '#' },
-    { name: 'Indonesia', id: 'indonesia', image: './assets/images/travels/indonesia.webp', reviewsLink: '#' },
-    { name: 'Bolivia', id: 'bolivia', image: './assets/images/travels/bolivia.webp', reviewsLink: '#' },
-    { name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#' }
-]
+    {name: 'Antarctica', id: 'antarctica', image: './assets/images/travels/antarctica.webp', reviewsLink: '#'},
+    {name: 'Zimbabwe', id: 'zimbabwe', image: './assets/images/travels/zimbabwe.webp', reviewsLink: '#'},
+    {name: 'Socotra', id: 'socotra', image: './assets/images/travels/socotra.webp', reviewsLink: '#'},
+    {name: 'Mexico', id: 'mexico', image: './assets/images/travels/mexico.webp', reviewsLink: '#'},
+    {
+      name: 'Tierra Del Fuega',
+      id: 'tierra-del-fuega',
+      image: './assets/images/travels/tierraDelFuega.webp',
+      reviewsLink: '#'
+    },
+    {name: 'Indonesia', id: 'indonesia', image: './assets/images/travels/indonesia.webp', reviewsLink: '#'},
+    {name: 'Bolivia', id: 'bolivia', image: './assets/images/travels/bolivia.webp', reviewsLink: '#'},
+    {name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#'}
+  ]
 
 
   form: FormGroup = new FormGroup({
@@ -40,7 +53,9 @@ export class ReviewsPageComponent {
 
   constructor(
     public languageService: LanguageServices,
-    private postService: PostServices
+    private postService: PostServices,
+    private alertServ: AlertsServices,
+    private dialog: MatDialog // требуется для открытие модального окна
   ) {
   }
 
@@ -58,11 +73,19 @@ export class ReviewsPageComponent {
       date: new Date()
     }
 
+    //для открытие всплывающего окна
+    this.dialog.open(AlertsReviewComponent);
+
+
+    //при нажатии на кнопку создаем пост
     this.postService.createPost(post).subscribe(() => {
-      this.form.reset()
-      // this.alertServ.success('Пост был создан')
-    })
+      this.form.reset();
+      // this.alertServ.success(
+      //   // задаем фонт сайз легвидж сервису в ТСках
+      //   `<span style="font-size: 50px;">${this.languageService.getTranslate('THANKS_FOR_REVIEW')}</span>
+      //         <span style="font-size: 15px;">${this.languageService.getTranslate('THANKS_FOR_REVIEW_2')}</span>`
+      // );
+    });
     console.log('click')
   }
-
 }

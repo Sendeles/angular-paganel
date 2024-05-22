@@ -10,6 +10,7 @@ import {ReviewsComponent} from "./shared/components/reviews/reviews.component";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthorizationServices} from "./shared/services/authorization.services";
 import {FormsModule} from "@angular/forms";
+import {AlertsServices} from "./shared/services/alerts.services";
 
 
 
@@ -25,13 +26,14 @@ import {FormsModule} from "@angular/forms";
     CommonModule,
     HammerModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [],
   providers: [
     AnimateOnViewServices,
     LanguageServices,
     AuthorizationServices,
+    AlertsServices
   ],
   bootstrap: [AppComponent]
 })

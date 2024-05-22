@@ -8,11 +8,18 @@ import {LanguageServices} from "../../services/language.services";
 import {ButtonScrollTopComponent} from "../../components/button-scroll-top/button-scroll-top.component";
 import {AuthorizationServices} from "../../services/authorization.services";
 import {Router} from "@angular/router";
+import {AlertsComponent} from "../../components/alerts/alerts.component";
 
 @Component({
   selector: 'app-site-layout',
   standalone: true,
-  imports: [RouterModule, NgClass, ButtonScrollTopComponent, CommonModule],
+  imports: [
+    RouterModule,
+    NgClass,
+    ButtonScrollTopComponent,
+    CommonModule,
+    AlertsComponent // для отображения алертов при создании поста
+  ],
   templateUrl: './site-layout.component.html',
   styleUrl: './site-layout.component.scss'
 })

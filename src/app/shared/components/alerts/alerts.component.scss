@@ -1,0 +1,53 @@
+.alert-wrap {
+  position: fixed;
+  top: 50px; /* Увеличить отступ от верхнего края */
+  right: 40px; /* Уменьшить отступ от правого края */
+  max-width: 400px; /* Увеличить максимальную ширину */
+  z-index: 99;
+}
+
+.alert-rap {
+  position: fixed;
+  top: 100px;
+  right: 700px;
+  max-width: 200px;
+  z-index: 99;
+}
+
+.alert-success {
+  background-color: #f5f5f5; /* Светло-серый фон */
+  border: 1px solid #ccc; /* Серая граница */
+  padding: 15px; /* Увеличить внутренние отступы */
+  font-size: 16px; /* Уменьшить размер шрифта */
+  color: #333; /* Темно-серый цвет текста */
+  border-radius: 4px; /* Добавить скругление углов */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавить тень */
+}
+
+.alert-delete {
+  background-color: red;
+  padding: 10px;
+  font-size: 25px;
+  color: #cccccc;
+}
+
+.alert-warning {
+
+}
+
+.close-icon {
+  float: none; /* Убрать выравнивание по правому краю */
+  font-size: 1rem; /* Уменьшить размер иконки */
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: absolute; /* Добавить абсолютное позиционирование */
+  top: 10px; /* Отступ от верхнего края */
+  right: 10px; /* Отступ от правого края */
+  color: #888; /* Серый цвет иконки */
+
+  &:hover {
+    color: #333; /* Цвет иконки при наведении */
+  }
+}

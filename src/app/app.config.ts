@@ -10,5 +10,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimations(),
     provideHttpClient() //добавление данной функции помогло решить проблему NullinjectorError: No provider for httpclient в ангуляре 17
-  ]
+    ,
+    provideAnimations()
+]
 };

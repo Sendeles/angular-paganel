@@ -5,6 +5,7 @@ import {IPost} from "../../../../environments/environments";
 import {FormsModule} from "@angular/forms";
 import {CommonModule, DatePipe} from "@angular/common";
 import {SharedModule} from "../../../shared/shared.module";
+import {AlertsServices} from "../../../shared/services/alerts.services";
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -27,6 +28,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private postServices: PostServices,
+    private alertServices: AlertsServices
   ) {
   }
 
@@ -46,7 +48,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       if (this.posts) {
         this.posts = this.posts.filter((post) => post.id !== id);
       }
-      // this.alertServices.delete('Пост был удален')
+      this.alertServices.delete('Пост был удален')
     })
   }
 
