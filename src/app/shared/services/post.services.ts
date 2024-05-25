@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../environments/interface";
 import {IPagelink} from "../constants/pagelink";
 import {map, tap} from "rxjs/operators";
+import {postcss} from "@angular-devkit/build-angular/src/tools/webpack/plugins/postcss-cli-resources";
 
 @Injectable({
   providedIn: 'root'
@@ -61,8 +62,30 @@ export class PostServices {
         }))
   }
 
+  getByID(id: string): Observable<IPost> {
+    return this.http.get<IPost>(`${environment.firebaseConfig.databaseURL}${IPagelink.POST_PAGE}/${id}.json`)
+      .pipe(
+        tap(data => console.log('getByID', data)),
+        map((post: IPost) => {
+          const transformedPost = {
+            //Вставляем данные поста, В этом коде ...post - это оператор расширения (spread operator), который используется для копирования всех свойств из объекта post. Это означает, что все свойства, которые есть в объекте post, будут скопированы в новый объект transformedPost.
+            ...post,
+            //Свойство id получает значение, которое было передано в функцию getByID, а свойство date преобразуется в объект Date из строки, которая была получена из объекта post. Свойство id берется из аргумента функции getByID, а новое свойство date создается из строки даты, которая была получена из объекта post.
+            id,
+            date: new Date(post.date)
+          };
+          console.log('GetByID After map:', transformedPost);
+          return transformedPost;
+        }))
+  }
+
   //Метод удаления с самого бэкенда
   remove(id: string): Observable<void> {
     return this.http.delete<void>(`${environment.firebaseConfig.databaseURL}${IPagelink.POST_PAGE}/${id}.json`)
+  }
+
+  //Метод обновления поста на бекенд
+  update(post: IPost): Observable<IPost> {
+    return this.http.patch<IPost>(`${environment.firebaseConfig.databaseURL}${IPagelink.POST_PAGE}/${post.id}.json`, post)
   }
 }

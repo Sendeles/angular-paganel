@@ -3,7 +3,7 @@ import {IAlerts} from "../models/alert/alerts.model";
 import {Subject} from "rxjs";
 
 
-export type AlertType = 'success' | 'warning' | 'delete'
+export type AlertType = 'update' | 'warning' | 'delete'
 
 
 @Injectable({
@@ -14,9 +14,9 @@ export class AlertsServices {
 
   public alerts$ = new Subject<IAlerts>()
 
-  success(text: string) {
-    console.log('Метод success вызван с текстом:'); // Добавлен console.log
-    this.alerts$.next({type: 'success', text})
+  update(text: string) {
+    console.log('Метод update вызван с текстом:'); // Добавлен console.log
+    this.alerts$.next({type: 'update', text})
   }
 
   warning(text: string) {

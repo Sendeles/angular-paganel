@@ -24,7 +24,7 @@ export class AlertsComponent implements OnInit, OnDestroy {
   @Input() delay = 5000;
 
   public text: string = '';
-  public type = 'success';
+  public type = 'update';
   public isSuccess = false; //Добавьте новое поле для отслеживания, является ли алерт "success" или нет
   alertSub?: Subscription;
 
@@ -39,10 +39,9 @@ export class AlertsComponent implements OnInit, OnDestroy {
       this.text = alert.text
       this.type = alert.type
       //применяем переменной конкретный тип алерта
-      this.isSuccess = alert.type === 'success';
+      this.isSuccess = alert.type === 'warning';
       //метод bypassSecurityTrustHtml для безопасного отображения HTML без span div и так далее:
       this.sanitizedHtml = this.sanitizer.bypassSecurityTrustHtml(alert.text);
-
 
       //Если не success то будет срабатывать сеттаймаут для того что бы алерт сам пропадал
       if (!this.isSuccess) {

@@ -11,6 +11,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthorizationServices} from "./shared/services/authorization.services";
 import {FormsModule} from "@angular/forms";
 import {AlertsServices} from "./shared/services/alerts.services";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -18,7 +19,7 @@ import {AlertsServices} from "./shared/services/alerts.services";
   declarations: [
     AppComponent,
     SiteLayoutComponent,
-    ReviewsComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +28,7 @@ import {AlertsServices} from "./shared/services/alerts.services";
     HammerModule,
     HttpClientModule,
     FormsModule,
+    RouterModule
   ],
   exports: [],
   providers: [

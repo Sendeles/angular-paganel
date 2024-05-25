@@ -6,11 +6,13 @@ import {FormsModule} from "@angular/forms";
 import {CommonModule, DatePipe} from "@angular/common";
 import {SharedModule} from "../../../shared/shared.module";
 import {AlertsServices} from "../../../shared/services/alerts.services";
+import {RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
   imports: [
+    RouterModule, // для переноса при нажатии кнопки edit
     FormsModule, //для ngModule который я использую в dashboard-page.html
     DatePipe, // для встроенной pipe date в html которую я віделил !!! <td>{{post.date | !!!date:!!! 'dd.MM.yyyy, HH:mm:ss':'ua'}}</td>
     CommonModule, // для *ngIf, *ngFor, [ngClass], [ngStyle] и другие

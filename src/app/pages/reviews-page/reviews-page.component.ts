@@ -29,12 +29,7 @@ export class ReviewsPageComponent {
     {name: 'Zimbabwe', id: 'zimbabwe', image: './assets/images/travels/zimbabwe.webp', reviewsLink: '#'},
     {name: 'Socotra', id: 'socotra', image: './assets/images/travels/socotra.webp', reviewsLink: '#'},
     {name: 'Mexico', id: 'mexico', image: './assets/images/travels/mexico.webp', reviewsLink: '#'},
-    {
-      name: 'Tierra Del Fuega',
-      id: 'tierra-del-fuega',
-      image: './assets/images/travels/tierraDelFuega.webp',
-      reviewsLink: '#'
-    },
+    {name: 'Tierra Del Fuega', id: 'tierra-del-fuega', image: './assets/images/travels/tierraDelFuega.webp', reviewsLink: '#'},
     {name: 'Indonesia', id: 'indonesia', image: './assets/images/travels/indonesia.webp', reviewsLink: '#'},
     {name: 'Bolivia', id: 'bolivia', image: './assets/images/travels/bolivia.webp', reviewsLink: '#'},
     {name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#'}
@@ -78,14 +73,14 @@ export class ReviewsPageComponent {
 
 
     //при нажатии на кнопку создаем пост
-    this.postService.createPost(post).subscribe(() => {
-      this.form.reset();
+    // this.postService.createPost(post).subscribe(() => {
+    //   this.form.reset();
       // this.alertServ.success(
       //   // задаем фонт сайз легвидж сервису в ТСках
       //   `<span style="font-size: 50px;">${this.languageService.getTranslate('THANKS_FOR_REVIEW')}</span>
       //         <span style="font-size: 15px;">${this.languageService.getTranslate('THANKS_FOR_REVIEW_2')}</span>`
       // );
-    });
+    // });
     console.log('click')
   }
 }

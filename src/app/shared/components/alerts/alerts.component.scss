@@ -14,14 +14,11 @@
   z-index: 99;
 }
 
-.alert-success {
-  background-color: #f5f5f5; /* Светло-серый фон */
-  border: 1px solid #ccc; /* Серая граница */
-  padding: 15px; /* Увеличить внутренние отступы */
-  font-size: 16px; /* Уменьшить размер шрифта */
-  color: #333; /* Темно-серый цвет текста */
-  border-radius: 4px; /* Добавить скругление углов */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавить тень */
+.alert-update {
+  background-color: blue;
+  padding: 10px;
+  font-size: 25px;
+  color: #cccccc;
 }
 
 .alert-delete {

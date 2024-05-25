@@ -39,6 +39,11 @@ export const routes: Routes = [
         canActivate: [AuthGuardFunc]
       },
       {
+        path: 'admin/post/:id/edit',
+        loadChildren: () => import('./admin/pages/admin-edit-page/admin-edit-page.module').then(m => m.AdminEditPageModule),
+        canActivate: [AuthGuardFunc]
+      },
+      {
         path: '404',
         loadChildren: () => import('./pages/error-page/error-page.module').then(m => m.ErrorPageModule)
       },

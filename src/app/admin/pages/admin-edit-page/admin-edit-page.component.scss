@@ -1,0 +1,80 @@
+.post-form {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "top-left top-right"
+        "bottom bottom";
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      grid-area: bottom;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    quill-editor {
+      grid-area: bottom;
+      resize: vertical;
+      min-height: 100px;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #667687;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:disabled {
+      background-color: #cccccc; /* Серый фон */
+      cursor: not-allowed; /* Курсор в виде запрещающего знака */
+      /* Здесь можно добавить другие стили для неактивной кнопки */
+    }
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  .necessarily {
+    color: red;
+  }
+
+  .in_end {
+    display: flex;
+    justify-content: end;
+  }
+}
+
+.text-center {
+  font-size: 100px;
+}

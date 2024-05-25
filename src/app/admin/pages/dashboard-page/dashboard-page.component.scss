@@ -39,13 +39,22 @@
       button {
         background-color: #4caf50;
       }
-
-      a {
-        background-color: #f44336;
-      }
     }
   }
 }
+
+.button {
+
+  &_edit {
+    background-color: blue;
+  }
+
+  &_delete {
+    background-color: #f44336;
+  }
+
+}
+
 
 /* Стили для текста загрузки */
 .loading-text {
