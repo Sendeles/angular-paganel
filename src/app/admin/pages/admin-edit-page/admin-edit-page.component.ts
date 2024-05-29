@@ -22,6 +22,9 @@ export class AdminEditPageComponent implements OnInit {
 
 
   form: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    surname: new FormControl('', Validators.required),
+    expedition: new FormControl('', Validators.required),
     social: new FormControl('', Validators.required),
     review: new FormControl('', Validators.required)
   });
@@ -48,8 +51,12 @@ export class AdminEditPageComponent implements OnInit {
       ).subscribe((post: IPost) => {
       //сохраняю объект в переменную что бы проще было с ним работать в submit()
       this.post = post
-      //инициализируем форму которая позволяет менять данные поста
+      console.log('this.post', this.post)
+      //инициализируем форму которая позволяет менять данные поста, Конкретно, метод patchValue используется для частичного обновления значений формы.
       this.form.patchValue({
+        name: post.name,
+        surname: post.surname,
+        expedition: post.expedition,
         social: post.social,
         review: post.review
       })
@@ -70,6 +77,9 @@ export class AdminEditPageComponent implements OnInit {
       this.updateSub = this.postService.update({
           //убеждаем TypeScript, что this.post действительно соответствует требованиям интерфейса IPost, Spread используем для копирования всех свойств из this.post в новый объект
         ...(this.post as IPost),
+        name: this.form.value.name,
+        surname: this.form.value.surname,
+        expedition: this.form.value.expedition,
         social: this.form.value.social,
         review: this.form.value.review
       }).subscribe(() => {

@@ -7,6 +7,9 @@ import {CommonModule, DatePipe} from "@angular/common";
 import {SharedModule} from "../../../shared/shared.module";
 import {AlertsServices} from "../../../shared/services/alerts.services";
 import {RouterModule} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {CountrySelectionComponent} from "../../../shared/components/country-selection/country-selection.component";
+import {TravelsService} from "../../../shared/services/travels.services";
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -29,8 +32,10 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   searchPost = '';
 
   constructor(
+    private travelsService: TravelsService, // Инжектируйте TravelsService
     private postServices: PostServices,
-    private alertServices: AlertsServices
+    private alertServices: AlertsServices,
+    public dialog: MatDialog
   ) {
   }
 
@@ -38,7 +43,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     //получаю посты от getAll
     this.pSub = this.postServices.getAll().subscribe(posts => {
       //присваиваю переменной пост(массиву) тот респонс который приходит
-      this.posts = posts
+      this.posts = posts.filter((post) => post.date)
       console.log('this.posts', this.posts)
     })
   }
@@ -52,6 +57,27 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       }
       this.alertServices.delete('Пост был удален')
     })
+  }
+
+  add(post: IPost) {
+    console.log('Function add started with post:', post); // Логируем входные данные функции
+
+    const travels = this.travelsService.getTravels(); // Получите массив travels из сервиса  console.log('Retrieved travels from travelsService:', travels); // Логируем данные travels
+    console.log('Retrieved travels from travelsService:', travels); // Логируем данные travels
+
+    const dialogRef = this.dialog.open(CountrySelectionComponent, {
+      width: '400px',
+      data: {travels, post}// Передайте массив travels в качестве данных диалогового окна
+    });
+
+    //получаю postId при закрытии модального окна
+    dialogRef.afterClosed().subscribe((postId) => {
+      if (postId) {
+        this.remove(postId);
+        // Обработка выбранной страны
+        console.log(`Выбрана страна: ${postId}`);
+      }
+    });
   }
 
   ngOnDestroy() {

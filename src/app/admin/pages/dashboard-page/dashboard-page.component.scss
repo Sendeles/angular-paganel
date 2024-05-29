@@ -25,6 +25,7 @@
     }
 
     td {
+
       button, a {
         margin-right: 5px;
         padding: 8px;
@@ -51,6 +52,10 @@
 
   &_delete {
     background-color: #f44336;
+  }
+
+  &_add {
+    background-color: green;
   }
 
 }

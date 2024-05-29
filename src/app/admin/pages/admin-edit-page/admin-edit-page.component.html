@@ -1,6 +1,30 @@
 <div *ngIf="form; else loading">
   <form [formGroup]="form" (ngSubmit)="submit()" class="post-form">
     <div class="form-group">
+      <label for="name">Post Title&nbsp;<span class="necessarily">*</span>:</label>
+      <div class="necessarily in_end"
+           *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)">
+        Обязательное поле
+      </div>
+      <input id="name" type="text" placeholder="Enter here" formControlName="name" required>
+    </div>
+    <div class="form-group">
+      <label for="surname">Post Title&nbsp;<span class="necessarily">*</span>:</label>
+      <div class="necessarily in_end"
+           *ngIf="form.controls['surname'].invalid && (form.controls['surname'].dirty || form.controls['surname'].touched)">
+        Обязательное поле
+      </div>
+      <input id="surname" type="text" placeholder="Enter here" formControlName="surname" required>
+    </div>
+    <div class="form-group">
+      <label for="expedition">Post Title&nbsp;<span class="necessarily">*</span>:</label>
+      <div class="necessarily in_end"
+           *ngIf="form.controls['expedition'].invalid && (form.controls['expedition'].dirty || form.controls['expedition'].touched)">
+        Обязательное поле
+      </div>
+      <input id="expedition" type="text" placeholder="Enter here" formControlName="expedition" required>
+    </div>
+    <div class="form-group">
       <label for="social">Post Title&nbsp;<span class="necessarily">*</span>:</label>
       <div class="necessarily in_end"
            *ngIf="form.controls['social'].invalid && (form.controls['social'].dirty || form.controls['social'].touched)">

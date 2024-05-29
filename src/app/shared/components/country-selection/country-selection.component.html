@@ -1,0 +1,33 @@
+<!--<h2 mat-dialog-title>Выберите страну</h2>-->
+<!--<mat-dialog-content>-->
+<!--  <mat-form-field>-->
+<!--    <mat-select [(ngModel)]="selectedCountry">-->
+<!--      <mat-option *ngFor="let country of countries" [value]="country">-->
+<!--        {{ country }}-->
+<!--      </mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->
+<!--</mat-dialog-content>-->
+<!--<mat-dialog-actions>-->
+<!--  <button mat-button (click)="onCancel()">Отмена</button>-->
+<!--  <button mat-button (click)="onSubmit()" [disabled]="!selectedCountry">-->
+<!--    Отправить-->
+<!--  </button>-->
+<!--</mat-dialog-actions>-->
+
+<h2 mat-dialog-title>Выберите страну</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-select [(ngModel)]="selectedCountry">
+      <mat-option *ngFor="let travel of data.travels" [value]="travel.id">
+        {{ travel.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Отмена</button>
+  <button mat-button (click)="onSubmit()" [disabled]="!selectedCountry">
+    Отправить
+  </button>
+</mat-dialog-actions>

@@ -1,4 +1,18 @@
-<div *ngFor="let review of reviews$ | async">
-  <h3>{{ review.name }} {{ review.surname }}</h3>
-  <p>{{ review.review }}</p>
+<!--<div *ngFor="let review of reviews$ | async">-->
+<!--  <h3>{{ review.name }} {{ review.surname }}</h3>-->
+<!--  <p>{{ review.review }}</p>-->
+<!--</div>-->
+
+<div *ngIf="posts$ | async as posts; else loading">
+  <ng-container *ngFor="let post of posts">
+    <p>Автор: {{ post.name }} {{ post.surname }}</p>
+    <p>Экспедиция: {{ post.expedition }}</p>
+    <p>Соц Сеть: {{ post.social }}</p>
+    <p [innerHTML]="post.review"></p>
+    <p>Дата: {{ post.date | date: 'dd.MM.yyyy, HH:mm:ss':'ua' }}</p>
+  </ng-container>
 </div>
+
+<ng-template #loading>
+  <p>Идет загрузка</p>
+</ng-template>

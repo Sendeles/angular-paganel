@@ -9,6 +9,8 @@ import {IPost} from "../../../environments/environments";
 import {AlertsServices} from "../../shared/services/alerts.services";
 import {MatDialog} from "@angular/material/dialog";
 import {AlertsReviewComponent} from "../../shared/components/alerts-review/alerts-review.component";
+import {TravelsService} from "../../shared/services/travels.services";
+import {ITravels} from "../../shared/models/travels/travels.model";
 
 @Component({
   selector: 'app-reviews',
@@ -24,16 +26,18 @@ import {AlertsReviewComponent} from "../../shared/components/alerts-review/alert
 })
 export class ReviewsPageComponent {
 
-  travels = [
-    {name: 'Antarctica', id: 'antarctica', image: './assets/images/travels/antarctica.webp', reviewsLink: '#'},
-    {name: 'Zimbabwe', id: 'zimbabwe', image: './assets/images/travels/zimbabwe.webp', reviewsLink: '#'},
-    {name: 'Socotra', id: 'socotra', image: './assets/images/travels/socotra.webp', reviewsLink: '#'},
-    {name: 'Mexico', id: 'mexico', image: './assets/images/travels/mexico.webp', reviewsLink: '#'},
-    {name: 'Tierra Del Fuega', id: 'tierra-del-fuega', image: './assets/images/travels/tierraDelFuega.webp', reviewsLink: '#'},
-    {name: 'Indonesia', id: 'indonesia', image: './assets/images/travels/indonesia.webp', reviewsLink: '#'},
-    {name: 'Bolivia', id: 'bolivia', image: './assets/images/travels/bolivia.webp', reviewsLink: '#'},
-    {name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#'}
-  ]
+  travels: ITravels[]; //задаем типизацию, иначе не хочет компонент брать TravelsService как массив
+
+  // travels = [
+  //   {name: 'Antarctica', id: 'antarctica', image: './assets/images/travels/antarctica.webp', reviewsLink: '#'},
+  //   {name: 'Zimbabwe', id: 'zimbabwe', image: './assets/images/travels/zimbabwe.webp', reviewsLink: '#'},
+  //   {name: 'Socotra', id: 'socotra', image: './assets/images/travels/socotra.webp', reviewsLink: '#'},
+  //   {name: 'Mexico', id: 'mexico', image: './assets/images/travels/mexico.webp', reviewsLink: '#'},
+  //   {name: 'Tierra Del Fuega', id: 'tierra-del-fuega', image: './assets/images/travels/tierraDelFuega.webp', reviewsLink: '#'},
+  //   {name: 'Indonesia', id: 'indonesia', image: './assets/images/travels/indonesia.webp', reviewsLink: '#'},
+  //   {name: 'Bolivia', id: 'bolivia', image: './assets/images/travels/bolivia.webp', reviewsLink: '#'},
+  //   {name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#'}
+  // ]
 
 
   form: FormGroup = new FormGroup({
@@ -48,10 +52,12 @@ export class ReviewsPageComponent {
 
   constructor(
     public languageService: LanguageServices,
+    private travelsService: TravelsService, // Добавляем зависимость TravelsService
     private postService: PostServices,
     private alertServ: AlertsServices,
     private dialog: MatDialog // требуется для открытие модального окна
   ) {
+    this.travels = this.travelsService.getTravels(); // Чтобы компонент знал, какие путешествия нужно отображать, необходимо инициализировать это свойство данными. Метод getTravels из сервиса TravelsService возвращает массив путешествий, который используется для этой цели.
   }
 
   onSubmit() {
@@ -72,15 +78,16 @@ export class ReviewsPageComponent {
     this.dialog.open(AlertsReviewComponent);
 
 
-    //при нажатии на кнопку создаем пост
-    // this.postService.createPost(post).subscribe(() => {
-    //   this.form.reset();
+    // при нажатии на кнопку создаем пост
+    this.postService.createPost(post).subscribe(() => {
+      this.form.reset();
       // this.alertServ.success(
       //   // задаем фонт сайз легвидж сервису в ТСках
       //   `<span style="font-size: 50px;">${this.languageService.getTranslate('THANKS_FOR_REVIEW')}</span>
       //         <span style="font-size: 15px;">${this.languageService.getTranslate('THANKS_FOR_REVIEW_2')}</span>`
       // );
-    // });
-    console.log('click')
+      // });
+      console.log('click')
+    })
   }
 }

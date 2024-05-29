@@ -18,7 +18,7 @@ export interface IPost {
   expedition: string,
   social: string,
   review: string,
-  date: Date
+  date?: Date | null
 }
 
 export interface IFireBaseCreateResponse {

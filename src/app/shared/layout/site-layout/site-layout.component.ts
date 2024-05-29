@@ -18,7 +18,7 @@ import {AlertsComponent} from "../../components/alerts/alerts.component";
     NgClass,
     ButtonScrollTopComponent,
     CommonModule,
-    AlertsComponent // для отображения алертов при создании поста
+    AlertsComponent // для отображения алертов
   ],
   templateUrl: './site-layout.component.html',
   styleUrl: './site-layout.component.scss'
