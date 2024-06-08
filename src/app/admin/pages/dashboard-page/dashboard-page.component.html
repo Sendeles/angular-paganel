@@ -1,7 +1,7 @@
 <!--пока грузяться посты что бы показывался текст с загрузкой-->
-<div class="posts-container" *ngIf="posts?.length; else loading">
+<div class="reviews-container" *ngIf="reviews?.length; else loading">
   <div>
-    <input class="search_post" type="text" placeholder="Search" [(ngModel)]="searchPost">
+    <input class="search_review" type="text" placeholder="Search" [(ngModel)]="searchReview">
   </div>
   <table>
     <thead>
@@ -16,17 +16,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let post of posts | searchPosts: searchPost; let idx = index">
+    <tr *ngFor="let review of reviews | searchReviews: searchReview; let idx = index">
       <td>{{idx + 1}}</td>
-      <td>{{post.name}} {{post.surname}}</td>
-      <td>{{post.expedition}}</td>
-      <td>{{post.social}}</td>
-      <td [innerHTML]="(post.review)"></td>
-      <td>{{post.date | date: 'dd.MM.yyyy, HH:mm:ss':'ua'}}</td>
+      <td>{{review.name}} {{review.surname}}</td>
+      <td>{{review.expedition}}</td>
+      <td>{{review.social}}</td>
+      <td [innerHTML]="(review.feedback)"></td>
+      <td>{{review.date | date: 'dd.MM.yyyy, HH:mm:ss':'ua'}}</td>
       <td>
-        <a class="button_add" (click)="add(post)">Add</a>
-        <a class="button_edit" [routerLink]="['/admin', 'post', post.id, 'edit']">Edit</a>
-        <a class="button_delete" *ngIf="post.id" (click)="remove(post.id)">Delete</a>
+        <a class="button_add" (click)="add(review)">Add</a>
+        <a class="button_edit" [routerLink]="['/admin', 'review', review.id, 'edit']">Edit</a>
+        <a class="button_delete" *ngIf="review.id" (click)="remove(review.id)">Delete</a>
       </td>
     </tr>
     </tbody>

@@ -39,7 +39,7 @@ export const routes: Routes = [
         canActivate: [AuthGuardFunc]
       },
       {
-        path: 'admin/post/:id/edit',
+        path: 'admin/review/:id/edit',
         loadChildren: () => import('./admin/pages/admin-edit-page/admin-edit-page.module').then(m => m.AdminEditPageModule),
         canActivate: [AuthGuardFunc]
       },

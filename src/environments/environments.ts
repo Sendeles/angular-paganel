@@ -11,13 +11,13 @@ export interface IEnvironments {
   }
 }
 
-export interface IPost {
+export interface IReview {
   id?: string,
   name: string,
   surname: string,
   expedition: string,
   social: string,
-  review: string,
+  feedback: string,
   date?: Date | null
 }
 

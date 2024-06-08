@@ -4,8 +4,8 @@ import {StarsRatingComponent} from "../../shared/components/stars-rating/stars-r
 import {LanguageServices} from "../../shared/services/language.services";
 import {RouterModule} from "@angular/router";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {PostServices} from "../../shared/services/post.services";
-import {IPost} from "../../../environments/environments";
+import {ReviewsServices} from "../../shared/services/reviews.services";
+import {IReview} from "../../../environments/environments";
 import {AlertsServices} from "../../shared/services/alerts.services";
 import {MatDialog} from "@angular/material/dialog";
 import {AlertsReviewComponent} from "../../shared/components/alerts-review/alerts-review.component";
@@ -28,32 +28,19 @@ export class ReviewsPageComponent {
 
   travels: ITravels[]; //задаем типизацию, иначе не хочет компонент брать TravelsService как массив
 
-  // travels = [
-  //   {name: 'Antarctica', id: 'antarctica', image: './assets/images/travels/antarctica.webp', reviewsLink: '#'},
-  //   {name: 'Zimbabwe', id: 'zimbabwe', image: './assets/images/travels/zimbabwe.webp', reviewsLink: '#'},
-  //   {name: 'Socotra', id: 'socotra', image: './assets/images/travels/socotra.webp', reviewsLink: '#'},
-  //   {name: 'Mexico', id: 'mexico', image: './assets/images/travels/mexico.webp', reviewsLink: '#'},
-  //   {name: 'Tierra Del Fuega', id: 'tierra-del-fuega', image: './assets/images/travels/tierraDelFuega.webp', reviewsLink: '#'},
-  //   {name: 'Indonesia', id: 'indonesia', image: './assets/images/travels/indonesia.webp', reviewsLink: '#'},
-  //   {name: 'Bolivia', id: 'bolivia', image: './assets/images/travels/bolivia.webp', reviewsLink: '#'},
-  //   {name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#'}
-  // ]
-
-
   form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
     surname: new FormControl('', Validators.required),
     expedition: new FormControl('', Validators.required),
     social: new FormControl('', Validators.required),
-    review: new FormControl('', Validators.required),
+    feedback: new FormControl('', Validators.required),
     date: new FormControl(new Date())
   });
-
 
   constructor(
     public languageService: LanguageServices,
     private travelsService: TravelsService, // Добавляем зависимость TravelsService
-    private postService: PostServices,
+    private reviewsServices: ReviewsServices,
     private alertServ: AlertsServices,
     private dialog: MatDialog // требуется для открытие модального окна
   ) {
@@ -65,12 +52,12 @@ export class ReviewsPageComponent {
     }
     console.log('Значения формы:', this.form.value);
     //задаем объект для отправки на бекенд в данной формулировке
-    const post: IPost = {
+    const review: IReview = {
       name: this.form.value.name,
       surname: this.form.value.surname,
       expedition: this.form.value.expedition,
       social: this.form.value.social,
-      review: this.form.value.review,
+      feedback: this.form.value.feedback,
       date: new Date()
     }
 
@@ -79,7 +66,7 @@ export class ReviewsPageComponent {
 
 
     // при нажатии на кнопку создаем пост
-    this.postService.createPost(post).subscribe(() => {
+    this.reviewsServices.createReview(review).subscribe(() => {
       this.form.reset();
       // this.alertServ.success(
       //   // задаем фонт сайз легвидж сервису в ТСках

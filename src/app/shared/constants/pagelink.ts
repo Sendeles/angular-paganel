@@ -1,3 +1,3 @@
 export enum IPagelink {
-  POST_PAGE = '/page'
+  REVIEW_PAGE = '/page'
 }

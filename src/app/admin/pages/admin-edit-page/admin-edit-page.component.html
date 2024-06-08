@@ -33,12 +33,12 @@
       <input id="social" type="text" placeholder="Enter here" formControlName="social" required>
     </div>
     <div class="form-group">
-      <label for="review">Post Content&nbsp;<span class="necessarily">*</span>:</label>
+      <label for="feedback">Post Content&nbsp;<span class="necessarily">*</span>:</label>
       <div class="necessarily in_end"
-           *ngIf="form.controls['review'].invalid && (form.controls['review'].dirty || form.controls['review'].touched)">
+           *ngIf="form.controls['feedback'].invalid && (form.controls['feedback'].dirty || form.controls['feedback'].touched)">
         Обязательное поле
       </div>
-      <textarea id="review" formControlName="review"></textarea>
+      <textarea id="feedback" formControlName="feedback"></textarea>
     </div>
     <button type="submit" [disabled]="form.invalid || submitted">Edit</button>
   </form>

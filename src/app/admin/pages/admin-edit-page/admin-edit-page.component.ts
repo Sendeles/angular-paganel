@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription, switchMap} from "rxjs";
-import {IPost} from "../../../../environments/environments";
+import {IReview} from "../../../../environments/environments";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {PostServices} from "../../../shared/services/post.services";
+import {ReviewsServices} from "../../../shared/services/reviews.services";
 import {AlertsServices} from "../../../shared/services/alerts.services";
 import {CommonModule} from "@angular/common";
 
@@ -26,16 +26,16 @@ export class AdminEditPageComponent implements OnInit {
     surname: new FormControl('', Validators.required),
     expedition: new FormControl('', Validators.required),
     social: new FormControl('', Validators.required),
-    review: new FormControl('', Validators.required)
+    feedback: new FormControl('', Validators.required)
   });
-  post?: IPost;
+  review?: IReview;
   submitted = false
   updateSub: Subscription = new Subscription()
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private postService: PostServices,
+    private reviewsServices: ReviewsServices,
     private alertServices: AlertsServices
   ) {
   }
@@ -46,19 +46,19 @@ export class AdminEditPageComponent implements OnInit {
         //Оператор switchMap для того что бы изменить стрим. Stream Поток можно понимать как источник и/или приёмник бесконечного количества символов. Потоки обычно привязываются к физическому источнику/приёмнику символов, например, файлу, клавиатуре или консоли.
         switchMap((params: Params) =>
           //возврашаем из оператора switchMap новый стрим куда передаем значение params по его ключу id
-          this.postService.getByID(params['id']))
+          this.reviewsServices.getByID(params['id']))
         //В subscribe передается функция обратного вызова (callback), которая будет вызвана каждый раз, когда поток испускает новое значение. В вашем случае, когда getByID возвращает данные поста, этот пост передается в функцию обратного вызова subscribe.
-      ).subscribe((post: IPost) => {
+      ).subscribe((review: IReview) => {
       //сохраняю объект в переменную что бы проще было с ним работать в submit()
-      this.post = post
-      console.log('this.post', this.post)
+      this.review = review
+      console.log('this.review', this.review)
       //инициализируем форму которая позволяет менять данные поста, Конкретно, метод patchValue используется для частичного обновления значений формы.
       this.form.patchValue({
-        name: post.name,
-        surname: post.surname,
-        expedition: post.expedition,
-        social: post.social,
-        review: post.review
+        name: review.name,
+        surname: review.surname,
+        expedition: review.expedition,
+        social: review.social,
+        feedback: review.feedback
       })
     })
   }
@@ -74,14 +74,14 @@ export class AdminEditPageComponent implements OnInit {
       return
     } else {
       this.submitted = true
-      this.updateSub = this.postService.update({
-          //убеждаем TypeScript, что this.post действительно соответствует требованиям интерфейса IPost, Spread используем для копирования всех свойств из this.post в новый объект
-        ...(this.post as IPost),
+      this.updateSub = this.reviewsServices.update({
+          //убеждаем TypeScript, что this.review действительно соответствует требованиям интерфейса IReview, Spread используем для копирования всех свойств из this.review в новый объект
+        ...(this.review as IReview),
         name: this.form.value.name,
         surname: this.form.value.surname,
         expedition: this.form.value.expedition,
         social: this.form.value.social,
-        review: this.form.value.review
+        feedback: this.form.value.feedback
       }).subscribe(() => {
         this.submitted = false
         this.alertServices.update('Пост был обновлен')

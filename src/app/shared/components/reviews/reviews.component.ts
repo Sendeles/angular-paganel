@@ -41,8 +41,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {Observable, switchMap} from "rxjs";
-import {IPost} from "../../../../environments/environments";
-import {PostServices} from "../../services/post.services";
+import {IReview} from "../../../../environments/environments";
+import {ReviewsServices} from "../../services/reviews.services";
 
 
 @Component({
@@ -54,31 +54,31 @@ import {PostServices} from "../../services/post.services";
 })
 export class ReviewsComponent implements OnInit {
 
-  public posts$!: Observable<IPost[]>;
+  public reviews$!: Observable<IReview[]>;
 
   constructor(
     private route: ActivatedRoute,
-    private postServices: PostServices,
+    private reviewsServices: ReviewsServices,
     private router: ActivatedRoute,
   ) {
     // const {id} = this.router.snapshot.params;
     //
     // if (id) {
     //   // Если есть параметр id в URL, значит, это запрос на отображение одиночного поста
-    //   this.posts$ = this.postServices.getByID(id);
-    //   console.log('this.posts$', this.posts$)
+    //   this.reviews$ = this.reviewsServices.getAllById(id);
+    //   console.log('this.reviews$', this.reviews$)
     // }
   }
 
   ngOnInit(): void {
-    this.posts$ = this.route.params.pipe(
+    this.reviews$ = this.route.params.pipe(
+      //switchMap автоматически управляет отменой предыдущих запросов, что предотвращает потенциальные утечки памяти и обработку устаревших данных Например, если URL меняется с /reviews/antarctica на /reviews/arctic, текущий запрос для Антарктиды будет отменен, и начнется новый запрос для Арктики.
       switchMap(params => {
-        // извлекает значение параметра id из текущих параметров маршрута
+         // извлекает значение параметра id из текущих параметров маршрута. Например, если URL страницы выглядит так: /reviews/antarctica, то id будет равно "antarctica".
         const id = params['id'];
         console.log('Extracted id from route params:', id); // Логируем id
-        // получает пост по id
-        return this.postServices.getAllById(id);
-
+        // Вызывается getAllById('antarctica'), что возвращает массив отзывов для Антарктиды.
+        return this.reviewsServices.getAllById(id);
       })
     )
   }
