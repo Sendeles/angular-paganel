@@ -1,0 +1,20 @@
+<div class="comment-slider">
+  <div class="slider-container">
+    <img class="prev-arrow" (click)="prevComment()" src="./assets/images/arrows/left-arrow.png" alt="left_arrow">
+    <div class="comment-text">
+      {{ comments[currentIndex].expedition }}
+    </div>
+    <div class="comment-author">
+      {{ comments[currentIndex].feedback }}
+    </div>
+    <img class="next-arrow" (click)="nextComment()" src="./assets/images/arrows/right-arrow.png" alt="right_arrow">
+  </div>
+  <div class="dot-navigation">
+    <span
+      *ngFor="let comment of comments; let i = index"
+      [class.active]="i === currentIndex"
+      class="dot"
+      (click)="goToComment(i)"
+    ></span>
+  </div>
+</div>

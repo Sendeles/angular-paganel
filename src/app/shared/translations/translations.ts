@@ -166,9 +166,9 @@ export let translations: any = {
     'ua': 'Шановні друзі! Ви можете залишити свій відгук на цій сторінці та подивитися всі відгуки щасливчиків, які відвідали з нами експедиції.' + '<p></p>' + 'Приємного прочитання та знайомства з Paganel!'
   },
   'THANKS_FOR_REVIEW': {
-    'en': 'Thank you for sharing your impressions!',
-    'ru': 'Спасибо, что поделились впечатлениями!',
-    'ua': 'Дякуємо, що поділилися враженнями!'
+    'en': 'Thank you for sharing your<br>impressions!',
+    'ru': 'Спасибо, что поделились<br>впечатлениями!',
+    'ua': 'Дякуємо, що поділилися<br>враженнями!'
   },
   'THANKS_FOR_REVIEW_2': {
     'en': 'In the near future, your review will be posted on the site',

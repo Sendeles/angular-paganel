@@ -1,26 +1,44 @@
 mat-dialog-content {
   position: relative;
-  background-color: #f5f5f5;
-  padding: 20px;
-  border-radius: 5px;
+  background-color: white;
+  padding: 25px 120px 25px 70px !important;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  text-align: center;
+
+  &:before { //псевдоелементы ::before и ::after используются для вставки содержимого до или после содержимого элемента.
+    content: ''; // Свойство content обязательно для этих псевдоэлемента before, чтобы они отображались. В данном случае content: ''; означает, что вы вставляете пустое содержимое — это просто способ создать "фантомный" элемент, который можно будет стилизовать.
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 83px;
+    bottom: 32px;
+    background-image: url('/assets/images/sun.webp'); // Путь к вашему изображению
+    background-size: 30%;
+    background-repeat: no-repeat; // Чтобы изображение не повторялось
+    background-position: right; // отправляем картинку в правую сторону
+    opacity: 0.1; // Уменьшите прозрачность, чтобы сделать изображение едва заметным
+  }
 
   p {
-    margin: 0;
+    position: relative;
+    z-index: 1;
     font-family: Arial, sans-serif;
     color: #333;
 
-    &:first-child {
-      font-size: 18px;
-      font-weight: bold;
+    &:nth-of-type(1) {
+      font-size: 49px;
       margin-bottom: 10px;
+      line-height: 56px;
     }
 
-    &:last-child {
-      font-size: 14px;
+    &:nth-of-type(2) {
+      font-size: 24px;
+      margin-bottom: 15px;
     }
   }
+}
+
+::ng-deep .cdk-overlay-dark-backdrop { //::ng-deep используется для того что бы перебить родные стили модального окна из indigo-pink которые нодмодульсике
+  background: rgb(202 152 66 / 47%);
 }
 
 .close-icon {

@@ -1,5 +1,5 @@
 <mat-dialog-content>
   <span class="close-icon" (click)="closeModal()">&#10006;</span>
-  <p>{{this.languageService.getTranslate('THANKS_FOR_REVIEW')}}</p>
+  <p [innerHTML]="languageService.getTranslate('THANKS_FOR_REVIEW')"></p>
   <p>{{this.languageService.getTranslate('THANKS_FOR_REVIEW_2')}}</p>
 </mat-dialog-content>

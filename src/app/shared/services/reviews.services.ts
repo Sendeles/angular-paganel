@@ -70,16 +70,17 @@ export class ReviewsServices {
               id: key,
               // Преобразуем строку даты в объект Date  date: [object Date], вместо date: "2021-01-01T00:00:00.000Z"
               date: response[key]?.date ? new Date(response[key]?.date) : false
-        }))
+            }))
         }))
   }
 
-  //Получение всех постов что у нас есть на бекэнде
+  //Получение всех постов с конкретным ID (например все посты по конкретной стране)
   getAllById(id: string): Observable<IReview[]> {
+    //В URL-адрес включается переданный id параметр. Это указывает на то, что запрос получает все данные, которые связанные с конкретным id.
     return this.http.get(`${environment.firebaseConfig.databaseURL}${IPagelink.REVIEW_PAGE}/${id}.json`)
       .pipe(
         //вывожу все посты в консоль через tap
-        tap(data => console.log('getAll', data)),
+        tap(data => console.log('getAllById', data)),
         // преобразует объект ответа в массив постов.  review1: { author: "1", content: "<p>1</p>", date: "2023-11-15T21:08:14.454Z", title: "1" }, review2: { author: "2", content: "<p>2</p>", date: "2023-11-15T21:08:14.454Z", title: "2" }
         map((response: { [key: string]: any }) => {
           //проверка if (!response) перед обработкой данных. Если response равен null или undefined, то возвращается пустой массив. Это поможет избежать ошибки, связанной с чтением свойства date у null.
@@ -117,6 +118,19 @@ export class ReviewsServices {
           console.log('GetByID After map:', transformedReview);
           return transformedReview;
         }))
+  }
+
+
+  getFavoritesReviews(): Observable<IReview[]> {
+    return this.http.get<{ [key: string]: IReview }>(`${environment.firebaseConfig.databaseURL}${IPagelink.REVIEW_PAGE}/reviewSlider.json`)
+      .pipe(
+        map(response => {
+          if (!response) {
+            return [];
+          }
+          return Object.values(response);
+        })
+      );
   }
 
   //Метод удаления с самого бэкенда

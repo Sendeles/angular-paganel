@@ -1,5 +1,5 @@
 <div class="title">
-  <span>Відгуки</span>
+  <span>{{languageService.getTranslate('REVIEW')}}</span>
 </div>
 <div class="block_1">
   <div class="star_block">
@@ -11,25 +11,35 @@
     <app-stars-rating></app-stars-rating>
   </div>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form_block">
+    <div class="necessarily in_end" *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched) || showError">
+      Обязательное поле
+    </div>
     <div class="form_header">
-      <input id="name" type="text" formControlName="name" [placeholder]="languageService.getTranslate('NAME')">
+      <input id="name" type="text" formControlName="name" [placeholder]="languageService.getTranslate('NAME')" [ngClass]="{'error': form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched) || showError}">
       <input id="surname" type="text" formControlName="surname" [placeholder]="languageService.getTranslate('SURNAME')">
     </div>
-    <input id="expedition" type="text" formControlName="expedition" [placeholder]="languageService.getTranslate('EXPEDITION')">
+<!--  form.controls['expedition'].invalid (невалидное поле) будет срабатывать только тогда когда будет взаимодействовать с каким-то из трех условий, 1) поле тронуто и оставлено пустым (form.controls['expedition'].touched) или (||) 2) в поле уже что-то прописывалось но в конце концов осталось пустым (form.controls['expedition'].dirty) или (||) 3) при нажатии кнопки когда поле пустое(showExpeditionError). здесь у нас && используется как взаимодействовать invalid только тогда когда срабатывает какое-то из одного условия -->
+    <div class="necessarily in_end" *ngIf="form.controls['expedition'].invalid && (form.controls['expedition'].dirty || form.controls['expedition'].touched) || showError">
+      Обязательное поле
+    </div>
+    <input [ngClass]="{'error': form.controls['expedition'].invalid && (form.controls['expedition'].dirty || form.controls['expedition'].touched) || showError}" id="expedition" type="text" formControlName="expedition" [placeholder]="languageService.getTranslate('EXPEDITION')">
     <input id="social" type="text" formControlName="social" [placeholder]="languageService.getTranslate('LINK')">
-    <textarea id="feedback" formControlName="feedback" [placeholder]="languageService.getTranslate('COMMENT')" rows="1" cols="50"></textarea>
+    <div class="necessarily in_end" *ngIf="form.controls['feedback'].invalid && (form.controls['feedback'].dirty || form.controls['feedback'].touched) || showError">
+      Обязательное поле
+    </div>
+    <textarea [ngClass]="{'error': form.controls['feedback'].invalid && (form.controls['feedback'].dirty || form.controls['feedback'].touched) || showError}" id="feedback" formControlName="feedback" [placeholder]="languageService.getTranslate('COMMENT')" rows="1" cols="50"></textarea>
   </form>
 </div>
-<div class="button_element">
+<!--Прибовляем срабатывания доп коасса, на замену основного-->
+<div class="button_element" [ngClass]="{'extended_margin': putButtonDowner}">
   <button type="submit" (click)="onSubmit()">Залишити відгук</button>
 </div>
+<app-comments-slider class="slider_comment"></app-comments-slider>
 <div class="travels">
   <div *ngFor="let travel of travels">
     <h3>{{ travel.name }}</h3>
     <img [src]="travel.image" alt="{{ travel.name }}">
     <div class="button_link">
-      <!--      <a [href]="travel.reviewsLink"><span>Читати відгуки</span></a>-->
-      <!--      <a [routerLink]="['/reviews', travel.name.toLowerCase()]"><span>Читати відгуки</span></a>-->
       <a [routerLink]="['/reviews', travel.id]"><span>Читати відгуки</span></a>
     </div>
   </div>

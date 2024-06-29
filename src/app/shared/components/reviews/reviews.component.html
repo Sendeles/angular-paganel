@@ -1,8 +1,6 @@
-<!--<div *ngFor="let review of reviews$ | async">-->
-<!--  <h3>{{ review.name }} {{ review.surname }}</h3>-->
-<!--  <p>{{ review.review }}</p>-->
-<!--</div>-->
-
+<!--reviews$ - это Observable -->
+<!--|async - это пайп, который подписывается на Observable и возвращает его последнее эмитированное значение-->
+<!--as reviews - это часть, которая присваивает полученное значение локальной переменной reviews-->
 <div *ngIf="reviews$ | async as reviews; else loading">
   <ng-container *ngFor="let review of reviews">
     <p>Автор: {{ review.name }} {{ review.surname }}</p>

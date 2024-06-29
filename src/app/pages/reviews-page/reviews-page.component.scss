@@ -36,7 +36,6 @@
       background-image: url('/assets/images/sun.webp'); // Путь к вашему изображению
       background-size: 58%;
       background-repeat: no-repeat; // Чтобы изображение не повторялось
-      //background-position: center;
       opacity: 0.1; // Уменьшите прозрачность, чтобы сделать изображение едва заметным
       z-index: -1; // Убедитесь, что значение z-index меньше, чем у текста
     }
@@ -87,12 +86,29 @@
 
     }
   }
+
+  .necessarily {
+    color: red;
+  }
+
+  .in_end {
+    display: flex;
+    justify-content: end;
+  }
+}
+
+.error {
+  border: 1px solid red !important; // без important почему-то не хочет срабатывать этот класс, important задает найвисший приоритет
 }
 
 .button_element {
   display: flex;
   justify-content: center;
   margin-top: -37px;
+
+  &.extended_margin { //класс который перекрывает   margin-top: -37px; на 37px по срабатывание putButtonDowner
+    margin-top: 37px;
+  }
 
   button {
     border: 1px solid #feaa02;
@@ -112,6 +128,11 @@
       transition: ease-in 0.3s;
     }
   }
+}
+
+.slider_comment {
+  display: flex;
+  justify-content: center;
 }
 
 .travels {

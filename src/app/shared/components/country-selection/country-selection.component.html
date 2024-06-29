@@ -9,9 +9,20 @@
     </mat-select>
   </mat-form-field>
 </mat-dialog-content>
+<h2 mat-dialog-title>Добавить в избранное</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-select [(ngModel)]="addToFavorite"> <!--    ngModel обеспечивает двустороннюю привязку данных между свойством компонента (selectedCountry) и элементом формы (mat-select). Это означает, что любые изменения в одном из них будут автоматически отражены в другом.--> <!--    Когда пользователь выбирает страну из выпадающего списка, значение элемента mat-select изменяется.--><!--    Благодаря ngModel, новое значение автоматически присваивается свойству selectedCountry компонента.-->
+      <!--      При выборе страны из выпадающего списка, автоматически обновляется значение selectedCountry на значение, соответствующее выбранному элементу mat-option (в данном случае значение свойства id(travel.id) страны).-->
+      <mat-option *ngFor="let favorite of data.favorites" [value]="favorite.id">
+        {{ favorite.chose }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Отмена</button>
-  <button mat-button (click)="onSubmit()" [disabled]="!selectedCountry">
+  <button mat-button (click)="onSubmit()" [disabled]="!selectedCountry || !addToFavorite">
     Отправить
   </button>
 </mat-dialog-actions>

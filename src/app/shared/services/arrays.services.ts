@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-export class TravelsService {
+export class ArraysService {
 
   travels = [
     {name: 'Antarctica', id: 'antarctica', image: './assets/images/travels/antarctica.webp', reviewsLink: '#'},
@@ -24,5 +24,14 @@ export class TravelsService {
 
   getTravels() {
     return this.travels;
+  }
+
+  favorites = [
+    {chose: 'Yes', id: 'reviewSlider'},
+    {chose: 'No', id: 'noAddToReviewSlider'}
+  ]
+
+  getFavorites() {
+    return this.favorites
   }
 }

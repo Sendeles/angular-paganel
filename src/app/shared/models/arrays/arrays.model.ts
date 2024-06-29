@@ -4,3 +4,7 @@ export interface ITravels {
   image: string;
   reviewsLink: string;
 }
+
+export interface IFavorites {
+  chose: string;
+}

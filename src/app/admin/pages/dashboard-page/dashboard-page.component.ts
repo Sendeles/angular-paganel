@@ -9,7 +9,7 @@ import {AlertsServices} from "../../../shared/services/alerts.services";
 import {RouterModule} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {CountrySelectionComponent} from "../../../shared/components/country-selection/country-selection.component";
-import {TravelsService} from "../../../shared/services/travels.services";
+import {ArraysService} from "../../../shared/services/arrays.services";
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -32,7 +32,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   searchReview = '';
 
   constructor(
-    private travelsService: TravelsService, // Инжектируйте TravelsService
+    private arraysService: ArraysService, // Инжектируйте ArraysService
     private reviewsServices: ReviewsServices,
     private alertServices: AlertsServices,
     public dialog: MatDialog
@@ -42,7 +42,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //получаю посты от getAll
     this.pSub = this.reviewsServices.getAll().subscribe(reviews => {
-      //присваиваю переменной пост(массиву) тот респонс который приходит
+      //присваиваю переменной пост(массиву) тот респонс который приходит, вроде бы этот фильтр постоянно помогает быть подписанным на базу и таким образом если какой-то отзыв, удален он сразу его отфильтровывает и удаляет из странцы
       this.reviews = reviews.filter((review) => review.date)
       console.log('this.reviews', this.reviews)
     })
@@ -62,20 +62,23 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   add(review: IReview) {
     console.log('Function add started with review:', review); // Логируем входные данные функции
 
-    const travels = this.travelsService.getTravels(); // Получите массив travels из сервиса  console.log('Retrieved travels from travelsService:', travels); // Логируем данные travels
-    console.log('Retrieved travels from travelsService:', travels); // Логируем данные travels
+    const travels = this.arraysService.getTravels(); // Получите массив travels из arrays.services.ts
+    console.log('Retrieved travels from arraysService:', travels); // Логируем (импортируем, засовываем) данные travels из arrays.services.ts
+
+    const favorites = this.arraysService.getFavorites(); //Получите массив favorites из arrays.services.ts
+    console.log('Retrieved favorites from arraysService:', favorites); // Логируем данные arrays
 
     //этот код исключительно для того что бы сработал консоль лог
-    const data = { travels, review };
+    const data = { travels, favorites, review };
     console.log('Data being passed to the dialog:', data);
 
     //this.dialog является экземпляром MatDialog, который предоставляется Angular Material и используется для управления диалоговыми окнами в приложении.
     this.dialog.open(CountrySelectionComponent, {
       width: '400px',
-      data: {travels, review}// Передайте весь массив travels в качестве данных диалогового окна, под review только конкретно выбранный отзыв
+      data: { travels, favorites, review } // Передаем указанные массивы из arrays в качестве данных диалогового окна кроме review, под review только конкретно выбранный отзыв
     }).afterClosed().subscribe((reviewId) => {  //получаю reviewId при закрытии модального окна, под reviewId - передается this.data.review.id из country-selection.component.ts
       if (reviewId) {
-        this.remove(reviewId);
+        this.remove(reviewId); //после добавления удаляем этот отзыв
         // Обработка выбранной страны
         console.log(`Выбрано id: ${reviewId}`);
       }
