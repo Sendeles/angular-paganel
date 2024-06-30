@@ -10,16 +10,12 @@ export class ArraysService {
     {name: 'Antarctica', id: 'antarctica', image: './assets/images/travels/antarctica.webp', reviewsLink: '#'},
     {name: 'Zimbabwe', id: 'zimbabwe', image: './assets/images/travels/zimbabwe.webp', reviewsLink: '#'},
     {name: 'Socotra', id: 'socotra', image: './assets/images/travels/socotra.webp', reviewsLink: '#'},
+    {name: 'Peru and Bolivia', id: 'peru-and-bolivia', image: './assets/images/travels/peruAndBolivia.webp', reviewsLink: '#'},
     {name: 'Mexico', id: 'mexico', image: './assets/images/travels/mexico.webp', reviewsLink: '#'},
-    {
-      name: 'Tierra Del Fuega',
-      id: 'tierra-del-fuega',
-      image: './assets/images/travels/tierraDelFuega.webp',
-      reviewsLink: '#'
-    },
+    {name: 'Tierra Del Fuega', id: 'tierra-del-fuega', image: './assets/images/travels/tierraDelFuega.webp', reviewsLink: '#'},
     {name: 'Indonesia', id: 'indonesia', image: './assets/images/travels/indonesia.webp', reviewsLink: '#'},
     {name: 'Bolivia', id: 'bolivia', image: './assets/images/travels/bolivia.webp', reviewsLink: '#'},
-    {name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#'}
+    {name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#'},
   ]
 
   getTravels() {
