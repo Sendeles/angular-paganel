@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {CarouselModule, OwlOptions} from "ngx-owl-carousel-o";
-import {ICustomSlideModel} from "../../models/comments-slider/comments-slider.model";
 import {CommonModule} from "@angular/common";
 import {ReviewsServices} from "../../services/reviews.services";
 import {IReview} from "../../../../environments/environments";
 import {ActivatedRoute} from "@angular/router";
-import {Observable, switchMap} from "rxjs";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-comments-slider',
@@ -19,7 +18,16 @@ import {Observable, switchMap} from "rxjs";
 })
 export class CommentsSliderComponent implements OnInit {
 
-  comments: IReview[] = []; //мы определили свойство comments как массив. Это означает, что comments должен быть заполнен массивом объектов IReview, чтобы корректно отображаться в шаблоне.
+  // Суть роли Observable на примере, представьте, что вы создаете приложение, которое показывает текущую температуру. Observable может:
+  // Периодически получать обновления о температуре.
+  // Доставлять эти данные в ваше приложение.
+  // Автоматически обновлять интерфейс при изменении температуры.
+  // Прекратить получение данных, когда пользователь закрывает приложение.
+
+  // в comments$! данные поступают из this.comments$ = this.reviewsServices.getFavoritesReviews(); что находится в ngOnInit()
+  // Символ $ в конце имени - это распространенное соглашение для обозначения Observable. никакой функции не выполняет
+  // Если вы уверены, что comments$ будет инициализирован в ngOnInit(), можно использовать оператор "!",
+  comments$!: Observable<IReview[]>;
   currentIndex = 0;
 
   constructor(
@@ -30,17 +38,15 @@ export class CommentsSliderComponent implements OnInit {
 
   ngOnInit(): void {
     //здесь присваиваем значение объявленному выше свойству
-    this.reviewsServices.getFavoritesReviews().subscribe(reviews => {
-      this.comments = reviews;
-    });
+    this.comments$ = this.reviewsServices.getFavoritesReviews();
   }
 
-  nextComment() {
-    this.currentIndex = (this.currentIndex + 1) % this.comments.length;
+  nextComment(comments: IReview[]) {
+    this.currentIndex = (this.currentIndex + 1) % comments.length;
   }
 
-  prevComment() {
-    this.currentIndex = (this.currentIndex - 1 + this.comments.length) % this.comments.length;
+  prevComment(comments: IReview[]) {
+    this.currentIndex = (this.currentIndex - 1 + comments.length) % comments.length;
   }
 
   goToComment(index: number) {

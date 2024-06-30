@@ -21,6 +21,7 @@ export interface IReview {
   date?: Date | null
 }
 
+//модель для создания на бекенде, например name : "-O0_rwKnjNZB2xMboiCx"
 export interface IFireBaseCreateResponse {
   name: string;
 }

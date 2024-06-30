@@ -1,20 +1,21 @@
-<div class="comment-slider">
-  <div class="slider-container">
-    <img class="prev-arrow" (click)="prevComment()" src="./assets/images/arrows/left-arrow.png" alt="left_arrow">
-    <div class="comment-text">
-      {{ comments[currentIndex].expedition }}
+<ng-container *ngIf="comments$ | async as comments">
+  <div class="comment-slider" *ngIf="comments.length">  <!--  чтобы не отображать слайдер, если комментариев нет.-->
+    <div class="slider-container">
+      <img class="prev-arrow" (click)="prevComment(comments)" src="./assets/images/arrows/left-arrow.png" alt="left_arrow">
+      <div>
+        {{ comments[currentIndex].name }}
+      </div>
+      <div class="comment-text">
+        {{ comments[currentIndex].expedition }}
+      </div>
+      <div class="comment-author">
+        {{ comments[currentIndex].feedback }}
+      </div>
+      <img class="next-arrow" (click)="nextComment(comments)" src="./assets/images/arrows/right-arrow.png" alt="right_arrow">
     </div>
-    <div class="comment-author">
-      {{ comments[currentIndex].feedback }}
+    <div class="dot-navigation">
+      <span *ngFor="let comment of comments; let i = index" [class.active]="i === currentIndex" class="dot"
+            (click)="goToComment(i)"></span>
     </div>
-    <img class="next-arrow" (click)="nextComment()" src="./assets/images/arrows/right-arrow.png" alt="right_arrow">
   </div>
-  <div class="dot-navigation">
-    <span
-      *ngFor="let comment of comments; let i = index"
-      [class.active]="i === currentIndex"
-      class="dot"
-      (click)="goToComment(i)"
-    ></span>
-  </div>
-</div>
+</ng-container>

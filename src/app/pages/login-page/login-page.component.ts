@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {MyValidators} from "./my.validators";
 import {AuthorizationServices} from "../../shared/services/authorization.services";
 import {IUser} from "../../shared/models/authorization/authorization.model";
 import {CommonModule} from "@angular/common";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
-import firebase from "firebase/compat";
-import User = firebase.User;
 
 
 @Component({
@@ -29,8 +27,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public auth: AuthorizationServices,
-    private route: ActivatedRoute
+    public auth: AuthorizationServices
   ) {
     this.form = this.getBlankForm()
   }
@@ -112,101 +109,3 @@ export class LoginPageComponent implements OnInit {
     return 0;
   }
 }
-
-
-
-// import {Component, OnInit} from '@angular/core';
-// import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-// import {ActivatedRoute, Params, Router} from "@angular/router";
-// import {MyValidators} from "./my.validators";
-// import {AuthorizationServices} from "../../shared/services/authorization.services";
-// import {IUser} from "../../shared/models/authorization/authorization.model";
-// import {CommonModule} from "@angular/common";
-// import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
-// import firebase from "firebase/compat";
-// import User = firebase.User;
-//
-//
-// @Component({
-//   selector: 'app-login-page',
-//   standalone: true,
-//   imports: [CommonModule, ReactiveFormsModule],
-//   templateUrl: './login-page.component.html',
-//   styleUrl: './login-page.component.scss'
-// })
-// export class LoginPageComponent implements OnInit {
-//
-//
-//   public form: FormGroup;
-//   private emailPattern = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-//   submitted = false;
-//   errorMessage: string = '';
-//   message: string = '';
-//
-//
-//   constructor(
-//     private router: Router,
-//     public auth: AuthorizationServices,
-//     private route: ActivatedRoute
-//   ) {
-//     this.form = this.getBlankForm()
-//   }
-//
-//   //Внутри подписчика проверяется, содержит ли объект params свойство needToLogin. Если это свойство присутствует и истинно, для свойства message компонента устанавливается сообщение на русском языке: "данное поле будет доступно после входа
-//   ngOnInit() {
-//     this.route.queryParams.subscribe((params: Params) => {
-//       if (params['needToLogin']) {
-//         this.message = 'данное поле будет доступно после входа'
-//       } else if (params['authFailed']) {
-//         this.message = 'Cессия истекла, залогиньтесь снова'
-//       }
-//     })
-//   }
-//
-//
-//   getBlankForm(): FormGroup {
-//     return new FormGroup<any>({
-//       email: new FormControl<string>('', [Validators.pattern(this.emailPattern), Validators.required, MyValidators.restrictedEmail]),
-//       password: new FormControl<string>('', [Validators.minLength(6), Validators.maxLength(12)])
-//     })
-//   }
-//
-//   submit() {
-//     const formData = (this.form.value)
-//     if (this.form.invalid) {
-//       return
-//     }
-//     this.submitted = true
-//
-//     // Signed in
-//     const auth = getAuth();
-//     signInWithEmailAndPassword(auth, this.form.value.email, this.form.value.password)
-//       .then((userCredential) => {
-//         if (this.auth.isAdmin()) {
-//           this.router.navigate(['/admin'])
-//         }
-//       })
-//       .catch((error) => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//       });
-//   }
-//
-//   extractDomain(email: string | null): string {
-//     if (email) {
-//       const atIndex = email.indexOf('@');
-//       if (atIndex >= 0) {
-//         return email.substring(atIndex + 1);
-//       }
-//     }
-//     return '';
-//   }
-//
-//   get passwordLength(): number {
-//     const passwordControl = this.form.get('password');
-//     if (passwordControl && passwordControl.value) {
-//       return passwordControl.value.length;
-//     }
-//     return 0;
-//   }
-// }

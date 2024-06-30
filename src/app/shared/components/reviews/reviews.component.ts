@@ -22,7 +22,7 @@ export class ReviewsComponent implements OnInit {
   // Прекратить получение данных, когда пользователь закрывает приложение.
 
 
-  //в reviews$ данные поступают из сервиса ReviewsServices, а именно из метода getAllById(),
+  //в reviews$ данные поступают из сервиса ngOnInit(),
   // Символ $ в конце имени - это распространенное соглашение для обозначения Observable. никакой функции не выполняет
   public reviews$!: Observable<IReview[]>;
 
