@@ -1,17 +1,40 @@
 <ng-container *ngIf="comments$ | async as comments">
   <div class="comment-slider" *ngIf="comments.length">  <!--  чтобы не отображать слайдер, если комментариев нет.-->
     <div class="slider-container">
-      <img class="prev-arrow" (click)="prevComment(comments)" src="./assets/images/arrows/left-arrow.png" alt="left_arrow">
-      <div>
-        {{ comments[currentIndex].name }}
+      <img class="prev-arrow" (click)="prevComment(comments)" src="./assets/images/arrows/left-arrow.png"
+           alt="left_arrow">
+      <div class="slide-content" [class.active]="!isTransitioning" [class.leaving]="isTransitioning">
+        <!-- Content for current slide -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <path [attr.fill]="fillColor" [attr.d]="pathData"></path>
+        </svg>
+        <div class="comment-expedition">
+          {{ comments[currentIndex].expedition }}
+        </div>
+        <div class="comment-feedback">
+          {{ comments[currentIndex].feedback }}
+        </div>
+        <div class="comment-fullname">
+          {{ comments[currentIndex].name }}{{ comments[currentIndex].surname }}
+        </div>
       </div>
-      <div class="comment-text">
-        {{ comments[currentIndex].expedition }}
+      <div class="slide-hide" [class.active]="isTransitioning" [class.entering]="isTransitioning">
+        <!-- Content for next slide -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+          <path [attr.fill]="fillColor" [attr.d]="pathData"></path>
+        </svg>
+        <div class="comment-expedition">
+          {{ comments[changeIndex].expedition }}
+        </div>
+        <div class="comment-feedback">
+          {{ comments[changeIndex].feedback }}
+        </div>
+        <div class="comment-fullname">
+          {{ comments[changeIndex].name }}{{ comments[changeIndex].surname }}
+        </div>
       </div>
-      <div class="comment-author">
-        {{ comments[currentIndex].feedback }}
-      </div>
-      <img class="next-arrow" (click)="nextComment(comments)" src="./assets/images/arrows/right-arrow.png" alt="right_arrow">
+      <img class="next-arrow" (click)="nextComment(comments)" src="./assets/images/arrows/right-arrow.png"
+           alt="right_arrow">
     </div>
     <div class="dot-navigation">
       <!-- хотя comment не используется напрямую в этом элементе, его присутствие в *ngFor важно для правильной работы и потенциального будущего расширения функциональности. let i = index присваивает каждому элементу его индекс (0, 1, 2).-->

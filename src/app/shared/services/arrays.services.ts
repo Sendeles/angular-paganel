@@ -16,6 +16,12 @@ export class ArraysService {
     {name: 'Indonesia', id: 'indonesia', image: './assets/images/travels/indonesia.webp', reviewsLink: '#'},
     {name: 'Bolivia', id: 'bolivia', image: './assets/images/travels/bolivia.webp', reviewsLink: '#'},
     {name: 'Australia', id: 'australia', image: './assets/images/travels/australia.webp', reviewsLink: '#'},
+    {name: 'Patagonia', id: 'patagonia', image: './assets/images/travels/patagonia.webp', reviewsLink: '#'},
+    {name: 'Аconcagua', id: 'aconcagua', image: './assets/images/travels/aconcagua.webp', reviewsLink: '#'},
+    {name: 'Algeria', id: 'algeria', image: './assets/images/travels/algeria.webp', reviewsLink: '#'},
+    {name: 'Iceland', id: 'iceland', image: './assets/images/travels/iceland.webp', reviewsLink: '#'},
+    {name: 'Namibia', id: 'namibia', image: './assets/images/travels/namibia.webp', reviewsLink: '#'},
+    {name: 'Japan', id: 'japan', image: './assets/images/travels/japan.webp', reviewsLink: '#'}
   ]
 
   getTravels() {
