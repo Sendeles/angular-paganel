@@ -31,9 +31,9 @@ export class CommentsSliderComponent implements OnInit {
   // Символ $ в конце имени - это распространенное соглашение для обозначения Observable. никакой функции не выполняет
   // Если вы уверены, что comments$ будет инициализирован в ngOnInit(), можно использовать оператор "!",
   comments$!: Observable<IReview[]>;
-  isTransitioning = false;
-  currentIndex = 0;
-  changeIndex = 0;
+  isTransitioning = false; // флаг, указывающий, происходит ли в данный момент переход между слайдами.
+  currentIndex = 0; //currentIndex: индекс текущего отображаемого комментария.
+  changeIndex = 0; //индекс следующего или предыдущего комментария для отображения.
 
   constructor(
     private route: ActivatedRoute,
@@ -46,13 +46,19 @@ export class CommentsSliderComponent implements OnInit {
     this.comments$ = this.reviewsServices.getFavoritesReviews();
   }
 
+  //Пользователь нажимает на стрелку "вперед".Вызывается метод nextComment(comments):
   nextComment(comments: IReview[]) {
+    //Устанавливается isTransitioning = true, таким образом заставляем срабатывать [class.leaving]="isTransitioning"
     this.isTransitioning = true;
+    //Вычисляется changeIndex для следующего комментария.
     this.changeIndex = (this.currentIndex + 1) % comments.length;
     setTimeout(() => {
+      // причина того что change_hidden_slide играет ключевую роль в создании плавного перехода, временно становясь видимым во время анимации, но в итоге всегда возвращается в скрытое состояние, уступая место обновленному current-slide.
       this.currentIndex = this.changeIndex;
+      // когда isTransitioning устанавливается в false и завершается setTimeout current-slide то теперь отображает новый комментарий и теряет класс leaving и активируется active.
       this.isTransitioning = false;
-    }, 500);
+      //время на протяжении которого переключается слайд в левую сторону
+    }, 1000);
   }
 
   prevComment(comments: IReview[]) {
@@ -61,7 +67,8 @@ export class CommentsSliderComponent implements OnInit {
     setTimeout(() => {
       this.currentIndex = this.changeIndex;
       this.isTransitioning = false;
-    }, 500);
+      //время на протяжении которого переключается слайд в правую сторону
+    }, 1000);
   }
 
   goToComment(index: number) {
@@ -71,7 +78,8 @@ export class CommentsSliderComponent implements OnInit {
       setTimeout(() => {
         this.currentIndex = this.changeIndex;
         this.isTransitioning = false;
-      }, 500);
+        //время на протяжении которого переключается слайд чере точки
+      }, 1000);
     }
   }
 }

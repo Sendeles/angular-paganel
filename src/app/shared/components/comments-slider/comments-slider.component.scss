@@ -14,36 +14,31 @@ svg {
   position: relative;
 }
 
-.slide-content {
-  transition: opacity 0.5s ease-in-out;
+.current_slide {
+  transition: opacity 1s ease-in-out; // взаимодействует вместе с setTimeout, скорость переключения может быть меньше чем setTimeout но никак не больше
 
+  // когда isTransitioning устанавливается в false и завершается setTimeout current-slide теперь отображает новый комментарий и теряет класс leaving.
   &.active {
     opacity: 1;
   }
 
+  //при нажатии след или пред слайд срабатывает [class.leaving]="isTransitioning" срабатывает так как Класс leaving будет применен, когда isTransitioning равно true, и срабатывает transition: opacity 1s ease-in-out затухание current_slide
   &.leaving {
     opacity: 0;
   }
-
-  &.entering {
-    opacity: 1;
-  }
 }
 
-.slide-hide {
+////при нажатии след или пред слай, класс change_hidden_slide получает классы active и entering
+.change_hidden_slide {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 1s ease-in-out;
 
   &.active {
     opacity: 1;
-  }
-
-  &.leaving {
-    opacity: 0;
   }
 
   &.entering {

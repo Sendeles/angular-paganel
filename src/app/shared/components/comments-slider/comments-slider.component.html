@@ -3,8 +3,8 @@
     <div class="slider-container">
       <img class="prev-arrow" (click)="prevComment(comments)" src="./assets/images/arrows/left-arrow.png"
            alt="left_arrow">
-      <div class="slide-content" [class.active]="!isTransitioning" [class.leaving]="isTransitioning">
-        <!-- Content for current slide -->
+<!--  отображает текущий слайд, !isTransitioning это isTransitioning с противоположным показателем, если там говорим что при смене слайда будет тру, то с помощью ! будет фолс. активируетя только при действии смене слайда -->
+      <div class="current_slide" [class.active]="!isTransitioning" [class.leaving]="isTransitioning">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
           <path [attr.fill]="fillColor" [attr.d]="pathData"></path>
         </svg>
@@ -18,8 +18,8 @@
           {{ comments[currentIndex].name }}{{ comments[currentIndex].surname }}
         </div>
       </div>
-      <div class="slide-hide" [class.active]="isTransitioning" [class.entering]="isTransitioning">
-        <!-- Content for next slide -->
+<!--      change_hidden_slide играет ключевую роль в создании плавного перехода, временно становясь видимым во время анимации, но в итоге всегда возвращается в скрытое состояние, уступая место обновленному current-slide. Короче говоря он становиться видемым пока SetTimeout не завершит свой цикл-->
+      <div class="change_hidden_slide" [class.active]="isTransitioning" [class.entering]="isTransitioning">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
           <path [attr.fill]="fillColor" [attr.d]="pathData"></path>
         </svg>
