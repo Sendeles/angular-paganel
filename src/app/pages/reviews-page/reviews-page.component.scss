@@ -140,6 +140,7 @@
   justify-content: center;
   align-items: center; // Это свойство центрирует содержимое внутри каждой ячейки по вертикали
   position: relative;
+  margin-top: 40px;
   margin-bottom: 70px;
   grid-template-columns: repeat(4, 189px); // Создаёт ровно четыре колонки шириной в 186px
   grid-template-rows: auto; // Высота строки будет определяться содержимым

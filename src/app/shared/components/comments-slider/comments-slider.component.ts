@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {CarouselModule, OwlOptions} from "ngx-owl-carousel-o";
-import {CommonModule} from "@angular/common";
+import {AfterViewInit, Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import {CarouselModule} from "ngx-owl-carousel-o";
+import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {ReviewsServices} from "../../services/reviews.services";
 import {IReview} from "../../../../environments/environments";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
+import {first} from "rxjs/operators";
 
 @Component({
   selector: 'app-comments-slider',
@@ -14,9 +15,10 @@ import {Observable} from "rxjs";
     CommonModule //для работы *ngFor
   ],
   templateUrl: './comments-slider.component.html',
-  styleUrl: './comments-slider.component.scss'
+  styleUrl: './comments-slider.component.scss',
+  host: {ngSkipHydration: 'true'},
 })
-export class CommentsSliderComponent implements OnInit {
+export class CommentsSliderComponent implements OnInit, OnDestroy {
 
   //два след строки для двух ковычек svg
   fillColor: string = '#FAA700';
@@ -34,20 +36,39 @@ export class CommentsSliderComponent implements OnInit {
   isTransitioning = false; // флаг, указывающий, происходит ли в данный момент переход между слайдами.
   currentIndex = 0; //currentIndex: индекс текущего отображаемого комментария.
   changeIndex = 0; //индекс следующего или предыдущего комментария для отображения.
+  autoSlideInterval!: NodeJS.Timeout | number | null; //setInterval возвращает NodeJS.Timeout (в Node.js) или number (в браузере), но не просто number
+  private lastClickTime = 0; // 0 секунд, делаем для того что бы нельзя было спамить переключение слайдов
+  private clickCooldown = 2000; // 2 секунды, делаем для того что бы нельзя было спамить переключение слайдов
 
   constructor(
     private route: ActivatedRoute,
     private reviewsServices: ReviewsServices,
+    //SSR мешает работать setInterval, что бы убрать SSR прописываем
+    @Inject(PLATFORM_ID) private platform_id: Object
   ) {
   }
 
   ngOnInit(): void {
-    //здесь присваиваем значение объявленному выше свойству
-    this.comments$ = this.reviewsServices.getFavoritesReviews();
+    // здесь присваиваем значение объявленному выше свойству
+    if (isPlatformBrowser(this.platform_id)) {
+      this.comments$ = this.reviewsServices.getFavoritesReviews();
+      //Этот код обеспечивает, что автоматическая смена слайдов начнется только после того, как комментарии будут фактически загружены и только если они есть.
+      this.comments$.pipe(first()).subscribe(comments => {
+        if (comments.length > 0) {
+          this.startAutoSlide(comments);
+        }
+      });
+    }
   }
 
   //Пользователь нажимает на стрелку "вперед".Вызывается метод nextComment(comments):
   nextComment(comments: IReview[]) {
+    // Игнорируем клик, если прошло меньше 2 секунд
+    const currentTime = Date.now();
+    if (currentTime - this.lastClickTime < this.clickCooldown) {
+      return;
+    }
+    this.lastClickTime = currentTime;
     //Устанавливается isTransitioning = true, таким образом заставляем срабатывать [class.leaving]="isTransitioning"
     this.isTransitioning = true;
     //Вычисляется changeIndex для следующего комментария.
@@ -59,9 +80,17 @@ export class CommentsSliderComponent implements OnInit {
       this.isTransitioning = false;
       //время на протяжении которого переключается слайд в левую сторону
     }, 1000);
+    //при смене слайда вручную стопаєм автопереключение
+    this.stopAutoSlide()
   }
 
   prevComment(comments: IReview[]) {
+    // Игнорируем клик, если прошло меньше 2 секунд
+    const currentTime = Date.now();
+    if (currentTime - this.lastClickTime < this.clickCooldown) {
+      return;
+    }
+    this.lastClickTime = currentTime;
     this.isTransitioning = true;
     this.changeIndex = (this.currentIndex - 1 + comments.length) % comments.length;
     setTimeout(() => {
@@ -69,17 +98,50 @@ export class CommentsSliderComponent implements OnInit {
       this.isTransitioning = false;
       //время на протяжении которого переключается слайд в правую сторону
     }, 1000);
+    //при смене слайда вручную стопаєм автопереключение
+    this.stopAutoSlide()
   }
 
   goToComment(index: number) {
+    // Игнорируем клик, если прошло меньше 2 секунд
+    const currentTime = Date.now();
+    // Здесь мы вычисляем разницу между текущим временем и временем последнего клика.
+    if (currentTime - this.lastClickTime < this.clickCooldown) {
+      return;
+    }
+    this.lastClickTime = currentTime;
     if (index !== this.currentIndex) {
+      //срабатывает класс leaving на current-slide
       this.isTransitioning = true;
       this.changeIndex = index;
       setTimeout(() => {
         this.currentIndex = this.changeIndex;
+        // срабатывает active на current-slide
         this.isTransitioning = false;
         //время на протяжении которого переключается слайд чере точки
       }, 1000);
     }
+    //при смене слайда вручную стопаєм автопереключение
+    this.stopAutoSlide()
+  }
+
+  startAutoSlide(comments: IReview[]) {
+    this.stopAutoSlide(); // Остановить предыдущий интервал, если он существует
+    if (comments.length > 1) { // Запускаем только если есть более одного комментария
+      this.autoSlideInterval = setInterval(() => {
+        this.nextComment(comments);
+      }, 3000); // Меняет слайд каждые 3 секунды
+    }
+  }
+
+  stopAutoSlide() {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+      this.autoSlideInterval = null;
+    }
+  }
+
+  ngOnDestroy() {
+    this.stopAutoSlide();
   }
 }
