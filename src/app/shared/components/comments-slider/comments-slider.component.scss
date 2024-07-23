@@ -16,15 +16,6 @@ svg {
   height: 300px; /* Установите фиксированную высоту */
 }
 
-//.slides-wrapper {
-//  position: absolute;
-//  top: 0;
-//  left: 0;
-//  right: 0;
-//  bottom: 0;
-//}
-
-
 .current_slide {
   transition: opacity 1s ease-in-out; // взаимодействует вместе с setTimeout, скорость переключения может быть меньше чем setTimeout но никак не больше
 
@@ -67,9 +58,12 @@ svg {
   cursor: pointer;
   width: 40px; /* Установите нужную ширину */
   height: 40px; /* Установите нужную высоту */
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; // Плавный переход для opacity и transform
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, filter 0.3s ease; // Плавный переход для opacity и transform, filter для изменения цвета картинки
   z-index: 10;
 
+  &:hover {
+    filter: brightness(0) saturate(100%) invert(40%);
+  }
 
   &.prev-arrow {
     left: 0; //задаем дополнительно к позишн абсолют по 0 таким образом размещая их по бокам
@@ -101,6 +95,7 @@ svg {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .dot {

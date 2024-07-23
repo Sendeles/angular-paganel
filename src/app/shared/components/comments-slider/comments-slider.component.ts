@@ -34,6 +34,7 @@ export class CommentsSliderComponent implements OnInit, OnDestroy {
   // Если вы уверены, что comments$ будет инициализирован в ngOnInit(), можно использовать оператор "!",
   comments$!: Observable<IReview[]>;
   isTransitioning = false; // флаг, указывающий, происходит ли в данный момент переход между слайдами.
+  // isManual: boolean = false; // Для стопа автоскрола при смены слайда в ручную
   currentIndex = 0; //currentIndex: индекс текущего отображаемого комментария.
   changeIndex = 0; //индекс следующего или предыдущего комментария для отображения.
   autoSlideInterval!: NodeJS.Timeout | number | null; //setInterval возвращает NodeJS.Timeout (в Node.js) или number (в браузере), но не просто number
@@ -62,7 +63,7 @@ export class CommentsSliderComponent implements OnInit, OnDestroy {
   }
 
   //Пользователь нажимает на стрелку "вперед".Вызывается метод nextComment(comments):
-  nextComment(comments: IReview[]) {
+  nextComment(comments: IReview[], isManual: boolean = false) { //isManual - задаем что в состоянии false работает автопереключение слайдов, при смене на true автопереключение прекращается, true задаем в html
     // Игнорируем клик, если прошло меньше 2 секунд
     const currentTime = Date.now();
     if (currentTime - this.lastClickTime < this.clickCooldown) {
@@ -80,8 +81,10 @@ export class CommentsSliderComponent implements OnInit, OnDestroy {
       this.isTransitioning = false;
       //время на протяжении которого переключается слайд в левую сторону
     }, 1000);
-    //при смене слайда вручную стопаєм автопереключение
-    this.stopAutoSlide()
+    // Останавливаем автопереключение только при ручном переключении
+    if (isManual) {
+      this.stopAutoSlide();
+    }
   }
 
   prevComment(comments: IReview[]) {
@@ -98,8 +101,8 @@ export class CommentsSliderComponent implements OnInit, OnDestroy {
       this.isTransitioning = false;
       //время на протяжении которого переключается слайд в правую сторону
     }, 1000);
-    //при смене слайда вручную стопаєм автопереключение
-    this.stopAutoSlide()
+    // Останавливаем автопереключение только при ручном переключении
+      this.stopAutoSlide();
   }
 
   goToComment(index: number) {
@@ -120,17 +123,17 @@ export class CommentsSliderComponent implements OnInit, OnDestroy {
         this.isTransitioning = false;
         //время на протяжении которого переключается слайд чере точки
       }, 1000);
+      // Останавливаем автопереключение только при ручном переключении
+        this.stopAutoSlide();
     }
-    //при смене слайда вручную стопаєм автопереключение
-    this.stopAutoSlide()
   }
 
   startAutoSlide(comments: IReview[]) {
     this.stopAutoSlide(); // Остановить предыдущий интервал, если он существует
     if (comments.length > 1) { // Запускаем только если есть более одного комментария
       this.autoSlideInterval = setInterval(() => {
-        this.nextComment(comments);
-      }, 3000); // Меняет слайд каждые 3 секунды
+        this.nextComment(comments, false); //// Указываем, что false это автоматическое переключение
+      }, 10000); // Меняет слайд каждые 10 секунд
     }
   }
 

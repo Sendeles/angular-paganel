@@ -1,12 +1,12 @@
 import {AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild} from '@angular/core';
 import {CommonModule, isPlatformBrowser} from "@angular/common";
-import {HomePageRoutingModule} from "./home-page-routing.module";
 import {LanguageServices} from "../../shared/services/language.services";
+import {CommentsSliderComponent} from "../../shared/components/comments-slider/comments-slider.component";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CommentsSliderComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
