@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 1000px;
+  margin: 0 auto; //Для центрирования иначе width работает только с правой стороны
+}
+
+.button_container {
+  margin-top: 33px;
+  margin-left: 8px;
+}
+
+.back_button {
+  font-size: 15px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 5px 41px;
+  border-color: #feaa02;
+  box-shadow: 8px 4px 9px 0 rgba(0, 0, 0, 0.25); /* 0 это смещение по оси X (горизонтальное смещение). 4px это смещение по оси Y (вертикальное смещение). 24px это радиус размытия тени. 0 это распространение тени (как далеко она выйдет за пределы элемента). rgba(0, 0, 0, 1) это цвет тени в формате RGBA, где 0.25 - это прозрачность. */
+}
+
+.title_container {
+  text-align: center;
+  font-size: 46px;
+  margin-bottom: 65px;
+}
+
+.bold_name {
+  font-weight: bold;
+}
+
+.separate_container {
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 350px;
+    height: auto;
+  }
+}

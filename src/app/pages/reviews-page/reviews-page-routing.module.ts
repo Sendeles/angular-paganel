@@ -7,7 +7,10 @@ const routes: Routes = [
   {
     path: '', component: ReviewsPageComponent, pathMatch: 'full'
   },
-  { path: ':id', component: ReviewsComponent }
+  //данный роут служит для того что бы загружалась страница с нужным айди, без данного роута меняется только маршрут в адресной строке но не загружается страница с конкретным айди
+  {
+    path: ':id', component: ReviewsComponent
+  }
 ]
 
 @NgModule({

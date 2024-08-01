@@ -25,6 +25,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/reviews-page/reviews-page.module').then(m => m.ReviewsPageModule)
       },
       {
+        path: 'team',
+        loadChildren:() => import('./pages/team-page/team-page.module').then(m => m.TeamPageModule)
+      },
+      {
         path: 'login',
         loadChildren: () => import('./pages/login-page/login-page.module').then(m => m.LoginPageModule)
       },

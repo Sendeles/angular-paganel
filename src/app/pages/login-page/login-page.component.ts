@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
         Validators.required,
         //запрет прописанных доменов
         MyValidators.restrictedEmail
-        ]),
+      ]),
       password: new FormControl<string>('', [
         Validators.minLength(6),
         Validators.maxLength(12)
@@ -75,17 +75,17 @@ export class LoginPageComponent implements OnInit {
       })
     //данный код для авторизации на сайте localhost, просто требуется
     setTimeout(() => {
-    this.auth.login(user).subscribe({
-      next: (): void => {
-        // this.submitted = false
-        if (this.auth.isAdmin()) {
-          this.router.navigate(['/admin'])
+      this.auth.login(user).subscribe({
+        next: (): void => {
+          // this.submitted = false
+          if (this.auth.isAdmin()) {
+            this.router.navigate(['/admin'])
+          }
+        },
+        error: (error): void => {
+          this.errorMessage = error;
         }
-      },
-      error: (error): void => {
-        this.errorMessage = error;
-      }
-    });
+      });
     }, 400)
     console.log('user', user)
   }
@@ -101,6 +101,7 @@ export class LoginPageComponent implements OnInit {
     return '';
   }
 
+  //функция для отслеживания длины пароля или что она делает? чекни плс
   get passwordLength(): number {
     const passwordControl = this.form.get('password');
     if (passwordControl && passwordControl.value) {

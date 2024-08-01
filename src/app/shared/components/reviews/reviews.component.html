@@ -1,16 +1,29 @@
-<!--reviews$ - это Observable -->
-<!--|async - это пайп, который подписывается на Observable и возвращает его последнее эмитированное значение-->
-<!--as reviews - это часть, которая присваивает полученное значение локальной переменной reviews-->
-<div *ngIf="reviews$ | async as reviews; else loading">
-  <ng-container *ngFor="let review of reviews">
-    <p>Автор: {{ review.name }} {{ review.surname }}</p>
-    <p>Экспедиция: {{ review.expedition }}</p>
-    <p>Соц Сеть: {{ review.social }}</p>
-    <p  [innerHTML]="review.feedback"></p>
-    <p>Дата: {{ review.date | date: 'dd.MM.yyyy, HH:mm:ss':'ua' }}</p>
+<div class="container">
+  <div class="button_container">
+    <button [routerLink]="['/reviews']" class="back_button">< Back</button>
+  </div>
+  <ng-container *ngIf="currentTravel$ | async as currentTravel">
+    <h1 class="title_container">{{currentTravel.name}}</h1>
   </ng-container>
-</div>
+  <!--reviews$ - это Observable -->
+  <!--|async - это пайп, который подписывается на Observable и возвращает его последнее эмитированное значение-->
+  <!--as reviews - это часть, которая присваивает полученное значение локальной переменной reviews-->
+  <div *ngIf="reviews$ | async as reviews; else loading">
+    <!--  Добавили let last = last в директиву *ngFor, чтобы знать, когда мы находимся на последнем элементе. last - одна из встроенных переменных деректив ангуляра, аналогична reviews.length - 1-->
+    <ng-container *ngFor="let review of reviews; let last = last">
+      <p class="bold_name">{{ review.name }} {{ review.surname }}</p>
+      <p>{{ review.expedition }}</p>
+      <p>{{ review.social }}</p>
+      <p [innerHTML]="review.feedback"></p>
+      <p>Дата: {{ review.date | date: 'dd.MM.yyyy, HH:mm:ss':'ua' }}</p>
+      <!--    Добавили условие *ngIf="!last" который говорит что если компонент не последний то показывай, а если последний то прячь, ничего в scss прописывать в данном случае не нужно-->
+      <div class="separate_container" *ngIf="!last">
+        <img src="assets/images/separation.webp" alt="separation">
+      </div>
+    </ng-container>
+  </div>
 
-<ng-template #loading>
-  <p>Идет загрузка</p>
-</ng-template>
+  <ng-template #loading>
+    <p>Идет загрузка</p>
+  </ng-template>
+</div>

@@ -1,11 +1,11 @@
-import {AfterViewInit, Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID} from '@angular/core';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {CommonModule, isPlatformBrowser} from "@angular/common";
 import {ReviewsServices} from "../../services/reviews.services";
 import {IReview} from "../../../../environments/environments";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs";
-import {first} from "rxjs/operators";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-comments-slider',
@@ -15,8 +15,7 @@ import {first} from "rxjs/operators";
     CommonModule //для работы *ngFor
   ],
   templateUrl: './comments-slider.component.html',
-  styleUrl: './comments-slider.component.scss',
-  host: {ngSkipHydration: 'true'},
+  styleUrl: './comments-slider.component.scss'
 })
 export class CommentsSliderComponent implements OnInit, OnDestroy {
 
@@ -50,15 +49,18 @@ export class CommentsSliderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // здесь присваиваем значение объявленному выше свойству
     if (isPlatformBrowser(this.platform_id)) {
-      this.comments$ = this.reviewsServices.getFavoritesReviews();
-      //Этот код обеспечивает, что автоматическая смена слайдов начнется только после того, как комментарии будут фактически загружены и только если они есть.
-      this.comments$.pipe(first()).subscribe(comments => {
-        if (comments.length > 0) {
-          this.startAutoSlide(comments);
-        }
-      });
+      // Здесь мы присваиваем результат вызова метода getFavoritesReviews() свойству comments$
+      this.comments$ = this.reviewsServices.getFavoritesReviews()
+        // pipe() позволяет нам добавить дополнительную логику к Observable, не изменяя исходные данные. ,без pipe и tap  придется использовать subscribe
+        .pipe(
+          //tap() используется для выполнения побочного эффекта (запуск автослайдера) без изменения данных в потоке Observable. Это идеально подходит для таких случаев, когда мы хотим что-то сделать с данными, но не хотим их менять. без pipe и tap  придется использовать subscribe
+          tap(comments => {
+            //Этот код обеспечивает, что автоматическая смена слайдов начнется только после того, как комментарии будут фактически загружены и только если они есть.
+            if (comments.length > 0) {
+              this.startAutoSlide(comments);
+            }
+          }));
     }
   }
 
@@ -66,6 +68,7 @@ export class CommentsSliderComponent implements OnInit, OnDestroy {
   nextComment(comments: IReview[], isManual: boolean = false) { //isManual - задаем что в состоянии false работает автопереключение слайдов, при смене на true автопереключение прекращается, true задаем в html
     // Игнорируем клик, если прошло меньше 2 секунд
     const currentTime = Date.now();
+    //Здесь вычисляется разница между текущим временем (currentTime) и временем последнего клика (this.lastClickTime).Эта разница сравнивается с this.clickCooldown (предположительно, это заданный интервал времени, например, 1000 мс или 1 секунда).
     if (currentTime - this.lastClickTime < this.clickCooldown) {
       return;
     }
@@ -102,7 +105,7 @@ export class CommentsSliderComponent implements OnInit, OnDestroy {
       //время на протяжении которого переключается слайд в правую сторону
     }, 1000);
     // Останавливаем автопереключение только при ручном переключении
-      this.stopAutoSlide();
+    this.stopAutoSlide();
   }
 
   goToComment(index: number) {
@@ -124,7 +127,7 @@ export class CommentsSliderComponent implements OnInit, OnDestroy {
         //время на протяжении которого переключается слайд чере точки
       }, 1000);
       // Останавливаем автопереключение только при ручном переключении
-        this.stopAutoSlide();
+      this.stopAutoSlide();
     }
   }
 
