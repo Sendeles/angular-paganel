@@ -1,0 +1,149 @@
+.title_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 77px;
+}
+
+.title_main {
+  font-size: 45px;
+}
+
+.buttons_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+
+.button_li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #feaa02;
+  padding: 13px;
+  width: 8%;
+  border: none;
+
+  &:hover {
+    box-shadow: inset 0 0 0 1px #feaa02; /* Создаем эффект границы потому что border смещает остальную страницу */
+    cursor: pointer;
+    color: black;
+    background-color: #ffffff;
+    transition: ease-in 0.3s;
+  }
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+
+  h1 {
+    font-size: 45px;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    color: #666666;
+    font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
+  }
+}
+
+.team_container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; //блок не находиться на одном уровне из-за того что на Ольге меньше текста, stretch решает эту проблему
+  flex-wrap: wrap; // при сужении до переплетения не сужает, а делит на два
+  gap: 60px; /* Регулирует пространство между элементами команды */
+  margin-bottom: 50px;
+
+  .team_block {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #feaa02;
+    max-width: 456px;
+
+    img {
+      width: 100%; /* Проценты гарантируют, что изображение будет заполнять родительский блок */
+      height: auto;
+    }
+  }
+}
+
+.information_team {
+  padding: 11px 33px;
+
+  h3 {
+    font-size: 25px;
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+
+  span {
+    color: rgb(61,61,61);
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 16px;
+    letter-spacing: 0em;
+  }
+}
+
+.button_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 46px 0;
+
+  .detail_button {
+    border: 1px solid #faa700;
+    padding: 10px 85px;
+    text-align: center;
+
+    span {
+      display: inline-block;
+      color: #faa700;
+    }
+
+    & > a { // означает "выбрать все ссылки (a), которые являются непосредственными детьми текущего селектора
+      text-decoration: none;
+      color: #000; /* Adjust the color as needed */
+      position: relative;
+      padding-right: 20px;
+
+      &:after { //В контексте вашего кода это используется для создания декоративной стрелки после текста ссылки. Псевдоэлемент :after позволяет добавить эту стрелку без изменения HTML-структуры.
+        content: ""; /*отображение данной формы, без content форма не отображается*/
+        display: inline-block; /* из прямоугольника делаем маленький квадратик в нижней части*/
+        width: 5px; // Width of the arrow
+        height: 5px; // Height of the arrow
+        border-style: solid;
+        border-width: 0 3px 3px 0;
+        border-color: #feaa02;
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%) rotate(315deg);
+        opacity: 0.6;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #feaa02;
+      transition: ease-in 0.3s;
+
+      span {
+        color: #ffffff;
+        transition: ease-in 0.3s;
+      }
+
+      & > a:after {
+        border-color: #ffffff;
+        transition: ease-in 0.3s;
+      }
+    }
+  }
+}

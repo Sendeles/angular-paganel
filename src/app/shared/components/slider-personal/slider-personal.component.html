@@ -1,0 +1,11 @@
+<div class="slider-container">
+  <img [src]="images[currentIndex]" class="main-image" alt="Main Image">
+
+  <div class="thumbnails">
+    <img *ngFor="let image of images; let i = index"
+         [src]="image"
+         [class.active]="i === currentIndex"
+         (click)="setMainImage(i)"
+         alt="Thumbnail">
+  </div>
+</div>

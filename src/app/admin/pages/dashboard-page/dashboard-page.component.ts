@@ -49,13 +49,15 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   }
 
   //удаляю конкретный пост
-  remove(id: string) {
+  remove(id: string, showAlert: boolean = true) {
     this.rSub = this.reviewsServices.remove(id).subscribe(() => {
       //проверяем не является ли this.reviews undefined и если нет, перебираем список постов после удаления какого-то поста
       if (this.reviews) {
         this.reviews = this.reviews.filter((review) => review.id !== id);
       }
-      this.alertServices.delete('Пост был удален')
+      if(showAlert) {
+        this.alertServices.delete('Пост был удален')
+      }
     })
   }
 
@@ -78,7 +80,8 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       data: { travels, favorites, review } // Передаем указанные массивы из arrays в качестве данных диалогового окна кроме review, под review только конкретно выбранный отзыв
     }).afterClosed().subscribe((reviewId) => {  //получаю reviewId при закрытии модального окна, под reviewId - передается this.data.review.id из country-selection.component.ts
       if (reviewId) {
-        this.remove(reviewId); //после добавления удаляем этот отзыв
+        this.remove(reviewId, false); //после добавления удаляем этот отзыв
+        this.alertServices.added('Пост был добавлен')
         // Обработка выбранной страны
         console.log(`Выбрано id: ${reviewId}`);
       }

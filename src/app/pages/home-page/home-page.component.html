@@ -16,7 +16,7 @@
   </div>
   <div class="paganel_description">
     <div class="block_left">
-      <p [innerHTML]="languageService.getTranslate('PAGANEL STUDIOS')"></p>
+      <p [innerHTML]="languageService.getTranslate('PAGANEL_STUDIOS')"></p>
       <div #imageContainer class="image_container" [class.spin_picture]="isVisible">
         <img class="spin_picture first" [src]="jumps1" alt="jumps1">
         <img class="spin_picture second" [src]="jumps2" alt="jumps2">
@@ -24,15 +24,15 @@
       </div>
     </div>
     <div class="block_right">
-      <p [innerHTML]="languageService.getTranslate('PAGANEL STUDIOS 2')"></p>
+      <p [innerHTML]="languageService.getTranslate('PAGANEL_STUDIOS_2')"></p>
       <p>
       </p>
-      <p [innerHTML]="languageService.getTranslate('PAGANEL STUDIOS 3')"></p>
+      <p [innerHTML]="languageService.getTranslate('PAGANEL_STUDIOS_3')"></p>
 
     </div>
   </div>
   <div class="button_to_up">
-    <span>{{languageService.getTranslate('GO WITH US')}}</span>
+    <span>{{languageService.getTranslate('GO_WITH_US')}}</span>
   </div>
   <img class="icons icons_love" [src]="love" alt="i_love_paganel">
   <div class="text_paganel_center">
@@ -88,8 +88,8 @@
       <div class="team_members">
         <div class="person">
           <img [src]="andrew_and" alt="andrew_and">
-          <h3>Андрей Андреев</h3>
-          <p>Засновник та керівник компанії, експедиційний лідер, фотограф, оператор, фільммейкер</p>
+          <h3 [innerHTML]="languageService.getTranslate('ANDRII_ANDREIEV')"></h3>
+          <p [innerHTML]="languageService.getTranslate('ANDRII_ANDREIEV_ROLE')"></p>
         </div>
         <div class="person">
           <img [src]="olga_and" alt="olga_and">

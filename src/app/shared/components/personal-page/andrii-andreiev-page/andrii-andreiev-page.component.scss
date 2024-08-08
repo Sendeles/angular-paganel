@@ -1,0 +1,52 @@
+:host {
+  display: block; /*Гарантирует, что компонент отображается как блочный элемент.*/
+  width: 100%; /*Устанавливает размеры компонента на 100% ширины и высоты родительского контейнера.*/
+  height: 100%; /*Устанавливает размеры компонента на 100% ширины и высоты родительского контейнера.*/
+  background-size: auto 691px; /*Масштабирует фоновое изображение так, чтобы оно полностью покрывало заданный размер.*/
+  background-repeat: no-repeat; /*Запрещает повторение фонового изображения.*/
+  background-attachment: fixed; /* Сделать фон неподвижным при прокрутке.*/
+  background-image: url('/assets/images/backgrounds/andrii_background.webp');
+}
+
+.space {
+  padding-top: 724px;
+}
+
+.white_background {
+  background-color: #ffffff;
+}
+
+.cutaway_block {
+  box-sizing: border-box; //для того что бы margin и padding не влиял на размер
+  height: 354px; //не указав height или width box-sizing не будет работать
+  border: 1px solid #faa700;
+  margin: auto;
+  padding: 25px 1px 1px 1px;
+  max-width: 880px;
+  //max-height: 354px;
+  font-size: 19px;
+  line-height: 1.4em;
+  font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
+  color: #555555;
+  font-style: normal;
+  font-weight: normal;
+  transform: translateY(-55%); //для того что бы поднять полностью блок выше
+  background-color: white;
+  text-align: center;
+}
+
+.founder_title {
+  font-size: 16px;
+  font-style: normal;
+  letter-spacing: 0.35px;
+  color: #333333;
+  font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 0em;
+  font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
+  color: #000000;
+}

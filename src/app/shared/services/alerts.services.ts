@@ -3,7 +3,7 @@ import {IAlerts} from "../models/alert/alerts.model";
 import {Subject} from "rxjs";
 
 
-export type AlertType = 'update' | 'warning' | 'delete'
+export type AlertType = 'update' | 'warning' | 'delete' | 'added'
 
 
 @Injectable({
@@ -25,5 +25,10 @@ export class AlertsServices {
 
   delete(text: string) {
     this.alerts$.next({type: 'delete', text})
+  }
+
+  added(text: string) {
+    console.log('Вызван метод added с текстом:', text);
+    this.alerts$.next({type: 'added', text})
   }
 }

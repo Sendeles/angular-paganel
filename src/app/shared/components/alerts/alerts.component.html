@@ -4,7 +4,9 @@
   <!-- Различные типа, будет использоваться тот класс если будет использоваться тип success-->
   <div [class.alert-update]="type === 'update'"
        [class.alert-warning]="type === 'warning'"
-       [class.alert-delete]="type === 'delete'">
+       [class.alert-delete]="type === 'delete'"
+       [class.alert-added]="type === 'added'"
+  >
 <!-- Здесь мы добавили элемент span с классом close-icon и символом крестика (&#10006;), который будет отображаться только для алертов типа "success". При клике на этот крестик, мы устанавливаем text в пустую строку, что приведет к скрытию алерта.-->
     <span *ngIf="isSuccess" (click)="text = ''" class="close-icon">&#10006;</span>
 <!--    c помощью ниже кода прячем <span style="font-size: 19px;"> который находится в reviews-page.component.ts-->

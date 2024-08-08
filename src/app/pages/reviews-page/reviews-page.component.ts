@@ -11,7 +11,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AlertsReviewComponent} from "../../shared/components/alerts-review/alerts-review.component";
 import {ArraysService} from "../../shared/services/arrays.services";
 import {ITravels} from "../../shared/models/arrays/arrays.model";
-import {CommentsSliderComponent} from "../../shared/components/comments-slider/comments-slider.component";
+import {SliderCommentsComponent} from "../../shared/components/slider-comments/slider-comments.component";
 
 @Component({
   selector: 'app-reviews',
@@ -21,7 +21,7 @@ import {CommentsSliderComponent} from "../../shared/components/comments-slider/c
     StarsRatingComponent,
     RouterModule,
     ReactiveFormsModule,
-    CommentsSliderComponent
+    SliderCommentsComponent
   ],
   templateUrl: './reviews-page.component.html',
   styleUrl: './reviews-page.component.scss'

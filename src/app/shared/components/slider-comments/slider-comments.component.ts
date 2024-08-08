@@ -14,10 +14,10 @@ import {tap} from "rxjs/operators";
     CarouselModule, //для работы модуля
     CommonModule //для работы *ngFor
   ],
-  templateUrl: './comments-slider.component.html',
-  styleUrl: './comments-slider.component.scss'
+  templateUrl: './slider-comments.component.html',
+  styleUrl: './slider-comments.component.scss'
 })
-export class CommentsSliderComponent implements OnInit, OnDestroy {
+export class SliderCommentsComponent implements OnInit, OnDestroy {
 
   //два след строки для двух ковычек svg
   fillColor: string = '#FAA700';
