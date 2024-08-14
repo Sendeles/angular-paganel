@@ -29,7 +29,10 @@
       </div>
       <label>Password:</label>
       <br/>
-      <input type="password" formControlName="password" placeholder="Password" (change)="passwordLength" >
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Password" (change)="passwordLength" >
+      <button type="button" (click)="togglePasswordVisibility()">
+        {{ showPassword ? 'Hide password' : 'Show password' }}
+      </button>
     </div>
     <button class="btn" type="submit" [disabled]="form.invalid || form.controls['password'].value === ''">Enter</button>
   </form>

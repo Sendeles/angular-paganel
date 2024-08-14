@@ -23,6 +23,7 @@ export class LoginPageComponent implements OnInit {
   submitted: boolean = false
   errorMessage: string = '';
   message: string = ''
+  showPassword: boolean = false;
 
 
   constructor(
@@ -88,6 +89,11 @@ export class LoginPageComponent implements OnInit {
       });
     }, 400)
     console.log('user', user)
+  }
+
+  //функция которая меняет показывать или скрывать пароль
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
   //функция для отслеживания домена который идет за @
