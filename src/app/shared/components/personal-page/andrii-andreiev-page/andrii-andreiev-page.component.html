@@ -3,12 +3,22 @@
   <div class="cutaway_block">
     <p class="founder_title" [innerHTML]="languageService.getTranslate('PAGANEL_FOUNDER')"></p>
     <h1 [innerHTML]="languageService.getTranslate('ANDRII_ANDREIEV')"></h1>
-    <img [src]="andrii_and_sign" [alt]="andrii_and_sign">
-    <p [innerHTML]="languageService.getTranslate('ANDRII_ANDREIEV_ROLE')"></p>
-    <img [src]="facebook_2" [alt]="facebook_2">
+    <img class="signature" [src]="andrii_and_sign" [alt]="andrii_and_sign">
+    <p [innerHTML]="languageService.getTranslate('ANDRII_ANDREIEV_ROLE_PERSONAL_PAGE')"></p>
+    <!--    target="_blank" для открытия в новой вкладке-->
+    <a [href]="socialLink.ANDREII_AND" target="_blank">
+      <img [src]="facebook_2" [alt]="facebook_2">
+    </a>
   </div>
-  <div>Nevermind</div>
+  <div class="block_1">
+    <div class="image_block">
+      <img [src]="andrii_tongue" [alt]="andrii_tongue">
+    </div>
+    <div class="text_block">
+      <span [innerHTML]="languageService.getTranslate('ANDRII_ABOUT_HIMSELF')"></span>
+    </div>
+  </div>
   <div>
-    <app-slider-personal [images]="imagesR"></app-slider-personal>
+    <app-slider-personal [images]="imagesAndriiAnd"></app-slider-personal>
   </div>
 </div>
