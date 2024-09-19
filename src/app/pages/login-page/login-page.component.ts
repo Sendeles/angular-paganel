@@ -87,8 +87,7 @@ export class LoginPageComponent implements OnInit {
           this.errorMessage = error;
         }
       });
-      //500 это сеттаймаут потому-что почему-то не успеваем получить респонс про то что логин админский до 0.5 секунд
-    }, 500)
+    }, 400)
     console.log('user', user)
   }
 
