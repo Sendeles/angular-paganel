@@ -2,7 +2,7 @@
   display: block; /*Гарантирует, что компонент отображается как блочный элемент.*/
   width: 100%; /*Устанавливает размеры компонента на 100% ширины и высоты родительского контейнера.*/
   height: 100%; /*Устанавливает размеры компонента на 100% ширины и высоты родительского контейнера.*/
-  background-size: cover; /*Масштабирует фоновое изображение так, чтобы оно полностью покрывало заданный размер. cover делает так что бы разрешение не влияло на картинку*/
+  background-size: auto 691px; /*Масштабирует фоновое изображение так, чтобы оно полностью покрывало заданный размер.*/
   background-repeat: no-repeat; /*Запрещает повторение фонового изображения.*/
   background-attachment: fixed; /* Сделать фон неподвижным при прокрутке.*/
   background-image: url('/assets/images/backgrounds/andrii_background.webp');
@@ -21,81 +21,32 @@
   height: 354px; //не указав height или width box-sizing не будет работать
   border: 1px solid #faa700;
   margin: auto;
-  padding: 25px 212px;
-  max-width: 980px; //длинна самого блока
+  padding: 25px 1px 1px 1px;
+  max-width: 880px;
+  //max-height: 354px;
   font-size: 19px;
   line-height: 1.4em;
   font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
   color: #555555;
   font-style: normal;
   font-weight: normal;
-  transform: translateY(-50%); //для того что бы поднять полностью блок выше
+  transform: translateY(-55%); //для того что бы поднять полностью блок выше
   background-color: white;
   text-align: center;
-
-  .founder_title {
-    font-size: 16px;
-    font-style: normal;
-    letter-spacing: 0.35px;
-    color: #333333;
-    font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
-  }
-
-  h1 {
-    margin: 23px;
-    font-size: 40px;
-    font-weight: bold;
-    letter-spacing: 0em;
-    font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
-    color: #000000;
-  }
-
-  .signature {
-    width: 94px;
-    height: auto;
-    object-fit: cover;
-  }
-
-  > :nth-child(4) {
-    margin: 5px;
-    font-size: 19px;
-  }
-
-  > :nth-child(5) {
-
-    img {
-      width: 40px;
-      margin-top: 21px;
-    }
-  }
 }
 
-.block_1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 130px;
-  margin-top: -85px;
-
-  .image_block {
-    margin: 0 0 30px calc((100% - 1141px) * 0.5); //calc((100% - 1363px) * 0.5) - отступ слева: вычисляемое значение. Вычитаем 1363px из 100% ширины родителя. Умножение на 0.5 (или деление на 2) обеспечивает, что левый отступ будет равен правому, тем самым центрируя элемент.
-
-    img {
-      width: 625px;
-    }
-  }
-
-  .text_block {
-    border: 1px solid #faa700;
-    line-height: 1.7em;
-    text-align: justify;
-    margin: -9px calc((100% - 1148px) * 0.5) -18px 16px;
-    font-size: 14px;
-    font-weight: normal;
-    font-style: normal;
-    font-family: arial,ｍｓ ｐゴシック,ms pgothic,돋움,dotum,helvetica,sans-serif;
-    padding: 21px 32px 22px 23px;
-  }
+.founder_title {
+  font-size: 16px;
+  font-style: normal;
+  letter-spacing: 0.35px;
+  color: #333333;
+  font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
 }
 
-
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: 0em;
+  font-family: arial, ｍｓ ｐゴシック, ms pgothic, 돋움, dotum, helvetica, sans-serif;
+  color: #000000;
+}
