@@ -1,27 +1,28 @@
 .slider-container {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 966px;
+  margin: 40px auto;
 }
 
 .main-image {
   width: 100%;
-  height: auto;
+  height: 535px; /* Установите фиксированную высоту */
+  object-fit: cover; /* заполнить контейнер, сохраняя при этом свои пропорции. Оно может обрезать часть изображения, чтобы оно соответствовало заданным размерам */
 }
 
 .thumbnails {
   display: flex;
-  overflow-x: auto;
+  overflow-x: hidden; //слешер под слайдером
   margin-top: 10px;
 }
 
 .thumbnails img {
-  width: 60px;
-  height: 60px;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
-  margin-right: 5px;
+  margin-right: 15px;
   cursor: pointer;
 }
 
 .thumbnails img.active {
-  border: 2px solid blue;
+  opacity: 0.4; //видимость активного слайда
 }

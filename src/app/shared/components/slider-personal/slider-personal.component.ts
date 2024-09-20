@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {ISlide} from "../../models/slider/slider.model";
 
 @Component({
   selector: 'app-slider-personal',
@@ -13,6 +12,7 @@ import {ISlide} from "../../models/slider/slider.model";
 })
 export class SliderPersonalComponent {
 
+  //через html вставляем картинки с одного компонента в другой
   @Input() images: string[] = [];
   currentIndex = 0;
 

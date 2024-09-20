@@ -44,7 +44,7 @@ export class AuthorizationServices {
     return token !== null ? token : '';
   }
 
-  //k_okami@yahoo.com paganel123
+  //k_okami@yahoo.com paganel159
   //отправка данных на бекенд для логинизации
   login(user: IUser): Observable<IAuthResponse> {
     user.returnSecureToken = true; //Этот флаг требуется для того, чтобы сервер вернул безопасный токен доступа после успешной аутентификации пользователя.
@@ -122,60 +122,4 @@ export class AuthorizationServices {
     return throwError(() => error) //throwError(() => error) создает Observable, который немедленно выбрасывает ошибку, используя объект ошибки, который был передан в метод handleError. Этот Observable будет передавать эту ошибку всем подписчикам на него. Обычно этот Observable используется для обработки ошибок в цепочке операторов Observable, например, в методе catchError.
   }
 }
-
-
-//Существует 2 авторизации мой вариант и Сани, admin-page.component.ts - мой вверх, Саши низ                admin-page.component.html - разница в елементе logout           app.routes.ts - мой расскоментировать гвард в логине, Саши заккоментировать             authorization.service.ts мой вверх, Саши низ         login-page.component.ts
-
-// import {Injectable} from "@angular/core";
-// import {Subject} from "rxjs";
-// import firebase from "firebase/compat/app";
-// import "firebase/compat/auth";
-//
-// import User = firebase.User;
-//
-//
-// @Injectable({
-//   providedIn: 'root'
-// })
-//
-// export class AuthorizationServices {
-//
-//   //Это Subject, который используется для передачи ошибок аутентификации между компонентами. Мы его пропишем в html, и если пользователь ошибся например в своем пароле, то выскочит ошибка что пароль или емейл введены неверно.
-//   public error$: Subject<string> = new Subject<string>();
-//
-//   private user: User | null = null;
-//
-//   constructor(
-//   ) {
-//   }
-//
-//   public setCredentials(user: User): void {
-//     this.user = user;
-//   }
-//
-//   public getCredentials(): User | null {
-//     return firebase.auth().currentUser;
-//   }
-//
-//   // ввод имени пользователя и пароля, которые затем сверяются с хранящимися данными
-//   isAuthenticated() {
-//     return !!this.getCredentials()
-//   }
-//
-//   getCurrentUserEmail(): string | null {
-//     const user = this.getCredentials(); // Попытка получить текущего пользователя.
-//     console.log(' Попытка получить текущего пользователя', user)
-//     if (user && user.email) {
-//       console.log('user.email', user.email)
-//       return user.email;
-//     }
-//     return null;
-//   }
-//
-// //определение является ли залогиненый акк - админским
-//   isAdmin(): boolean {
-//     const email = this.getCurrentUserEmail();
-//     return email === 'k_okami@yahoo.com';
-//   }
-// }
 
