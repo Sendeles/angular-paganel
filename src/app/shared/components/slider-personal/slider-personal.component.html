@@ -1,7 +1,24 @@
 <div class="slider-container">
-  <img [src]="images[currentIndex]" class="main-image" alt="Main Image">
-
-  <div class="thumbnails">
+  <!--  отображаем левую стрелку если мы не на первом слайде, так же используем svg создавая свою стрелочку а не берем картинку-->
+  <svg *ngIf="!isFirstSlide()" class="arrows prev-arrow" (click)="prevImage()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </svg>
+<!--  Основная главная картинки-->
+  <div class="images-wrapper">
+    <div class="slide-change-animation" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
+      <img *ngFor="let image of images"
+           [src]="image"
+           class="main-image"
+           alt="Main Image">
+    </div>
+  </div>
+  <!--  отображаем правую стрелку если мы не на последнем слайде-->
+  <svg *ngIf="!isLastSlide()" class="arrows next-arrow" (click)="nextImage()" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </svg>
+<!--  Эта часть кода отвечает за создание миниатюр (превью) изображений под основным слайдером./ #thumbnailsContainer для привязывки к ViewChild в slider-personal.components.ts   -->
+  <div class="thumbnails" #thumbnailsContainer>
+<!--    Перебирает массив images Создает миниатюру для каждого изображения let i = index сохраняет порядковый номер каждого изображения-->
     <img *ngFor="let image of images; let i = index"
          [src]="image"
          [class.active]="i === currentIndex"

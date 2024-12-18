@@ -98,4 +98,19 @@
   }
 }
 
+.picture_sun {
+  display: block;
+  margin: 0 auto;
+}
 
+.text_paganel_center {
+  text-align: center;
+
+  .title_cherish_life {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 40px;
+    letter-spacing: -0.4px;
+    font-weight: normal;
+  }
+}

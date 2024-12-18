@@ -84,6 +84,16 @@ export let translations: any = {
     'ru': 'КОНТАКТЫ',
     'ua': 'КОНТАКТИ'
   },
+  'LOVE_TRAVEL_UA1': {
+    'en': 'Cherish Life! Love! Travel!',
+    'ru': 'Цени жизнь! Люби! Путешествуй!',
+    'ua': 'Цінуй життя! Люби! Подорожуй!'
+  },
+  'LOVE_TRAVEL_UA2': {
+    'en': 'Cherish Life! Love! Travel!',
+    'ru': 'Цени жизнь! Люби! Путешествуй!',
+    'ua': 'Цінуй життя! Кохай! Подорожуй!'
+  },
   'EXCLUSION_NOTICE': {
     'en': 'In light of the ongoing war on the territory of Ukraine since February 24, 2022, Paganel Studio is no longer accepting applications from <br> citizens of the Russian Federation for participation in our expeditions',
     'ru': 'В связи с войной на территории Украины, с 24 февраля 2022 года, Paganel Studio больше не принимает заявки от граждан РФ на <br> участие в наших экспедициях.',

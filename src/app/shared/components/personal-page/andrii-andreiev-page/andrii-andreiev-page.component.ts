@@ -19,6 +19,7 @@ import {ISocialLink} from "../../../constants/sociallink";
 export class AndriiAndreievPageComponent {
 
   socialLink = ISocialLink;
+  sun: string = './assets/images/sun.webp';
   andrii_and_sign: string = './assets/images/signatures/andrii_and_sign.webp';
   facebook_2: string = './assets/images/social/facebook_2.webp';
   andrii_tongue: string = './assets/images/personal/andrii-and/andrii_tongue.webp';
