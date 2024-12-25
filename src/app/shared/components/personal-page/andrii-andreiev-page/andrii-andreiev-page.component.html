@@ -23,6 +23,6 @@
     <span class="title_cherish_life">{{languageService.getTranslate('LOVE_TRAVEL_UA2')}}</span>
   </div>
   <div>
-    <app-slider-personal [images]="imagesAndriiAnd"></app-slider-personal>
+    <app-slider-personal [images]="imagesAndriiAnd" (mainImageClick)="openSlideInFullView($event)"></app-slider-personal>
   </div>
 </div>

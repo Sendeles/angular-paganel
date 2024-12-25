@@ -36,4 +36,29 @@ export class ArraysService {
   getFavorites() {
     return this.favorites
   }
+
+  imagesAndriiAnd = [
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-1.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-2.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-3.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-4.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-5.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-6.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-7.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-8.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-10.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-11.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-12.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-13.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-14.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-15.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-16.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-17.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-18.webp',
+    'assets/images/personal/andrii-and/slider/andrii-and-slider-19.webp',
+  ]
+
+  getImagesAndriiAnd() {
+    return this.imagesAndriiAnd
+  }
 }

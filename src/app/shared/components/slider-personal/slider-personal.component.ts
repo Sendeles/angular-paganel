@@ -1,5 +1,6 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {CommonModule} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-slider-personal',
@@ -12,11 +13,17 @@ import {CommonModule} from "@angular/common";
 })
 export class SliderPersonalComponent {
 
-  //через html вставляем картинки с одного компонента в другой, за это отвечает @Input()
+  //через @Input() делаем доступным массив в html с родительского компонента AndriiAndreievPageComponent в дочерний SliderPersonalComponent
   @Input() images: string[] = [];
+  @Output() mainImageClick = new EventEmitter<number>();
   //ViewChild для получения доступа к контейнеру с миниатюрами
   @ViewChild('thumbnailsContainer') thumbnailsContainer!: ElementRef;
   currentIndex = 0;
+
+
+  openSliderOverlay(): void {
+    this.mainImageClick.emit(this.currentIndex);
+  }
 
   setMainImage(index: number): void {
     this.currentIndex = index;

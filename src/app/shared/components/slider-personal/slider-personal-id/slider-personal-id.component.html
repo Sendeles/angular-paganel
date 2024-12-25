@@ -1,0 +1,17 @@
+<div class="popup-overlay">
+  <div class="popup-content">
+    <!-- Кнопка закрытия -->
+    <button class="close-button" (click)="close()">&#x2715;</button>
+
+    <!-- Слайдер -->
+    <div class="slider">
+      <button class="prev-button" *ngIf="currentIndex > 0" (click)="prevSlide()">&#8249;</button>
+
+      <div class="slider-image">
+        <img [src]="images[currentIndex]" [alt]="'Slide' + (currentIndex + 1)" />
+      </div>
+
+      <button class="next-button" *ngIf="currentIndex < images.length - 1" (click)="nextSlide()">&#8250;</button>
+    </div>
+  </div>
+</div>

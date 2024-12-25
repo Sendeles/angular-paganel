@@ -6,10 +6,12 @@
 <!--  Основная главная картинки-->
   <div class="images-wrapper">
     <div class="slide-change-animation" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
-      <img *ngFor="let image of images"
+      <img *ngFor="let image of images; let i = index"
            [src]="image"
            class="main-image"
-           alt="Main Image">
+           alt="Main Image"
+           (click)="openSliderOverlay()"
+      >
     </div>
   </div>
   <!--  отображаем правую стрелку если мы не на последнем слайде-->
