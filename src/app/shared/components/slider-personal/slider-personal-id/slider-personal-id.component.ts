@@ -1,56 +1,84 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CommonModule} from "@angular/common";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ArraysService} from "../../../services/arrays.services";
+import { CommonModule, Location } from "@angular/common";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ArraysService } from "../../../services/arrays.services";
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import {LanguageServices} from "../../../services/language.services";
 
 @Component({
   selector: 'app-slider-personal-id',
   standalone: true,
   imports: [
-    CommonModule, // для правильной работы *ngIf
+    CommonModule,
   ],
   templateUrl: './slider-personal-id.component.html',
-  styleUrl: './slider-personal-id.component.scss'
+  styleUrls: ['./slider-personal-id.component.scss']
 })
 export class SliderPersonalIdComponent implements OnInit {
 
-  images: string[] = []; //для того что бы прищвать массив из сервиса в компонент через this.imagesAndriiAnd
-  currentIndex = 0;
+  images$: Observable<string[]> = new Observable<string[]>(); // Поток изображений
+  private currentIndexSubject = new BehaviorSubject<number>(0); // Управление текущим индексом через BehaviorSubject
+  currentIndex$ = this.currentIndexSubject.asObservable(); // Поток текущего индекса
+  personName: string = "Person Name"; // Свойство для хранения имени для когда хочешь отерыть слайдер в отдельном окне
 
   constructor(
-    private route: ActivatedRoute, //используется, чтобы определить, какой слайд нужно открыть, основываясь на id, указанном в URL. Пример: Если URL /team/andrii-andreiev/3, то с помощью ActivatedRoute можно извлечь параметр 3 и открыть соответствующий слайд.
-    private router: Router, // Router используется для программной навигации, например, чтобы закрыть слайдер и вернуться на главную страницу.
-    public arraysService: ArraysService
-  ) {
-    this.images = this.arraysService.getImagesAndriiAnd()
-  }
+    private route: ActivatedRoute,
+    public arraysService: ArraysService,
+    private location: Location, // Добавляем Location
+    private languageService: LanguageServices,
+  ) {}
 
   ngOnInit() {
-    // Получаем ID слайда из параметров маршрута
-    this.route.params.subscribe((params) => {
-      const slideId = +params['id'];
-      if (slideId > 0 && slideId <= this.images.length) {
-        this.currentIndex = slideId - 1;
+    const url$ = this.route.url;
+    const params$ = this.route.params;
+
+    // Поток для загрузки изображений на основе маршрута, что бы слайдер понимал какие фотки грузить, андрея или Ольги и так далее...
+    this.images$ = url$.pipe(
+      map(urlSegments => {
+        if (urlSegments.some(segment => segment.path === 'olga-andreieva')) {
+          this.personName = this.languageService.getTranslate('OLGA_ANDREIEVA') //передача имени в зависимости от открытия отдельно слайдера
+          return this.arraysService.getImagesOlgaAnd();
+        } else if (urlSegments.some(segment => segment.path === 'andrii-andreiev')) {
+          this.personName = this.languageService.getTranslate('ANDRII_ANDREIEV') //передача имени в зависимости от открытия отдельно слайдера
+          return this.arraysService.getImagesAndriiAnd();
+        } else {
+          return [];
+        }
+      })
+    );
+
+    // Установка начального значения индекса из параметров маршрута
+    combineLatest([this.images$, params$]).pipe(
+      map(([images, params]) => {
+        const slideId = +params['id'];
+        return slideId > 0 && slideId <= images.length ? slideId - 1 : 0;
+      })
+    ).subscribe(initialIndex => this.currentIndexSubject.next(initialIndex));
+  }
+
+
+  nextSlide(): void {
+    this.images$.subscribe(images => {
+      const currentIndex = this.currentIndexSubject.value; // Получить текущее значение индекса
+      if (currentIndex < images.length - 1) {
+        this.currentIndexSubject.next(currentIndex + 1); // Увеличить индекс на 1
       }
     });
   }
 
-  // Переход к следующему слайду
-  nextSlide(): void {
-    if (this.currentIndex < this.images.length - 1) {
-      this.currentIndex++;
-    }
-  }
-
-  // Переход к предыдущему слайду
+// Переход к предыдущему слайду
   prevSlide(): void {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
+    const currentIndex = this.currentIndexSubject.value; // Получить текущее значение индекса
+    if (currentIndex > 0) {
+      this.currentIndexSubject.next(currentIndex - 1); // Уменьшить индекс на 1
     }
   }
 
   // Закрыть окно
   close(): void {
-    this.router.navigate(['/team/andrii-andreiev']); // Вернуться на главную страницу команды
+    this.location.back();
+    console.log()
   }
 }
+

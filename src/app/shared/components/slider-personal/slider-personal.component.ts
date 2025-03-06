@@ -54,6 +54,9 @@ export class SliderPersonalComponent {
   private scrollThumbnails(): void {
     const thumbnail = this.thumbnailsContainer.nativeElement.children[this.currentIndex]; // thumbnailsContainer.nativeElement - это прямой доступ к DOM элементу div с классом thumbnails / children[this.currentIndex] - получаем дочерний элемент (миниатюру) по текущему индексу
     thumbnail.scrollIntoView({ behavior: 'smooth', inline: 'center' }); //scrollIntoView - встроенный метод браузера для прокрутки элемента в видимую область
+
+    const currentScrollY = window.scrollY; // Задаем настоящее позициионирование на странице
+    window.scrollTo({ top: currentScrollY }); // при срабатывании данно функции всегда нас подымает до положения настоящего позиционирвание (таким образом мы не двигаемся потому что уже тут находимся)
   }
 
 }

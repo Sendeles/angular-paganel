@@ -12,12 +12,12 @@
 }
 
 .popup-content {
+  width: 100%; // задаем что бы белый фон покрыл полностью разрешение
+  height: 100%; // задаем что бы белый фон покрыл полностью разрешение
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,6 +34,10 @@
   cursor: pointer;
 }
 
+.display {
+  display: flex;
+}
+
 .slider {
   display: flex;
   align-items: center;
@@ -41,21 +45,17 @@
 }
 
 .slider-image img {
-  max-width: 100%;
-  max-height: 80vh;
+  max-width: none; /* Позволяет изображению масштабироваться больше контейнера */
+  max-height: none; /* Позволяет изображению быть выше 80vh */
+  width: 1300px; /* Начните с 100% ширины, но разрешите масштабирование */
+  height: auto; /* Сохраняйте пропорции */
+  transition: transform 0.3s ease; /* Плавная анимация масштабирования */
 }
 
 .prev-button,
 .next-button {
   background: none;
   border: none;
-  font-size: 36px;
-  color: #fff;
   cursor: pointer;
   user-select: none;
-}
-
-.prev-button:hover,
-.next-button:hover {
-  color: #ccc;
 }

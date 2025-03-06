@@ -33,13 +33,15 @@
       <img [src]="olga_and" alt="olga_and">
     </div>
     <div class="information_team">
-      <h3>Ольга Андрєєва</h3>
-      <span class="role">Муза Паганелєй</span>
-      <p class="description">Співзасновник, експедиційний лідер, дизайнер, художник компанії.</p>
+      <h3 [innerHTML]="languageService.getTranslate('OLGA_ANDREIEVA')"></h3>
+      <span class="role">{{languageService.getTranslate('OLGA_ANDREIEVA_TITLE')}}</span>
+      <p class="description">{{languageService.getTranslate('OLGA_ANDREIEVA_ROLE_PERSONAL_PAGE')}}</p>
     </div>
     <div class="button_wrapper">
       <div class="detail_button">
+        <div [routerLink]="['/team', 'olga-andreieva']">
         <a><span>Докладніше</span></a>
+        </div>
       </div>
     </div>
   </div>

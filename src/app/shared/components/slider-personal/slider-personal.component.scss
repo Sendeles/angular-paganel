@@ -45,7 +45,7 @@
 
 .thumbnails {
   display: flex;
-  overflow-x: hidden; //слешер под слайдером
+  overflow-x: hidden; //прячем остальные мминиатюры что бы не заходили за рамки основного слайда
   margin-top: 10px;
 }
 
@@ -58,5 +58,5 @@
 }
 
 .thumbnails img.active {
-  opacity: 0.4; //видимость активного слайда
+  opacity: 0.4; //видимость активной миниатюры
 }

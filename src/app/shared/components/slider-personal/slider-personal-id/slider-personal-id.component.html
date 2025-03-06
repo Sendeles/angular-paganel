@@ -2,16 +2,34 @@
   <div class="popup-content">
     <!-- Кнопка закрытия -->
     <button class="close-button" (click)="close()">&#x2715;</button>
+    <div class="display">
+      <!-- Слайдер -->
+      <div class="slider">
+        <svg *ngIf="(currentIndex$ | async) ?? 0 > 0"
+             class="prev-button"
+             (click)="prevSlide()"
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="35" height="35">
+          <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
 
-    <!-- Слайдер -->
-    <div class="slider">
-      <button class="prev-button" *ngIf="currentIndex > 0" (click)="prevSlide()">&#8249;</button>
+        <div class="slider-image">
+          <ng-container *ngIf="images$ | async as images; else loading">
+            <img [src]="images[(currentIndex$ | async) ?? 0]" [alt]="'Slide' + (((currentIndex$ | async) ?? 0) + 1)"/>
+          </ng-container>
+          <ng-template #loading>Loading...</ng-template>
+        </div>
+        <div>
+          {{personName}}
+        </div>
 
-      <div class="slider-image">
-        <img [src]="images[currentIndex]" [alt]="'Slide' + (currentIndex + 1)" />
+        <svg *ngIf="(images$ | async)?.length && ((currentIndex$ | async) ?? 0) < ((images$ | async)?.length ?? 0) - 1"
+             class="next-button"
+             (click)="nextSlide()"
+             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="35" height="35">
+          <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
       </div>
-
-      <button class="next-button" *ngIf="currentIndex < images.length - 1" (click)="nextSlide()">&#8250;</button>
     </div>
   </div>
 </div>
+

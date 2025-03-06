@@ -61,4 +61,58 @@ export class ArraysService {
   getImagesAndriiAnd() {
     return this.imagesAndriiAnd
   }
+
+  imagesOlgaAnd = [
+    'assets/images/personal/olga-and/slider/olga-and-slider-1.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-2.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-3.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-4.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-5.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-6.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-7.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-8.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-9.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-10.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-11.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-12.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-13.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-14.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-15.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-16.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-17.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-18.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-19.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-20.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-21.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-22.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-23.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-24.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-25.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-26.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-27.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-28.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-29.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-30.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-31.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-32.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-33.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-34.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-35.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-36.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-37.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-38.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-39.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-40.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-41.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-42.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-43.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-44.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-45.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-46.jpg',
+    'assets/images/personal/olga-and/slider/olga-and-slider-47.jpg',
+  ]
+
+  getImagesOlgaAnd() {
+    return this.imagesOlgaAnd
+  }
 }

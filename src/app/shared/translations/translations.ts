@@ -225,6 +225,11 @@ export let translations: any = {
     'ru': 'Андрей Андреев',
     'ua': 'Андрій Андрєєв'
   },
+  'ANDRII_ANDREIEVA_TITLE': {
+    'en': 'Mind, Honor and Conscience of the Paganel Studio',
+    'ru': 'Ум, Честь и Совесть Paganel Studio',
+    'ua': 'Розум, Честь та Совість Paganel Studio'
+  },
   'ANDRII_ANDREIEV_ROLE': {
     'en': 'Founder and head of the company, expedition leader, photographer, camera operator, and filmmaker.',
     'ru': 'Основатель и руководитель компании, экспедиционный лидер, фотограф, оператор, филммэйкер.',
@@ -245,11 +250,30 @@ export let translations: any = {
     'ru': 'ОСНОВАТЕЛЬ ПАГАНЕЛЬ СТУДИО',
     'ua': 'ЗАСНОВНИК ПАГАНЕЛЬ СТУДІО'
   },
-  'OLGA_ANDREIEV': {
+  'OLGA_ANDREIEVA': {
     'en': 'Olga Andreieva',
     'ru': 'Ольга Андреева',
     'ua': 'Ольга Андрєєва'
   },
-
+  'OLGA_ANDREIEVA_TITLE': {
+    'en': 'Muse of the Paganels',
+    'ru': 'Муза Paganel Studio',
+    'ua': 'Муза Паганелей'
+  },
+  'MUSE_PAGANEL_FOUNDER': {
+    'en': 'MUSE PAGANEL STUDIO',
+    'ru': 'МУЗА ГЛАВНОГО ПОГАНЕЛЯ АНДРИЯ АНДРЕЕВА',
+    'ua': 'МУЗА ГОЛОВНОГО ПАГАНЕЛЯ АНДРІЯ АНДРЄЄВА'
+  },
+  'OLGA_ANDREIEVA_ROLE_PERSONAL_PAGE': {
+    'en': 'Co-founder of the company, expedition leader, translator, photographer, operator, designer, artist of the company',
+    'ru': 'Соучредитель компании, экспедиционный лидер, переводчик, фотограф, оператор, дизайнер, художник компании',
+    'ua': 'Співзасновник компанії, експедиційний лідер, перекладач, фотограф, оператор, дизайнер, художник компанії'
+  },
+  'OLGA_ABOUT_HIMSELF': {
+    'en' : 'From a young age, she dreamed of traveling to distant countries. She intuitively and consciously tried to arrange her life in such a way as to realize her dreams. Her first education is a geographer, candidate of sciences; the second — she graduated from the correspondence faculty of foreign languages ​​(major English). Fluent in English, Spanish, French; as a hobby, she studied Indonesian, German, Polish and Chinese.' + '<p></p>' + 'In 2005, she met her future husband Andrii Andreev. Since then, they have started a journey together, trying to fulfill their dreams related to creativity, art, photography, travel, and films.' + '<p></p>' + 'In 2011, together with Andrii, they created the company Paganel Studio, which is engaged in three areas: organizing and conducting trips with groups around the world, polar yacht expeditions, and shooting films during travels. Together with her husband, they filmed and created more than 60 short films, a full-length documentary, art films, and several projects. Olga is a designer of the company. She creates its style and draws badges and T-shirts for participants of our expeditions.',
+    'ru' : 'С юного возраста мечтала о путешествиях в далекие страны. Интуитивно и осознанно старалась выстраивать свою жизнь так, чтобы осуществлять свои мечты. По первому образованию географ, кандидат наук; второе — заочно окончила факультет иностранных языков (основной английский). Свободно говорит на английском, испанском, французском; как хобби учила индонезийский, немецкий, польский и китайский языки.' + '<p></p>' + 'В 2005 встретила своего будущего мужа Андрея Андреева, с которым начали путь вместе пытаясь осуществить уже общие мечты, связанные с творчеством, искусством, фотографией, путешествиями и кино.' + '<p></p>' + 'В 2011 вместе с Андреем создали компанию Paganel Studio, которая занимается тремя направлениями: организация и проведение путешествий с группами по всему миру, полярные яхтенные экспедиции и съемка фильмов в путешествиях. Вместе с мужем сняли и создали больше 60 короткометражных фильмов, полнометражный документальный фильм, арт-фильмы и несколько проектов. Ольга является дизайнером компании, создает ее стиль, рисует значки и футболки для участников наших экспедиций.',
+    'ua' : 'З юного віку мріяла про подорожі в далекі країни. Інтуїтивно та свідомо намагалась влаштовувати своє життя так, щоб здійснювати свої мрії. За першою освітою географ, кандидат наук; друга — заочно закінчила факультет іноземних мов (головна англійська). Вільно розмовляє англійською, іспанською, французькою; як хобі вчила індонезійську, німецьку, польську і китайську мови.' + '<p></p>' + 'У 2005 році зустріла свого майбутнього чоловіка Андрія Андрєєва. Відтоді вони почали спільний шлях, намагаючись здійснити мрії, пов’язані з творчістю, мистецтвом, фотографією, подорожами та фільмами.' + '<p></p>' + 'У 2011 році разом з Андрієм створили компанію Paganel Studio, яка займається трьома напрямками: організація і проведення подорожей з групами по всьому світу, полярні яхтові експедиції та зйомка фільмів в подорожах. Разом з чоловіком відзняли та створили більше 60-ти короткометражних фільмів, повнометражний документальний фільм, арт-фільми і декілька проєктів. Ольга є дизайнером компанії. Створює її стиль, малює значки й футболки для учасників наших експедицій.'
+  },
 }
 

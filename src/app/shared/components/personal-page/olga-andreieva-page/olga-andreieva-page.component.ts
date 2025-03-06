@@ -1,25 +1,21 @@
 import {Component, ViewChild} from '@angular/core';
-import {CommonModule} from "@angular/common";
 import {SliderPersonalComponent} from "../../slider-personal/slider-personal.component";
-import {ISlide} from "../../../models/slider/slider.model";
-import {LanguageServices} from "../../../services/language.services";
-import {ActivatedRoute, Router, RouterModule} from "@angular/router";
 import {ISocialLink} from "../../../constants/sociallink";
+import {LanguageServices} from "../../../services/language.services";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ArraysService} from "../../../services/arrays.services";
 
 @Component({
-  selector: 'app-andrii-andreiev-page',
+  selector: 'app-olga-andreieva-page',
   standalone: true,
   imports: [
-    CommonModule,
     SliderPersonalComponent
   ],
-  templateUrl: './andrii-andreiev-page.component.html',
-  styleUrl: './andrii-andreiev-page.component.scss'
+  templateUrl: './olga-andreieva-page.component.html',
+  styleUrl: './olga-andreieva-page.component.scss'
 })
-export class AndriiAndreievPageComponent {
-
-  imagesAndriiAnd: string[] = []; //для того что бы прищвать массив из сервиса в компонент через this.imagesAndriiAnd
+export class OlgaAndreievaPageComponent {
+  imagesOlgaAnd: string[] = []; //для того что бы прищвать массив из сервиса в компонент через this.imagesAndriiAnd
 
 //@ViewChild — это декоратор Angular, который позволяет родительскому компоненту получить ссылку на дочерний компонент или DOM-элемент. В данном случае:
 // SliderPersonalComponent — это дочерний компонент, который вы хотите контролировать из родительского компонента (AndriiAndreievPageComponent).
@@ -32,7 +28,7 @@ export class AndriiAndreievPageComponent {
   sun: string = './assets/images/sun.webp';
   andrii_and_sign: string = './assets/images/signatures/andrii_and_sign.webp';
   facebook_2: string = './assets/images/social/facebook_2.webp';
-  andrii_tongue: string = './assets/images/personal/andrii-and/andrii_tongue.webp';
+  olga_smile: string = './assets/images/personal/olga-and/slider/olga-and-slider-11.jpg';
 
   constructor(
     public languageService: LanguageServices,
@@ -40,7 +36,7 @@ export class AndriiAndreievPageComponent {
     private router: Router,
     public arraysService: ArraysService,
   ) {
-    this.imagesAndriiAnd = this.arraysService.getImagesAndriiAnd()
+    this.imagesOlgaAnd = this.arraysService.getImagesOlgaAnd()
 
     this.route.params.subscribe(params => {
       const slideId = +params['id']; // Преобразуем параметр id в число
@@ -60,7 +56,9 @@ export class AndriiAndreievPageComponent {
   //Этот метод отвечает за переход на другой маршрут, где открывается слайдер в "полноэкранном" или отдельном режиме.
   openSlideInFullView(index: number): void {
     const slideId = index + 1;
-    this.router.navigate([`/team/andrii-andreiev/${slideId}`]);
+    const route = `/team/olga-andreieva/${slideId}`;
+    console.log('Navigating to:', route);
+    this.router.navigate([route]);
   }
-}
 
+}

@@ -1,0 +1,28 @@
+<div class="space"></div>
+<div class="white_background">
+  <div class="cutaway_block">
+    <p class="founder_title" [innerHTML]="languageService.getTranslate('MUSE_PAGANEL_FOUNDER')"></p>
+    <h1 [innerHTML]="languageService.getTranslate('OLGA_ANDREIEVA')"></h1>
+    <img class="signature" [src]="andrii_and_sign" [alt]="andrii_and_sign">
+    <p [innerHTML]="languageService.getTranslate('OLGA_ANDREIEVA_ROLE_PERSONAL_PAGE')"></p>
+    <!--    target="_blank" для открытия в новой вкладке-->
+    <a [href]="socialLink.OLGA_AND" target="_blank">
+      <img [src]="facebook_2" [alt]="facebook_2">
+    </a>
+  </div>
+  <div class="block_1">
+    <div class="image_block">
+      <img [src]="olga_smile" [alt]="olga_smile">
+    </div>
+    <div class="text_block">
+      <span [innerHTML]="languageService.getTranslate('OLGA_ABOUT_HIMSELF')"></span>
+    </div>
+  </div>
+  <img class="picture_sun" [src]="sun" alt="sun">
+  <div class="text_paganel_center">
+    <span class="title_cherish_life">{{languageService.getTranslate('LOVE_TRAVEL_UA2')}}</span>
+  </div>
+  <div>
+    <app-slider-personal [images]="imagesOlgaAnd" (mainImageClick)="openSlideInFullView($event)"></app-slider-personal>
+  </div>
+</div>
