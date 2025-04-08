@@ -44,7 +44,6 @@ export class AuthorizationServices {
     return token !== null ? token : '';
   }
 
-  //k_okami@yahoo.com paganel159
   //отправка данных на бекенд для логинизации
   login(user: IUser): Observable<IAuthResponse> {
     user.returnSecureToken = true; //Этот флаг требуется для того, чтобы сервер вернул безопасный токен доступа после успешной аутентификации пользователя.
