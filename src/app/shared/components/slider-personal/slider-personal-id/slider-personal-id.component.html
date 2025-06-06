@@ -1,34 +1,65 @@
+<!--Внешний контейнер всплывающего окна, то что находится за popup-content, который покрывает весь экран и создает затемненный фон, мы popup-content расширили на 100% потому затемненного фона не видно.-->
 <div class="popup-overlay">
-  <div class="popup-content">
+  <!-- Определяет область с белым фоном, где отображается сам слайдер и другие элементы. Внутренний контейнер всплывающего окна, содержащий сам контент (слайдер, кнопки и т.д.). -->
+<!--  #popupContent к <div class="popup-content">, чтобы TypeScript мог ссылаться на этот элемент через @ViewChild.-->
+  <div class="popup-content" #popupContent [class.fullscreen]="isFullscreen">
     <!-- Кнопка закрытия -->
-    <button class="close-button" (click)="close()">&#x2715;</button>
-    <div class="display">
-      <!-- Слайдер -->
-      <div class="slider">
-        <svg *ngIf="(currentIndex$ | async) ?? 0 > 0"
-             class="prev-button"
-             (click)="prevSlide()"
-             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="35" height="35">
-          <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
+    <svg class="fullscreen-button" (click)="toggleFullscreen()" [class.hidden]="isFullscreen"
+         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="35" height="35">
+        <!-- Стрелка вверх-вправо -->
+        <line x1="15" y1="9" x2="21" y2="3" stroke="black" stroke-width="1"/>
+        <polyline points="16,3 22,3 22,8" fill="none" stroke="black" stroke-width="1"/>
 
-        <div class="slider-image">
-          <ng-container *ngIf="images$ | async as images; else loading">
-            <img [src]="images[(currentIndex$ | async) ?? 0]" [alt]="'Slide' + (((currentIndex$ | async) ?? 0) + 1)"/>
-          </ng-container>
-          <ng-template #loading>Loading...</ng-template>
+        <!-- Стрелка вниз-влево -->
+        <line x1="10" y1="14" x2="4" y2="20" stroke="black" stroke-width="1"/>
+        <polyline points="8,20 4,20 4,16" fill="none" stroke="black" stroke-width="1"/>
+    </svg>
+    <button class="close-button" (click)="close()">&#x2715;</button>
+    <!--Контейнер для отображения слайдера.-->
+    <div class="display">
+<!--      &lt;!&ndash; Контейнер для слайдера с изображениями и кнопками навигации. &ndash;&gt;-->
+<!--      <div class="slider">-->
+        <div class="picture_part">
+          <!--Отображается только если текущий индекс слайда больше 0-->
+          <!-- Оператор ?? возвращает правый операнд, если левый операнд равен null или undefined. Undefined или null — это "нулевое" значение, поэтому ?? подставляет 0. Если currentIndex$ | async = 0: нопка "назад" не отображается (индекс считается начальным, нет предыдущего слайда).
+          "> 0" — это фиксированная часть выражения. Оно всегда применяется к результату "(currentIndex$ | async) ?? 0"
+          Зачем нужен ?? 0
+          Выражение "??" это if
+          ?? 0 гарантирует, что вместо undefined или null будет число 0, с которым можно безопасно работать.
+          Если поток (currentIndex$ или images$) еще не выдал значение, async вернет undefined
+          Если результат (currentIndex$ | async) ?? 0 = 0, то 0 > 0 = false → кнопка скрыта.
+          Если результат (currentIndex$ | async) ?? 0 = 0, то 0 === 0 = true → кнопка видна.
+          Если результат (currentIndex$ | async) ?? 0 = 1, то 1 > 0 = true → кнопка видна.-->
+          <svg [class.hidden]="((currentIndex$ | async) ?? 0) === 0"
+               class="prev-button"
+               (click)="prevSlide()"
+               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="35" height="35">
+            <path d="M15 4L7 12L15 20" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <!--проверяет, загружены ли изображения (images$), и если нет — показывает текст "Loading...".-->
+          <div class="slider-image">
+            <ng-container *ngIf="images$ | async as images; else loading">
+              <div class="image-container" *ngFor="let image of images; let i = index" [class.active]="((currentIndex$ | async) ?? 0) === i">
+                <img [src]="image" [alt]="'Slide' + (i + 1)" />
+              </div>
+            </ng-container>
+            <ng-template #loading>Loading...</ng-template>
+          </div>
+          <!--Здесь берёт общее количество слайдов, сверяет текущий выбранный индекс, и если он больше или равен последнему, то добавляется класс hidden и стрелочка скрывается. (текущий индекс >= последний индекс) -->
+          <svg [class.hidden]="(images$ | async)?.length && ((currentIndex$ | async) ?? 0) >= ((images$ | async)?.length ?? 0) - 1"
+               class="next-button"
+               (click)="nextSlide()"
+               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="35" height="35">
+            <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
         </div>
         <div>
-          {{personName}}
+          <!--Выводит имя человека (personName), из списка команды-->
+          <div class="name_part">
+            {{personName}}
+          </div>
         </div>
-
-        <svg *ngIf="(images$ | async)?.length && ((currentIndex$ | async) ?? 0) < ((images$ | async)?.length ?? 0) - 1"
-             class="next-button"
-             (click)="nextSlide()"
-             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="35" height="35">
-          <path d="M9 4L17 12L9 20" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
-      </div>
+<!--      </div>-->
     </div>
   </div>
 </div>

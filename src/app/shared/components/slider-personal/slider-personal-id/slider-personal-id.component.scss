@@ -1,55 +1,184 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
+  position: fixed; //фиксируется на экране, не прокручиваясь вместе с контентом страницы.
+  top: 0; //нужно для того что бы не было header
+  left: 0; //нужно для того что бы не было header
+  width: 100vw; // для покрытия всего экрана
+  height: 100vh; //
+  background: rgba(0, 0, 0, 0.8); //затемненный фон с прозрачностью 80%, который прячется за popup-content
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .popup-content {
-  width: 100%; // задаем что бы белый фон покрыл полностью разрешение
-  height: 100%; // задаем что бы белый фон покрыл полностью разрешение
+  width: 100%; // Занимает 100% ширины и высоты экрана, из-за чего затемненный фон popup-overlay становится невидимым (он перекрывается полностью белым фоном).
+  height: 100%; // Занимает 100% ширины и высоты экрана, из-за чего затемненный фон popup-overlay становится невидимым (он перекрывается полностью белым фоном).
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+
+
+  // с помощью & мы компилируем это .popup-content.fullscreen   Это означает, что стили внутри блока &.fullscreen применяются к элементу, у которого одновременно есть два класса: popup-content и fullscreen
+  &.fullscreen {
+    padding: 0;
+    border-radius: 0;
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    z-index: 2;
+
+    .slider-image {
+      //width: 100vw; // Растягиваем на весь экран
+      //height: 100vh; // Растягиваем на весь экран
+      //position: absolute; // Абсолютное позиционирование внутри .popup-content
+      //top: 0;
+      //left: 0;
+    }
+
+    .image-container {
+      width: 100vw;
+      height: 100vh; // Занимаем всю высоту экрана
+      position: absolute;
+      top: 0;
+      left: -35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .image-container img {
+      max-width: 100vw; // Ограничиваем ширину вьюпортом
+      max-height: 100vh; // Ограничиваем высоту вьюпортом
+      width: auto; // Позволяем ширине подстраиваться
+      height: auto; // Позволяем высоте подстраиваться
+      object-fit: contain; // Сохраняем пропорции
+      //object-position: center; // Центрируем изображение
+    }
+
+    .prev-button {
+      position: fixed;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10; // Поверх изображения
+    }
+
+    .next-button {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10; // Поверх изображения
+    }
+
+    .name_part {
+      display: none;
+    }
+
+    .display {
+      margin: 0;
+    }
+  }
 }
 
+
 .close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: absolute; // Благодаря чему распологает в правом верхнем углу
+  top: 23px; // Благодаря чему распологает в правом верхнем углу
+  right: 28px; // Благодаря чему распологает в правом верхнем углу
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 36px;
   color: #000;
   cursor: pointer;
+  z-index: 10; // Поверх других элементов
 }
 
 .display {
   display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 49px 0 0 10px;
+
+  .picture_part {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 80px;
+    max-width: 900px; /* Фиксированная ширина контейнера */
+    height: 600px; /* Фиксированная высота контейнера */
+  }
+
+  .name_part {
+    position: fixed;
+    top: 133px; /* Пример: отступ сверху */
+    right: 168px; /* Пример: отступ справа */
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0 0 0 20px;
+  }
+
+  /* Класс для скрытия стрелок, но с сохранением их пространства */
+  .hidden {
+    opacity: 0;
+  }
 }
 
 .slider {
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
+
+.slider-image {
+  position: relative; /* Для позиционирования изображений друг над другом */
+  width: 885px; /* Ширина контейнера изображений */
+  height: 600px; /* Высота контейнера изображений */
+}
+
+.image-container {
+  position: absolute; /* Все изображения накладываются друг на друга */
+  bottom: 1px;
+  width: 100%;
+  height: 100%;
+  display: flex; /* Для центрирования картинки при смене слайда,иначе он будет крепиться к верхнему левому углу */
+  align-items: center; /* Для центрирования картинки при смене слайда,иначе он будет крепиться к верхнему левому углу */
+  justify-content: center; /* Для центрирования картинки при смене слайда,иначе он будет крепиться к верхнему левому углу */
+  opacity: 0; /* По умолчанию изображения прозрачные */
+  transition: opacity 0.5s ease; /* Плавный переход прозрачности за 0.5 секунды */
+}
+
+.image-container.active {
+  opacity: 1; /* Активное изображение полностью видно */
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Сохраняем пропорции изображения */
+}
+
 
 .slider-image img {
   max-width: none; /* Позволяет изображению масштабироваться больше контейнера */
   max-height: none; /* Позволяет изображению быть выше 80vh */
-  width: 1300px; /* Начните с 100% ширины, но разрешите масштабирование */
+  width: 885px; /* Начните с 100% ширины, но разрешите масштабирование */
   height: auto; /* Сохраняйте пропорции */
+  transform-origin: left center; /* сужение картинки при это что бы левая сторона была зафиксирована */
   transition: transform 0.3s ease; /* Плавная анимация масштабирования */
+  object-fit: contain; /* Сохраняем пропорции изображения */
 }
 
 .prev-button,
@@ -58,4 +187,41 @@
   border: none;
   cursor: pointer;
   user-select: none;
+  flex-shrink: 0; /* Запрещаем сжатие стрелок */
+}
+
+.next-button {
+  position: absolute;
+  right: -115px;
+}
+
+/* Адаптивность через медиа-запросы */
+@media (max-width: 1300px) {
+  .slider-image img {
+    transform: scale(0.8); /* Уменьшаем изображение на 10% */
+  }
+
+  .display {
+    .name_part {
+      font-size: 35px;
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  .slider-image img {
+    transform: scale(0.7); /* Уменьшаем изображение на 20% */
+  }
+
+  .display {
+    .name_part {
+      font-size: 30px;
+    }
+  }
+}
+
+@media (max-width: 1080px) {
+  .slider-image img {
+    transform: scale(0.6); /* Уменьшаем изображение на 30% */
+  }
 }

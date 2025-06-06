@@ -12,7 +12,8 @@ import {ArraysService} from "../../../services/arrays.services";
   standalone: true,
   imports: [
     CommonModule,
-    SliderPersonalComponent
+    SliderPersonalComponent,
+    RouterModule //для работы routerLink что бы работала кнопка back
   ],
   templateUrl: './andrii-andreiev-page.component.html',
   styleUrl: './andrii-andreiev-page.component.scss'

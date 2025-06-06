@@ -5,7 +5,20 @@
   background-size: cover; /*Масштабирует фоновое изображение так, чтобы оно полностью покрывало заданный размер. cover делает так что бы разрешение не влияло на картинку*/
   background-repeat: no-repeat; /*Запрещает повторение фонового изображения.*/
   background-attachment: fixed; /* Сделать фон неподвижным при прокрутке.*/
-  background-image: url('/assets/images/backgrounds/andrii_background.webp');
+  background-image: url('/assets/images/backgrounds/andrii_background.jpg');
+}
+
+.back_button {
+  font-size: 15px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 5px 41px;
+  border-color: #feaa02;
+  box-shadow: 8px 4px 9px 0 rgba(0, 0, 0, 0.25); /* 0 это смещение по оси X (горизонтальное смещение). 4px это смещение по оси Y (вертикальное смещение). 24px это радиус размытия тени. 0 это распространение тени (как далеко она выйдет за пределы элемента). rgba(0, 0, 0, 1) это цвет тени в формате RGBA, где 0.25 - это прозрачность. */
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .space {
